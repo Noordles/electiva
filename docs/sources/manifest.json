@@ -1,0 +1,23 @@
+{
+  "received": "2026-11-16",
+  "sources": [
+    {
+      "file": "00-general-specifications.md",
+      "bytes": 14794,
+      "sha256": "1167a33773148e9075f206e5cf3bbf334aedc92359c263093ac2779d80d278a9",
+      "status": "read in full; user supplied Draft v2.0; not independently verified as final"
+    },
+    {
+      "file": "01-architectural-challenges.md",
+      "bytes": 12504,
+      "sha256": "8f6cc8801bfe03d905563cd3eeef105bdb0a0d2edaf7463c5ccb2d84ff278266",
+      "status": "read in full; user supplied Draft v2.0; not independently verified as final"
+    },
+    {
+      "file": "tema1-course-enrollment.md",
+      "bytes": 4782,
+      "sha256": "0484ae70faf6ab3640058f8d3d0b16073a164e0a37a1f6c9f29458544623cd6a",
+      "status": "read in full; user supplied Draft v2.0; not independently verified as final"
+    }
+  ]
+}

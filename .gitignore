@@ -1,0 +1,14 @@
+node_modules/
+.env
+.env.*
+!.env.example
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+coverage/
+client/dist/
+test-results/
+playwright-report/
+artifacts/raw/
+.DS_Store
