@@ -1,0 +1,921 @@
+{
+  "version": 1,
+  "state": "planning only",
+  "point_meaning": "relative effort, not hours or completed contribution",
+  "tasks": [
+    {
+      "id": "N01",
+      "owner": "N",
+      "milestone": "M1",
+      "points": 3,
+      "title": "Establish repository and reproducible workspace",
+      "depends_on": [],
+      "files": "README.md, package.json, lockfile, .env.example, .gitignore, docs/team.md",
+      "steps": [
+        "Confirm theme1/CON+SCL and roster; preserve source hashes and Draft status.",
+        "Choose compatible supported Node LTS/npm and dependency versions from official documentation; record versions and reasons.",
+        "Create npm workspaces for server/client; commit lockfile and harmless environment examples.",
+        "Ignore secrets/build/runtime databases; choose local DB directory outside OneDrive.",
+        "Create feature branches and command placeholders that fail clearly until implemented; never claim the planning repo runs."
+      ],
+      "acceptance": "Clean clone can install locked dependencies; no secrets/DB/TypeScript; team/source record accurate.",
+      "commit": "chore(repo): initialize JIN workspace",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "N02",
+      "owner": "N",
+      "milestone": "M1",
+      "points": 3,
+      "title": "Design schema and transaction boundaries",
+      "depends_on": [
+        "N01",
+        "I01",
+        "J02"
+      ],
+      "files": "docs/architecture.md, schema diagram, model/migration contracts",
+      "steps": [
+        "Map users/sessions/courses/offerings/enrollments and their keys.",
+        "Define epoch-time windows, capacity and current-membership constraints.",
+        "Specify ACTIVE/WAITLISTED/CANCELLED lifecycle and immutable attempt identity.",
+        "Plan transaction ownership across enroll/cancel/capacity writes.",
+        "Agree schema/API names with I and J before they implement modules."
+      ],
+      "acceptance": "Schema diagram and constraint list trace R04/R06/R16–18; review records all write entry points.",
+      "commit": "docs(data): define enrollment schema",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "N03",
+      "owner": "N",
+      "milestone": "M1",
+      "points": 3,
+      "title": "Spike SQLite locking and record CON decision",
+      "depends_on": [
+        "N02",
+        "I03"
+      ],
+      "files": "docs/adr/0001-*.md, tools/spikes/sqlite-concurrency.js",
+      "steps": [
+        "Build a disposable file-DB spike with two independent connections and immediate transactions.",
+        "Enable/assert per-connection foreign keys, busy timeout and selected journal mode.",
+        "Test concurrent writers, rollback and driver behavior using bounded retries.",
+        "Compare DB guards with process mutex and approved server-DB alternative.",
+        "Update proposed ADR with actual spike observations; keep full CON test pending."
+      ],
+      "acceptance": "Spike exits cleanly; no nested transaction errors; limitations recorded; architecture chosen before N04.",
+      "commit": "chore(con): verify SQLite transaction strategy",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "N04",
+      "owner": "N",
+      "milestone": "M2",
+      "points": 4,
+      "title": "Implement schema, migrations and DB guards",
+      "depends_on": [
+        "N03"
+      ],
+      "files": "server/src/db/, server/migrations/, server/tests/db/",
+      "steps": [
+        "Implement Sequelize models and ordered migration runner; avoid sync-alter as production migration.",
+        "Add foreign keys/CHECKs and unique normalized email/course code.",
+        "Add current-membership partial unique index and ACTIVE lookup index.",
+        "Add capacity INSERT/UPDATE guards, immutable membership identity and capacity-decrease protection.",
+        "Test migration from empty DB, rollback/reapply, invalid FK/status, duplicate and over-capacity raw SQL."
+      ],
+      "acceptance": "Real SQLite integration checks reject invalid writes even outside services; clean migration/rollback demonstrated.",
+      "commit": "feat(db): enforce enrollment integrity",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "N05",
+      "owner": "N",
+      "milestone": "M2",
+      "points": 4,
+      "title": "Implement authentication and server permissions",
+      "depends_on": [
+        "N04",
+        "J02"
+      ],
+      "files": "server/src/auth/, server/tests/auth/",
+      "steps": [
+        "Implement salted password hashing and constant-time verification.",
+        "Create hashed server session tokens, rotation/expiry/logout and safe cookie settings.",
+        "Add authenticated/student/admin middleware and owner-scoped record lookup.",
+        "Add CSRF/origin checks and safe login throttling; reject client role/user overrides.",
+        "Cover success/wrong password/expired/revoked session/role escalation and redact sensitive errors."
+      ],
+      "acceptance": "Real login/session tests; 401/403/CSRF cases; plaintext secrets absent from DB/responses/logs.",
+      "commit": "feat(auth): add sessions and role guards",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "N06",
+      "owner": "N",
+      "milestone": "M2",
+      "points": 4,
+      "title": "Implement transactional enrollment service",
+      "depends_on": [
+        "N05",
+        "I04"
+      ],
+      "files": "server/src/enrollments/, server/tests/enrollment-rules/",
+      "steps": [
+        "Validate offering ID, derive student from session and acquire immediate transaction.",
+        "Reread publication/window after lock; handle current enrollment replay.",
+        "Honor existing queue; insert ACTIVE or WAITLISTED using database guards.",
+        "Bound whole-transaction busy retries and map known HTTP errors.",
+        "Commit before responding and expose own enrollment/history endpoint; keep network work outside transaction."
+      ],
+      "acceptance": "Enroll/waitlist/replay/window-rejection integration tests inspect final DB state; no trust in client seat count.",
+      "commit": "feat(enrollment): allocate seats transactionally",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "N07",
+      "owner": "N",
+      "milestone": "M2",
+      "points": 3,
+      "title": "Prove last-seat and duplicate-request invariants",
+      "depends_on": [
+        "N06",
+        "I06"
+      ],
+      "files": "server/tests/concurrency/, artifacts/con/",
+      "steps": [
+        "Seed one-seat open course and20 independent authenticated students.",
+        "Release20 HTTP enrollment requests together with a start barrier.",
+        "Assert1 ACTIVE+19 WAITLISTED and all20 contract results; query persisted DB independently.",
+        "Run concurrent same-student requests and ensure one current membership.",
+        "Add window endpoint and raw SQL negative cases; retain actual output/environment/exit code."
+      ],
+      "acceptance": "R16–18/R21 evidence; no ignored rejected promise or silent503; tests fail on overbooking.",
+      "commit": "test(con): verify last-seat and duplicate races",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "N08",
+      "owner": "N",
+      "milestone": "M3",
+      "points": 4,
+      "title": "Build student enrollment and status interface",
+      "depends_on": [
+        "I05",
+        "N07",
+        "I06"
+      ],
+      "files": "client/src/features/enrollments/, client/tests/enrollments/",
+      "steps": [
+        "Build course-detail action panel using existing shared components.",
+        "Display window/full/ACTIVE/WAITLISTED states and advisory availability.",
+        "Implement own enrollments/history and cancellation result flow.",
+        "Handle401/409/422/503, stale availability and repeated clicks with server response refresh.",
+        "Add keyboard/mobile/component checks for own UI paths."
+      ],
+      "acceptance": "Student can enroll/waitlist/cancel/view own state using real API; error and loading states visible.",
+      "commit": "feat(ui): add student enrollment workspace",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "N09",
+      "owner": "N",
+      "milestone": "M3",
+      "points": 3,
+      "title": "Extend concurrency proof across cancellation and processes",
+      "depends_on": [
+        "N07",
+        "J07",
+        "I07"
+      ],
+      "files": "server/tests/concurrency/, docs/packages/concurrency.md",
+      "steps": [
+        "Test simultaneous enroll/cancel/capacity edit and window closure after lock wait.",
+        "Run two local API processes or independent app DB connections against same local file.",
+        "Force transaction failure and inspect durable state after reopen.",
+        "Assert FIFO/no duplicate promotions and recovery after contention.",
+        "Publish CON report with commands/SHAs/SQL outcomes/retries and finalize ADR only when demonstrated."
+      ],
+      "acceptance": "CON canonical and adversarial scenarios pass; actual single-writer/latency limits explicitly reported.",
+      "commit": "test(con): verify contention and recovery",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "N10",
+      "owner": "N",
+      "milestone": "M3",
+      "points": 3,
+      "title": "Close backend security and coverage gaps",
+      "depends_on": [
+        "J07",
+        "N09",
+        "I07"
+      ],
+      "files": "server/tests/security/, docs/testing.md, security policy",
+      "steps": [
+        "Run complete statement/branch coverage over all backend application files.",
+        "Add meaningful uncovered authorization/window/error tests rather than excluding code.",
+        "Test cross-user cancellation/reads, student admin reports, CSRF/session expiry and query injection.",
+        "Inspect logs/responses/env/git for sensitive data; verify body/page/rate bounds.",
+        "Record remaining untested behavior, thresholds/exclusions and remediation results."
+      ],
+      "acceptance": "Provisional70/60 coverage gates pass with real report; no critical security gap hidden; risk list current.",
+      "commit": "test(security): cover authorization and error gaps",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "N11",
+      "owner": "N",
+      "milestone": "M3",
+      "points": 3,
+      "title": "Write individual consistency case and defense notes",
+      "depends_on": [
+        "N10"
+      ],
+      "files": "docs/ai-usage.md, docs/defense/nooruldeen.md",
+      "steps": [
+        "Select a real significant concurrency/security issue investigated in own work.",
+        "Record requirement, AI contribution, inspected diff and observed verification/defect.",
+        "Link actual correction commit and test result; state limitations.",
+        "Explain request→service→transaction→guard→response path without relying on generated prose.",
+        "Peer review I tasks assigned to N by review rotation and record actual evidence where performed."
+      ],
+      "acceptance": "One genuine N case, code/test locators and accurate actual contribution ledger.",
+      "commit": "docs(ai): record enrollment engineering case",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "N12",
+      "owner": "N",
+      "milestone": "M3",
+      "points": 3,
+      "title": "Verify rubric traceability and release integrity",
+      "depends_on": [
+        "I10",
+        "I11",
+        "J12",
+        "N11"
+      ],
+      "files": "docs/requirements.md, docs/contributions.md, release checklist",
+      "steps": [
+        "Trace every R01–R35 to implementation/test/report SHAs.",
+        "Check exactly CON+SCL delivered and no obsolete topic assumptions.",
+        "Verify full commit log/owners/reviews and all3 genuine AI cases.",
+        "Check secret-free archive and source hashes; ensure reported versions match release.",
+        "Collect final gate evidence and sign technical readiness without submitting."
+      ],
+      "acceptance": "Every required acceptance criterion has concrete evidence or explicit unresolved failure; no invented completion.",
+      "commit": "docs(release): verify requirements and contributions",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "I01",
+      "owner": "I",
+      "milestone": "M1",
+      "points": 3,
+      "title": "Specify roles, workflows and acceptance criteria",
+      "depends_on": [
+        "N01"
+      ],
+      "files": "docs/requirements.md, docs/team.md",
+      "steps": [
+        "Read general/theme/package sources with exact section locators.",
+        "Write student/admin permission matrix and W1–W5 acceptance scenarios.",
+        "Define duplicate/cancel/window/FIFO/admin edge behavior with N.",
+        "Distinguish source requirements from proposed policy and draft targets.",
+        "List external-service approval and missing deadlines as open decisions."
+      ],
+      "acceptance": "All mandatory functionality mapped;3+ complete workflows; no invented dates/rules.",
+      "commit": "docs(requirements): define roles and workflows",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "I02",
+      "owner": "I",
+      "milestone": "M1",
+      "points": 3,
+      "title": "Create responsive React shell and components",
+      "depends_on": [
+        "N01",
+        "J02"
+      ],
+      "files": "client/src/app/, client/src/components/, client/src/styles/",
+      "steps": [
+        "Create Vite React JavaScript app and shared routing/layout.",
+        "Define spacing/color/typography and reusable forms/alerts/pagination.",
+        "Implement native semantic controls, visible focus and accessible status messages.",
+        "Add login/student/admin route shells with explicit loading/error/empty designs.",
+        "Check360/768/1280 widths; use mock UI fixtures only until real integration and label them."
+      ],
+      "acceptance": "Runnable frontend shell, consistent accessible controls and responsive layout; no simulated backend success claim.",
+      "commit": "feat(ui): add responsive application shell",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "I03",
+      "owner": "I",
+      "milestone": "M1",
+      "points": 3,
+      "title": "Freeze API, UI and provider contracts",
+      "depends_on": [
+        "N02",
+        "J02"
+      ],
+      "files": "docs/api.md, docs/ui.md, provider schema fixtures",
+      "steps": [
+        "Agree endpoint/response/error contracts with N/J.",
+        "Specify filters/page limits, version conflicts, cancellation replay and status labels.",
+        "Specify provider lookup/preview/import payload and timeout behavior.",
+        "Define UTC display/input and ownership/error conventions.",
+        "Create contract examples/fixtures and mark substitute approval pending."
+      ],
+      "acceptance": "N/J can implement independently without guessing field names or request outcomes.",
+      "commit": "docs(api): specify enrollment contracts",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "I04",
+      "owner": "I",
+      "milestone": "M2",
+      "points": 4,
+      "title": "Implement admin course and offering management",
+      "depends_on": [
+        "N04",
+        "N05",
+        "I03"
+      ],
+      "files": "server/src/courses/, server/src/offerings/, server/tests/admin/",
+      "steps": [
+        "Add authorized course create/edit/archive and offering create/edit/publish.",
+        "Validate capacity integer/window ordering/course relationship.",
+        "Use transaction/version checks for admin edits; reject stale or below-occupancy writes.",
+        "Prevent archive that strands current memberships; keep referenced history.",
+        "Cover happy/invalid/student-denied/missing/stale-edit cases using file DB."
+      ],
+      "acceptance": "Admin APIs work and preserve invariants; student crafted requests denied; invalid inputs do not persist.",
+      "commit": "feat(admin): manage courses and offerings",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "I05",
+      "owner": "I",
+      "milestone": "M2",
+      "points": 4,
+      "title": "Integrate login and searchable student catalog",
+      "depends_on": [
+        "N05",
+        "J04",
+        "I02"
+      ],
+      "files": "client/src/features/auth/, client/src/features/catalog/",
+      "steps": [
+        "Implement session bootstrap/login/logout with native fetch/CSRF handling.",
+        "Connect catalog filters/sort/pagination to real API and URL query state.",
+        "Display course/term/seat/window details with clear closed/full states.",
+        "Handle slow/empty/error/expired-session states without redirect loops.",
+        "Add frontend contract/component checks and responsive keyboard review."
+      ],
+      "acceptance": "Real student session and server-filtered pages; no client-only authorization or full-dataset slicing.",
+      "commit": "feat(ui): connect login and course catalog",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "I06",
+      "owner": "I",
+      "milestone": "M2",
+      "points": 4,
+      "title": "Implement atomic cancellation and FIFO promotion",
+      "depends_on": [
+        "N06"
+      ],
+      "files": "server/src/enrollments/cancel.js, promotion.js, tests/waitlist/",
+      "steps": [
+        "Derive owner from session and enforce open-window policy.",
+        "Cancel ACTIVE/WAITLISTED idempotently inside transaction.",
+        "Promote earliest queued enrollment into released seat before commit.",
+        "Wire the same promotion service to capacity increases during open window.",
+        "Ensure failures roll back cancellation/promotion together; no newcomer jumps existing queue."
+      ],
+      "acceptance": "Cancellation and FIFO handoff durable and atomic; duplicate actions do not release/promote twice.",
+      "commit": "feat(waitlist): promote students after cancellation",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "I07",
+      "owner": "I",
+      "milestone": "M2",
+      "points": 3,
+      "title": "Test lifecycle races and administration rules",
+      "depends_on": [
+        "I06",
+        "N07"
+      ],
+      "files": "server/tests/waitlist/, server/tests/admin/",
+      "steps": [
+        "Test2 waiters, active/queued cancellation and re-enrollment at queue tail.",
+        "Test simultaneous cancels/promotions/new enrollment/capacity updates.",
+        "Inject promotion failure and check full rollback.",
+        "Test exact window boundaries, closed-window cancellation and privilege checks.",
+        "Cross-check roster/count state after all operations and record failures honestly."
+      ],
+      "acceptance": "FIFO/atomicity/window/admin cases pass against real DB; no duplicate handoff.",
+      "commit": "test(waitlist): cover lifecycle and rollback rules",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "I08",
+      "owner": "I",
+      "milestone": "M3",
+      "points": 4,
+      "title": "Build admin management and waitlist screens",
+      "depends_on": [
+        "I04",
+        "I06",
+        "I02"
+      ],
+      "files": "client/src/features/admin/, client/tests/admin/",
+      "steps": [
+        "Build course/offering forms with capacity/window/version fields.",
+        "Connect publish/archive actions and roster/status pages.",
+        "Display server validation and stale edit conflicts without losing entered data.",
+        "Refresh waitlist/seat counts after writes, display FIFO order to admin only.",
+        "Check mobile/keyboard/loading/empty/forbidden cases with shared components."
+      ],
+      "acceptance": "Admin completes W4 using real API; ordinary student cannot access private data or execute actions.",
+      "commit": "feat(ui): add offering and waitlist administration",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "I09",
+      "owner": "I",
+      "milestone": "M3",
+      "points": 3,
+      "title": "Automate production end-to-end workflows",
+      "depends_on": [
+        "N08",
+        "I08",
+        "J08",
+        "N10"
+      ],
+      "files": "tests/e2e/, Playwright config, docs/testing.md",
+      "steps": [
+        "Build SPA and start production API with isolated seeded DB and simulator.",
+        "Automate admin setup and two independent student browser sessions.",
+        "Assert last-seat enroll→waitlist→cancel→promotion and reload persistence.",
+        "Assert student admin denial plus validation/network recovery UI.",
+        "Save actual run results/screenshots and close browser/server/DB resources."
+      ],
+      "acceptance": "At least1 complete real E2E green; production behavior verified; no mocks for critical API.",
+      "commit": "test(e2e): verify enrollment and promotion journey",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "I10",
+      "owner": "I",
+      "milestone": "M3",
+      "points": 3,
+      "title": "Document and rehearse clean production setup",
+      "depends_on": [
+        "I09",
+        "J11"
+      ],
+      "files": "README.md, .env.example, docs/deployment.md",
+      "steps": [
+        "Run fresh-clone npm ci/migrate/seed/build/production start with documented versions.",
+        "Confirm API JSON404 vs SPA route fallback and same-origin session/CSRF behavior.",
+        "Document Windows paths/ports/local DB outside OneDrive and simulator start.",
+        "Explain coverage/load commands, evidence paths and limitations.",
+        "Confirm setup requires no paid service, real user email or live API secret."
+      ],
+      "acceptance": "Another team member can reproduce without hidden machine state; record actual commands/results.",
+      "commit": "docs(setup): document reproducible production run",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "I11",
+      "owner": "I",
+      "milestone": "M3",
+      "points": 3,
+      "title": "Write individual waitlist case and demo script",
+      "depends_on": [
+        "I09"
+      ],
+      "files": "docs/ai-usage.md, docs/defense/ilinca-mara.md, docs/demo.md",
+      "steps": [
+        "Select actual significant lifecycle/UI/admin issue and inspected correction.",
+        "Record requirement/AI help/review/test/effect with SHAs.",
+        "Write a timed demonstration for admin setup and waitlist handoff.",
+        "Practice explaining transaction implications and client/server permission difference.",
+        "Review N work per rotation and document real reviews only."
+      ],
+      "acceptance": "One genuine I engineering case plus reproducible demo segment and current contribution evidence.",
+      "commit": "docs(ai): record waitlist engineering case",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "I12",
+      "owner": "I",
+      "milestone": "M3",
+      "points": 3,
+      "title": "Prepare final demonstration and delivery bundle",
+      "depends_on": [
+        "N12",
+        "I10",
+        "J12"
+      ],
+      "files": "docs/demo.md, docs/release.md, release artifact manifest",
+      "steps": [
+        "Rehearse clean production demo with all3 members.",
+        "Check source/docs/tests/lockfile/env example and evidence references in bundle.",
+        "Verify archive integrity and exclude node_modules/secrets/runtime DBs.",
+        "Assign speaking segments and questions so each explains own tests plus core flows.",
+        "Prepare handoff for student upload; verify final dates separately when supplied."
+      ],
+      "acceptance": "Reviewable final bundle and rehearsed demonstration; no automatic submission or invented grade.",
+      "commit": "docs(delivery): finalize demonstration and bundle",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "J01",
+      "owner": "J",
+      "milestone": "M1",
+      "points": 3,
+      "title": "Design workload, test and tooling strategy",
+      "depends_on": [
+        "N01",
+        "I01"
+      ],
+      "files": "docs/testing.md, docs/capacity.md, dependency rationale",
+      "steps": [
+        "List unit/API/persistence/negative/E2E/concurrency evidence.",
+        "Adopt provisional coverage70/60 and illustrative listing800ms target.",
+        "Define10,000 students/100 users, traffic mix, three levels and saturation.",
+        "Choose minimal test/load/chart libraries and justify additional dependencies.",
+        "Specify environment/run manifest and fixture reset strategy."
+      ],
+      "acceptance": "Test and performance design traces G§4–6/T§4–5/SCL; measured fields remain blank.",
+      "commit": "docs(quality): define test and capacity strategy",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "J02",
+      "owner": "J",
+      "milestone": "M1",
+      "points": 3,
+      "title": "Build Express API foundation and error contract",
+      "depends_on": [
+        "N01"
+      ],
+      "files": "server/src/app.js, config/, middleware/errors.js, server startup",
+      "steps": [
+        "Separate app factory/listen/config and orderly close hooks.",
+        "Add JSON body limit, health/readiness and request IDs.",
+        "Add consistent safe errors/not-found and validation helpers.",
+        "Implement production SPA/static serving and development proxy contract.",
+        "Write startup/invalidJSON/unknownAPI tests and runtime/env validation."
+      ],
+      "acceptance": "Runnable skeleton/health route and shared error behavior support M1; no secrets in responses.",
+      "commit": "feat(api): add Express application foundation",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "J03",
+      "owner": "J",
+      "milestone": "M1",
+      "points": 3,
+      "title": "Specify provider and SCL experiment alternatives",
+      "depends_on": [
+        "N02",
+        "I03",
+        "J01"
+      ],
+      "files": "docs/adr/0002-*.md, docs/capacity.md, simulator contract",
+      "steps": [
+        "Compare query/index optimization, cache and DB change options.",
+        "Define baseline/after SHAs, fixed data/environment,3 repetitions and charts.",
+        "Choose distinct local institutional-directory HTTP simulator proposal.",
+        "List provider failure fixtures/approval status and integration boundaries.",
+        "Finalize workload measures/stopping rule and planned capacity estimate."
+      ],
+      "acceptance": "SCL ADR proposed with falsifiable hypothesis; no unmeasured gain; integration contract usable.",
+      "commit": "docs(scl): define measurable optimization experiment",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "J04",
+      "owner": "J",
+      "milestone": "M2",
+      "points": 4,
+      "title": "Implement catalog filtering, ordering and pagination",
+      "depends_on": [
+        "N04",
+        "N05",
+        "I03"
+      ],
+      "files": "server/src/catalog/, server/tests/catalog/",
+      "steps": [
+        "Query published offerings with bounded q/term/department/open filters.",
+        "Whitelist sort/order and validate repeated/structured/invalid params.",
+        "Apply SQL limit/offset with stable ID tiebreak and total count.",
+        "Return seat/window metadata using bounded database aggregation.",
+        "Test duplicates in titles, empty/beyond-last pages/filter combinations and no full collection load."
+      ],
+      "acceptance": "API contract and database-backed pages pass; baseline query plan/query count documented for SCL.",
+      "commit": "feat(catalog): add filtered paginated offerings",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "J05",
+      "owner": "J",
+      "milestone": "M2",
+      "points": 4,
+      "title": "Implement directory integration and controlled simulator",
+      "depends_on": [
+        "I03",
+        "N04",
+        "N05"
+      ],
+      "files": "server/src/integrations/, services/course-directory-simulator/, tests/integration/",
+      "steps": [
+        "Build versioned local simulator success/notfound/timeout/500/invalid fixtures.",
+        "Implement fixed-base-URL adapter with bounded timeout and response validation.",
+        "Add admin preview/import endpoint mapping allowed metadata only.",
+        "Deduplicate imports by external code; keep provider outside enrollment transaction.",
+        "Test outage/malformed data and assert stored courses/enrollments remain valid."
+      ],
+      "acceptance": "Real local HTTP request proves meaningful integration; approval pending until recorded; no external messages.",
+      "commit": "feat(integration): add course directory adapter",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "J06",
+      "owner": "J",
+      "milestone": "M2",
+      "points": 4,
+      "title": "Seed synthetic workload and implement report queries",
+      "depends_on": [
+        "N04",
+        "I04"
+      ],
+      "files": "tools/seed/, server/src/reports/, server/tests/reports/",
+      "steps": [
+        "Build fixed-seed demo/large profiles with10,000 synthetic students in large.",
+        "Create valid capacities/windows/enrollment histories without bypassing safety constraints.",
+        "Add admin-only per-offering/term counts and paginated roster queries.",
+        "Verify counts against direct SQL and student denial.",
+        "Emit seed/reference-time/count/hash manifest; support local isolated benchmark resets."
+      ],
+      "acceptance": "Deterministic valid seed and report aggregates; no real classmates as load accounts.",
+      "commit": "feat(data): add synthetic seed and enrollment reports",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "J07",
+      "owner": "J",
+      "milestone": "M2",
+      "points": 3,
+      "title": "Wire real tests, coverage and load harness",
+      "depends_on": [
+        "N07",
+        "I07",
+        "J04",
+        "J05",
+        "J06"
+      ],
+      "files": "package scripts, test config, tools/load/, CI configuration",
+      "steps": [
+        "Make npm test aggregate real unit/API/persistence suites with nonzero failures.",
+        "Configure all-backend statement/branch coverage and documented exclusions.",
+        "Build concurrency/load runner with bounded requests and explicit outcome counters.",
+        "Record p50/p95/RPS/errors/CPU/RSS where observable and environment manifest.",
+        "Add CI install/test/coverage/build; keep heavy load manual and local authorized only."
+      ],
+      "acceptance": "Meaningful npm commands run and emit artifacts; missing scenarios are failures; no hidden internet service.",
+      "commit": "chore(test): wire coverage and load verification",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "J08",
+      "owner": "J",
+      "milestone": "M3",
+      "points": 4,
+      "title": "Build report and provider administration UI",
+      "depends_on": [
+        "J05",
+        "J06",
+        "I02"
+      ],
+      "files": "client/src/features/reports/, client/src/features/directory/",
+      "steps": [
+        "Build aggregate reports, term filters and paginated roster display.",
+        "Connect directory lookup/preview/import with clear confirmation/result.",
+        "Show timeout/unavailable/invalid-data errors and preserve form state.",
+        "Use shared accessible/responsive components and session permission handling.",
+        "Add own component/integration checks, including data leakage/empty/failure cases."
+      ],
+      "acceptance": "Admin completes W5 through real APIs; reports match fixtures; student sees no roster data.",
+      "commit": "feat(ui): add reports and directory import",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "J09",
+      "owner": "J",
+      "milestone": "M3",
+      "points": 3,
+      "title": "Measure baseline load and saturation",
+      "depends_on": [
+        "J07",
+        "N09",
+        "J08"
+      ],
+      "files": "artifacts/capacity/, docs/capacity.md",
+      "steps": [
+        "Build production snapshot and tag baseline; save exact environment/seed hashes.",
+        "Run10/50/100 active-user profiles with warmup/steady/recovery windows.",
+        "Run incremental saturation with resource-safe stop and report actual ceiling.",
+        "Capture3 repetitions, endpoint measures/resources/error classes and post-load invariants.",
+        "Inspect bottleneck using real timings/query plans; document generator limitations."
+      ],
+      "acceptance": "Actual baseline datasets/charts include100-user level and saturation; capacity result is measured.",
+      "commit": "perf(baseline): measure load and saturation",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "J10",
+      "owner": "J",
+      "milestone": "M3",
+      "points": 3,
+      "title": "Optimize one measured catalog bottleneck",
+      "depends_on": [
+        "J09"
+      ],
+      "files": "server query/migration affected by experiment, regression tests",
+      "steps": [
+        "Select smallest hypothesis supported by baseline evidence.",
+        "Implement one query/index change with isolated migration and query correctness checks.",
+        "Keep integrity guards/data/runtime/hardware unchanged.",
+        "Save before/after query plan/counts and exact optimization diff.",
+        "Rerun correctness/CON/E2E; if hypothesis fails, retain evidence and revise."
+      ],
+      "acceptance": "Real application behavior preserved; optimization independently reviewable and measurable.",
+      "commit": "perf(catalog): optimize measured listing bottleneck",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "J11",
+      "owner": "J",
+      "milestone": "M3",
+      "points": 3,
+      "title": "Publish controlled comparison and capacity estimate",
+      "depends_on": [
+        "J10"
+      ],
+      "files": "docs/capacity.md, docs/packages/SCL.md, ADR0002, charts/data",
+      "steps": [
+        "Rerun identical levels/saturation >=3 times per version with controlled DB reset.",
+        "Generate p50/p95/throughput/error/resource graphs from saved numbers.",
+        "Report median/spread and highest tested sustainable load, including failed levels.",
+        "Explain improvement/regression and remaining SQLite bottleneck; finalize SCL ADR.",
+        "Link raw-data manifest and coverage/test evidence; no hand-entered invented metrics."
+      ],
+      "acceptance": "SCL measured optimization supported by repeatable before/after data; report states actual limits.",
+      "commit": "docs(scl): report optimization and tested capacity",
+      "status": "planned",
+      "evidence": null
+    },
+    {
+      "id": "J12",
+      "owner": "J",
+      "milestone": "M3",
+      "points": 3,
+      "title": "Write individual performance case and verify evidence",
+      "depends_on": [
+        "J11"
+      ],
+      "files": "docs/ai-usage.md, docs/defense/jwan.md, artifacts/manifest.json",
+      "steps": [
+        "Record actual performance/integration issue, AI contribution and student inspection.",
+        "Link correction and measured verification with source/commit locators.",
+        "Verify charts agree with raw summaries and secrets are absent.",
+        "Practice explaining percentiles/throughput/capacity and model limitations.",
+        "Review I work per rotation and update real contribution ledger only."
+      ],
+      "acceptance": "One genuine J case and reproducible evidence index for final release.",
+      "commit": "docs(ai): record performance engineering case",
+      "status": "planned",
+      "evidence": null
+    }
+  ],
+  "topological_waves": [
+    [
+      "N01"
+    ],
+    [
+      "I01",
+      "J02"
+    ],
+    [
+      "I02",
+      "J01",
+      "N02"
+    ],
+    [
+      "I03"
+    ],
+    [
+      "J03",
+      "N03"
+    ],
+    [
+      "N04"
+    ],
+    [
+      "N05"
+    ],
+    [
+      "I04",
+      "J04",
+      "J05"
+    ],
+    [
+      "I05",
+      "J06",
+      "N06"
+    ],
+    [
+      "I06",
+      "J08"
+    ],
+    [
+      "I08",
+      "N07"
+    ],
+    [
+      "I07",
+      "N08"
+    ],
+    [
+      "J07"
+    ],
+    [
+      "N09"
+    ],
+    [
+      "J09",
+      "N10"
+    ],
+    [
+      "I09",
+      "J10",
+      "N11"
+    ],
+    [
+      "I11",
+      "J11"
+    ],
+    [
+      "I10",
+      "J12"
+    ],
+    [
+      "N12"
+    ],
+    [
+      "I12"
+    ]
+  ]
+}
