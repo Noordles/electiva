@@ -32,3 +32,8 @@ Errors: 400 invalid JSON/query; 401 not authenticated; 403 role/CSRF; 404 absent
 Catalog contract: trim and cap q length; whitelist sort `title`, `code`, `opensAt`; order asc/desc only; page integer>=1; pageSize 1..100 default20; deterministic ID tiebreaker, with tests when titles match. SQL handles filters/order/pagination; never load full collections into JavaScript to slice. Clarify whether open filter uses snapshot server time; show available seats as advisory because another request can take them before enrollment commits. Query parameters never become raw SQL identifiers.
 
 Provider simulator contract, proposed: `GET /v1/courses/:externalCode` returns `{schemaVersion:1,data:{code,title,description,credits,department}}`; unknown code404; controlled timeout/500/invalid payload modes for local tests only. Import identity by unique external code; double import updates metadata or returns same course without duplicate records. Never proxy an arbitrary client-provided URL. Tests pin provider fixtures; no internet dependency for CI.
+
+
+## M1 implemented subset
+
+GET /health and /api/v1/health return `{data:{status:"ok",service:"electiva",milestone:"M1"}}`. GET /ready and /api/v1/ready return 503 `{data:{status:"not_ready"}}` until a real application DB readiness check is supplied. GET /api/v1/meta identifies preview mode and false authentication/persistedCatalog/enrollment capabilities. Other API routes return JSON404, including production SPA fallback requests. This explicit M1 subset freezes errors/request IDs and leaves all business endpoints above as M2/M3 contracts.

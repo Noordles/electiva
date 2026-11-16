@@ -1,0 +1,12 @@
+{
+  "status": "proposed local substitute; instructor acceptance unverified",
+  "version": 1,
+  "request": { "method": "GET", "path": "/v1/courses/EI204" },
+  "success": { "status": 200, "body": { "schemaVersion": 1, "data": { "code": "EI204", "title": "Data Visualization", "description": "Synthetic provider fixture", "credits": 5, "department": "Data & analytics" } } },
+  "errors": [ { "status": 404, "code": "course_not_found" }, { "status": 500, "code": "provider_error" } ],
+  "client_timeout_ms": 2000,
+  "invalid_fixture": { "schemaVersion": 1, "data": { "code": "EI204", "credits": -1 } },
+  "allowed_import_fields": ["code", "title", "description", "credits", "department"],
+  "forbidden_import_fields": ["capacity", "opensAt", "closesAt", "role", "enrollments"],
+  "implementation": "M2 J05; contract only in M1"
+}

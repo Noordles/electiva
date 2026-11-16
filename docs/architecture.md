@@ -1,6 +1,6 @@
 # Proposed architecture and bottom-up design
 
-Status: proposed, unimplemented. Resolve the SQLite concurrency spike before committing to the UI/API internals. Every architectural choice must gain test evidence before its ADR becomes accepted.
+M1 status: API/SPA skeleton and transaction spike implemented. Production business schema/auth/enrollment remain M2. See milestones/M1.md, schema.md and ADR0001 for evidence and limits.
 
 ## Shape and technology
 
@@ -38,13 +38,13 @@ A subsequent request after cancellation creates a new attempt; never resurrect a
 
 ## CON transaction algorithm
 
-1. Authenticate; obtain student identity from the session. Validate offering/request. Start a managed Sequelize `IMMEDIATE` write transaction on a real file DB, and explicitly pass the transaction to every query. Enable foreign keys and configure busy timeout for every connection; use WAL only after a version/driver compatibility check.
+1. Authenticate; obtain student identity from the session. Validate offering/request. Start a managed Sequelize `IMMEDIATE` write transaction on a real file DB, and explicitly pass the transaction to every query. Enable foreign keys and configure busy timeout for every connection; M1 supports a zero driver wait plus bounded asynchronous acquisition retry to avoid worker-thread starvation. Use WAL only after a version/driver compatibility check.
 2. Inside the transaction reread offering lifecycle, server-time window and existing current membership. Reject closed/unpublished offering. Return the existing membership for a duplicate current request (idempotent behavior).
 3. Count ACTIVE under the transaction. Before serving a newcomer, promote older waitlisted members into any newly available places; do not bypass the queue. Insert ACTIVE if a seat remains, otherwise WAITLISTED. Database capacity and partial-unique guards provide a second boundary.
 4. Commit and send only the committed representation. A failure rolls back the entire transaction. Catch known unique/conflict conditions and map deliberately. On SQLITE_BUSY, retry the **whole transaction** a small bounded number of times with backoff/jitter. Recheck time and state on each attempt; do not retry a stale fragment or retry validation errors. Exhausted contention returns 503 `temporarily_busy` without data change.
 5. Cancellation takes the same write boundary: verify ownership/time, mark once, promote earliest waiting rows while seats remain and window is open, commit together. Capacity edits also participate in the same transaction and version check. No network call, password hashing or slow logging belongs inside the write transaction.
 
-Twenty simultaneous HTTP requests may queue behind SQLite's one writer; that is expected. Correctness must not depend on a JavaScript mutex. The early spike must verify behavior with 20 distinct sessions and independent database connections; later add two local server processes sharing a local file. If driver/transaction reuse prevents valid behavior, resolve it before M2 or justify an approved DB change. Do not hide busy failures in the concurrency evidence.
+Twenty simultaneous HTTP requests may queue behind SQLite's one writer; that is expected. Correctness must not depend on a JavaScript mutex. M1 verifies 20 probe claimant identifiers using independent file-DB transaction connections. The authenticated 20-session HTTP test is N07 in M2; two server-process verification is N09. If driver/transaction reuse prevents valid behavior, resolve it before M2 or justify an approved DB change. Do not hide busy failures in the concurrency evidence.
 
 ## Integration contract
 
