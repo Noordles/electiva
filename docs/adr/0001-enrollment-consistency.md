@@ -11,3 +11,12 @@ Proposed choice B: permitted default SQLite/Sequelize, local disk DB, FK/CHECK/p
 Evidence needed: N04/N07/N09 scenario results,20-request response+DB state, raw-SQL bypass rejection, two-connection/process behavior, timeout/retry counts, rollback and window boundary tests. Reject or revise this choice if the selected driver cannot satisfy those checks.
 
 Limits: one writer limits write throughput; fairness is FIFO by committed queue order, not packet arrival time. No multi-host SQLite or unlimited scaling claim. No observed results yet.
+
+
+## M1 experiment and decision
+
+Technical direction accepted for M2, with CON acceptance still pending. `npm run spike:sqlite` uses a temporary local file, two Sequelize writer instances and 20 independent managed transaction connections. It observes 1 claim/19 full outcomes, rollback leaves 0 rows, FK/capacity bypasses are rejected, and each transaction reads foreign_keys=1/busy_timeout=0. WAL and SQLite version are recorded in artifacts/m1/sqlite-spike.json.
+
+Initial 100ms native busy waits caused 99 outer retries in the first exploratory run and failed-BEGIN rollback warnings. A zero driver wait plus bounded asynchronous Sequelize acquisition retry avoids occupying libuv workers while the lock holder needs them. The final policy uses at most 30 acquisition attempts with backoff/jitter and at most 8 whole-operation attempts for remaining SQLITE_BUSY failures. Counters for both layers are recorded separately; non-busy errors preserve identity and are never retried. Final repeated checks require no rollback warnings.
+
+This is a transaction spike, not an enrollment implementation or performance/HTTP/concurrency acceptance result. A probe capacity guard is not the full application schema. N04/N07/N09 must revalidate the chosen behavior for actual service code, windows, duplicate requests, cancellation and promotion. No teammate review or student mastery is inferred from AI-assisted implementation.
