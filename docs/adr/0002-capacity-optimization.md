@@ -1,0 +1,11 @@
+# ADR0002 — Measure and improve tested capacity
+
+Status: proposed; owner J; reviewer N. Source G§5/7, T§4/5, P/SCL.
+
+Problem: demonstrate capacity with 100 active users and identify saturation under reproducible load; optimize a real measured bottleneck.
+
+Alternatives: query/index optimization; reducing round trips/aggregation costs; cache with explicit invalidation; larger server DB/deployment. Select the smallest change supported by baseline profiling. Initial hypothesis: improve filtered catalog query/index access, preserving fresh availability and integrity.
+
+Experiment: tagged baseline and optimized commits; same deterministic seed and environment;10/50/100 VUs plus saturation; >=3 repetitions; endpoint p50/p95, throughput, error/resource/SQLite contention graphs; before/after query plan where relevant. Unit/integration/CON/E2E rerun after optimization.
+
+Decision remains provisional until J09–J11 provide raw evidence. Document negative results and variance, not only the best run. Limits: hardware-specific closed-loop workload, synthetic data, co-located generator, single writer and measured duration. No predicted gain or achieved capacity is recorded yet.
