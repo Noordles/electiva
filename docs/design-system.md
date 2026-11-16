@@ -16,3 +16,8 @@ Student-requested direction: align with the Iraq Economic Observatory thesis wor
 | Muted |#c6b9c2|Secondary text|
 
 Adapted ideas: explicit borders, restrained wine panels, cyan navigation, system sans-serif plus occasional Georgia emphasis, consistent radii and spacing. No thesis data, branding claims or functionality is copied. SVG assets are local. Shared controls include buttons, labelled fields/selects, alerts, badges, loading/empty states, pagination and native dialog/confirmation wrappers. Native dialog supplies keyboard trapping/Escape/focus return; reduced-motion preferences are respected. M1 sample filters operate only on six illustrative client fixtures and are not the required persisted SQL catalog.
+
+
+## Temporary icon —16 November2026
+
+The student supplied the burgundy E/sparkling-path PNG. Its unchanged bytes are saved at client/public/electiva-icon.png and used in the sidebar, browser favicon and touch icon. The original Downloads image is preserved.

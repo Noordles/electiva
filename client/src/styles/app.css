@@ -23,3 +23,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .alert{background:#252b33;border-color:#45606b;color:#c1e3eb}.alert-error{background:#462330;border-color:#9a4e6b;color:#ffd1df}.empty-state,.feature-card,.about-panel,.login-panel{background:var(--surface);border-color:var(--border)}.empty-icon{background:var(--wine-soft);color:var(--cyan)}.feature-card>svg{color:var(--cyan)}.tag{background:var(--wine-soft);color:var(--wine-ink)}.team-names{border-color:var(--border)}.login-panel input{background:#1b171d;border-color:#604658;color:#e4ccd9}.login-panel>a{color:var(--cyan)}.modal{background:var(--surface);border-color:#765369;color:var(--ink)}.modal::backdrop{background:#0d0b11a0}.modal .dialog-note{border-color:var(--border);color:#ceb5c3}.icon-button{background:var(--wine-soft);color:var(--wine-ink)}.skip-link{background:var(--cyan);color:#172d32}
 @media(max-width:850px){.hero:after{color:#bd638355}}
 @media(max-width:640px){.hero .eyebrow{font-size:7px;letter-spacing:.8px}.hero p{font-size:12px}.hero-link{font-size:11px}.course-content h3{font-size:21px}.catalog-note{font-size:10px}.sidebar nav>a{font-size:10px}.section-heading h2{font-size:23px}}
+
+/* Student-supplied temporary Electiva icon, preserved without image edits. */
+.brand .brand-mark{display:block;width:40px;height:40px;object-fit:contain;background:transparent;border-radius:0;flex-shrink:0}
+@media(max-width:640px){.brand .brand-mark{width:36px;height:36px}}
