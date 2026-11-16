@@ -1,0 +1,11 @@
+{
+  "name": "@electiva/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "express": "5.3.0",
+    "sequelize": "6.37.8",
+    "sqlite3": "6.0.1"
+  }
+}

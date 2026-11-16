@@ -12,3 +12,7 @@ test-results/
 playwright-report/
 artifacts/raw/
 .DS_Store
+
+# Local exploratory logs; final evidence is committed separately.
+artifacts/m1/audit-initial.json
+artifacts/m1/sqlite-spike-output.txt

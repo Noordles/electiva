@@ -1,0 +1,40 @@
+{
+  "name": "electiva",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Electiva — Team JIN, ASE Web Technologies",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "engines": {
+    "node": ">=24.22.0 <25",
+    "npm": ">=11 <13"
+  },
+  "packageManager": "npm@12.2.0",
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env tools/dev.mjs",
+    "dev:server": "node --env-file-if-exists=.env --watch server/src/start.js",
+    "dev:client": "vite client --config client/vite.config.js --host 127.0.0.1",
+    "build": "vite build client --config client/vite.config.js",
+    "start:production": "node --env-file-if-exists=.env server/src/start.js --production",
+    "test": "node --test server/tests/*.test.js tools/tests/*.test.js",
+    "test:coverage": "node --experimental-test-coverage --test server/tests/*.test.js tools/tests/*.test.js",
+    "test:ui": "node tools/pending.mjs test:ui",
+    "spike:sqlite": "node tools/spikes/sqlite-concurrency.js --output artifacts/m1/sqlite-spike.json",
+    "db:migrate": "node tools/pending.mjs db:migrate",
+    "db:seed": "node tools/pending.mjs db:seed",
+    "test:concurrency": "node tools/pending.mjs test:concurrency",
+    "test:e2e": "node tools/pending.mjs test:e2e",
+    "load:baseline": "node tools/pending.mjs load:baseline",
+    "load:saturation": "node tools/pending.mjs load:saturation",
+    "load:compare": "node tools/pending.mjs load:compare"
+  },
+  "overrides": {
+    "uuid": "11.1.1"
+  },
+  "allowScripts": {
+    "sqlite3@6.0.1": true
+  }
+}
