@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-16",
+  "mode": "connected-browser QA against production build",
+  "automated_enrollment_e2e": false,
+  "palette_source": "local thesis reader-theme.css; wine923951/cyan79dce8",
+  "verified": [
+    "search results and URL query state",
+    "subject filtering",
+    "credit sorting and second page",
+    "empty state and clear filters",
+    "native dialog open/Escape/focus return",
+    "unavailable enrollment remains disabled",
+    "my-enrollments empty preview",
+    "admin preview grants no management access",
+    "sign-in remains disabled",
+    "real API metadata connected indicator",
+    "360px mobile no horizontal overflow",
+    "768px tablet no horizontal overflow",
+    "1280px desktop visual inspection",
+    "UTF8 punctuation and names after final rebuild"
+  ]
+}

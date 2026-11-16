@@ -1,7 +1,7 @@
 # Electiva — complete implementation plan
 
 **Team JIN · Theme 1 · ASE Web Technologies · 2026–2027**  
-Prepared 16 November 2026 from the three user-supplied specifications. State: **planning only**.
+Prepared 16 November 2026 from the three user-supplied specifications. Current state: **Phase 1 / M1 implemented**; M2/M3 remain planned. See [M1 evidence](milestones/M1.md).
 
 Electiva is a university elective-course enrollment SPA. Students discover offerings, enroll or join a waitlist, cancel and check their status. Administrators manage courses, capacities, enrollment windows and reports. Backend/database rules preserve seat capacity and unique current enrollment under concurrency. The two assigned architectural packages are **CON (Concurrency and Consistency)** and **SCL (Scalability and Capacity)**.
 
@@ -24,17 +24,17 @@ Governing sources are in [docs/sources](sources/). All say **Draft v2.0 for revi
 
 Each member has M1=9, M2=15, M3=16 estimated effort points. Points are relative planning units, not exact hours. Rebalance future work if real effort differs. Reviews: I reviews N, J reviews I, N reviews J. Each member must explain overall workflows and their own work; no specialist is excused from understanding invariants or tests. [Team record](team.md) preserves the roster's additional A initial without inventing its expansion.
 
-Every package has steps, dependencies, file boundaries, an acceptance gate and one proposed short commit subject in [TASKS.md](TASKS.md). Machine-readable [tasks.json](tasks.json) is the same backlog. Implementation status starts planned for all 36. Planning artifacts are not completed application contributions.
+Every package has steps, dependencies, file boundaries, an acceptance gate and one proposed short commit subject in [TASKS.md](TASKS.md). Machine-readable [tasks.json](tasks.json) is the same backlog. M1 tasks are implemented_verified in tasks.json; M2/M3 remain planned. Planning artifacts are not completed application contributions.
 
 ## 3. Bottom-up execution phases
 
 ### Phase0 — preserve evidence and settle scope
 
-Read G/T/P together; record the actual names/theme/packages, source hashes, draft status, missing dates and proposed policy. Preserve originals under subject Downloaded Materials; copy source documents into the private repo. Create the authorized repository and planning commits. Current session finishes these planning actions, not M1.
+Read G/T/P together; record the actual names/theme/packages, source hashes, draft status, missing dates and proposed policy. Preserve originals under subject Downloaded Materials; copy source documents into the private repo. Create the authorized repository and planning commits. The initial planning session completed these actions; subsequent M1 implementation is recorded in milestones/M1.md.
 
 Resolve or record [open decisions](OPEN_DECISIONS.md): simulator acceptance; window/cancellation/promotion interpretation; FIFO/capacity-change behavior; supported dependency versions; exact teammate Git identities. Design can continue with explicit proposals while awaiting teacher clarification. Do not claim a substitute is approved or communicate with teacher/team without instruction.
 
-### Phase1 — runnable foundation and agreed contracts (M1)
+### Phase 1 — runnable foundation and agreed contracts (M1)
 
 1. N01 initializes locked npm workspaces and environment boundaries. J02 starts Express health/error/config lifecycle; I01 writes requirements/permission/workflow acceptance criteria.
 2. N02 defines relational model/invariants/transaction boundary; I02 builds the actual React/Vite responsive shell; J01 defines tests/workload/evidence.
@@ -107,7 +107,7 @@ Electiva/
   docs/{sources,adr,packages,defense}/
 ```
 
-Only planning documents/source copies exist today. Runtime DBs, secrets, dependencies and generated builds never become repository source. Generated report files are recorded only after actual runs; bulky raw data stays separately referenced.
+M1 workspace/API/SPA foundation and probe code now exist; the structure below also includes future M2/M3 directories. Runtime DBs, secrets, dependencies and generated builds never become repository source. Generated report files are recorded only after actual runs; bulky raw data stays separately referenced.
 
 ## 5. Decisions that prevent expensive rework
 

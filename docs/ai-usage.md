@@ -19,3 +19,8 @@ Same fields. Suggested investigation: cancellation commits before promotion, cap
 Same fields. Suggested investigation: inefficient listing query, misleading aggregate p95, or provider timeout leaks into core flow. Include actual before/after data and what J inspected.
 
 Each member must explain important overall flows and their own code/tests during defense. Future case records can change if a different significant real issue arises.
+
+
+## Phase 1 implementation — 16 November 2026
+
+Codex implemented/verified the M1 workspace, API foundation, preview SPA, contracts and SQLite spike. Initial 100ms SQLite busy waits caused worker contention; bounded asynchronous acquisition retries with zero driver wait resolved the final tested spike without rollback warnings. Browser inspection also caught and corrected a local UTF-8 rewrite regression before delivery. The student's later steering changed the initial green palette to wine/cyan using their thesis stylesheet. Actual tests/evidence are in artifacts/m1 and milestones/M1.md. All commits use the real configured author, with planned-owner/task trailers. No peer review, individual human implementation or mastery is invented. The three future student engineering cases remain pending actual student participation.

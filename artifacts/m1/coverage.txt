@@ -1,0 +1,42 @@
+✔ health and metadata describe M1 honestly without invented capabilities (69.5861ms)
+✔ readiness checks dependency state and never reveals connection failures (26.016ms)
+✔ JSON/media/size validation returns stable safe errors with request identity (38.3281ms)
+✔ unknown APIs remain JSON404 and unexpected/domain errors are classified (12.0624ms)
+✔ one completion log excludes body, query, authorization and cookies (6.1327ms)
+✔ production serves SPA deep links, while assets and API misses stay404 (21.6036ms)
+✔ missing production build fails clearly, and server closes idempotently (8.8404ms)
+✔ config defaults to loopback and local database outside synced source (2.0244ms)
+✔ config validates exact numeric ports, mode and bind host (1.2825ms)
+✔ runtime storage cannot be relative, in-memory or under OneDrive (0.4619ms)
+✔ future milestone commands fail explicitly rather than reporting false success (90.2286ms)
+✔ file SQLite: competing writers, rollback, per-connection settings and DB guards (576.7825ms)
+✔ busy retry retries whole operation and remains bounded (1.7477ms)
+✔ unexpected/constraint errors retain identity and are not retried (0.1766ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1164.9762
+ℹ start of coverage report
+ℹ ------------------------------------------------------------------------
+ℹ file                    | line % | branch % | funcs % | uncovered lines
+ℹ ------------------------------------------------------------------------
+ℹ server                  |        |          |         | 
+ℹ  src                    |        |          |         | 
+ℹ   app.js                | 100.00 |    93.94 |   93.75 | 
+ℹ   config.js             |  85.29 |    95.83 |  100.00 | 23-27
+ℹ   errors.js             |  88.89 |    72.73 |  100.00 | 22 24-25
+ℹ   server.js             | 100.00 |    90.00 |   87.50 | 
+ℹ tools                   |        |          |         | 
+ℹ  pending.mjs            | 100.00 |    50.00 |  100.00 | 
+ℹ  spikes                 |        |          |         | 
+ℹ   sqlite-concurrency.js |  91.51 |    92.86 |   94.12 | 27 99-106
+ℹ ------------------------------------------------------------------------
+ℹ all files               |  93.75 |    90.74 |   93.33 | 
+ℹ ------------------------------------------------------------------------
+ℹ end of coverage report
+npm notice run electiva@0.1.0 test:coverage
+npm notice run node --experimental-test-coverage --test server/tests/*.test.js tools/tests/*.test.js

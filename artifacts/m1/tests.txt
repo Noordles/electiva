@@ -1,0 +1,24 @@
+✔ health and metadata describe M1 honestly without invented capabilities (64.1447ms)
+✔ readiness checks dependency state and never reveals connection failures (22.3381ms)
+✔ JSON/media/size validation returns stable safe errors with request identity (37.2199ms)
+✔ unknown APIs remain JSON404 and unexpected/domain errors are classified (10.8228ms)
+✔ one completion log excludes body, query, authorization and cookies (6.1605ms)
+✔ production serves SPA deep links, while assets and API misses stay404 (20.049ms)
+✔ missing production build fails clearly, and server closes idempotently (5.7374ms)
+✔ config defaults to loopback and local database outside synced source (1.8665ms)
+✔ config validates exact numeric ports, mode and bind host (2.1517ms)
+✔ runtime storage cannot be relative, in-memory or under OneDrive (0.4629ms)
+✔ future milestone commands fail explicitly rather than reporting false success (80.2342ms)
+✔ file SQLite: competing writers, rollback, per-connection settings and DB guards (476.7797ms)
+✔ busy retry retries whole operation and remains bounded (1.3836ms)
+✔ unexpected/constraint errors retain identity and are not retried (0.2009ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1038.5918
+npm notice run electiva@0.1.0 test
+npm notice run node --test server/tests/*.test.js tools/tests/*.test.js

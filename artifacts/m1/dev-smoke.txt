@@ -1,0 +1,5 @@
+  ➜  Local:   http://127.0.0.1:5307/
+Electiva API: http://127.0.0.1:4307
+{"requestId":"0c3c7218-02a6-48b2-ba2c-c753ecb22aac","method":"GET","path":"/health","status":200,"durationMs":6.17,"outcome":"completed"}
+{"requestId":"0b234c1e-c24a-4eea-b9f4-a507839ba4e8","method":"GET","path":"/api/v1/meta","status":200,"durationMs":1.76,"outcome":"completed"}
+Development page, API and proxy verified

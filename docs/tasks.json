@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "state": "planning only",
+  "state": "M1 implemented and verified; M2/M3 planned",
   "point_meaning": "relative effort, not hours or completed contribution",
   "tasks": [
     {
@@ -20,8 +20,10 @@
       ],
       "acceptance": "Clean clone can install locked dependencies; no secrets/DB/TypeScript; team/source record accurate.",
       "commit": "chore(repo): initialize JIN workspace",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M1.md; artifacts/m1/",
+      "implementation": "AI-assisted by Codex under student authorization",
+      "human_review": "pending"
     },
     {
       "id": "N02",
@@ -44,8 +46,10 @@
       ],
       "acceptance": "Schema diagram and constraint list trace R04/R06/R16–18; review records all write entry points.",
       "commit": "docs(data): define enrollment schema",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M1.md; artifacts/m1/",
+      "implementation": "AI-assisted by Codex under student authorization",
+      "human_review": "pending"
     },
     {
       "id": "N03",
@@ -67,8 +71,10 @@
       ],
       "acceptance": "Spike exits cleanly; no nested transaction errors; limitations recorded; architecture chosen before N04.",
       "commit": "chore(con): verify SQLite transaction strategy",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M1.md; artifacts/m1/",
+      "implementation": "AI-assisted by Codex under student authorization",
+      "human_review": "pending"
     },
     {
       "id": "N04",
@@ -299,8 +305,10 @@
       ],
       "acceptance": "All mandatory functionality mapped;3+ complete workflows; no invented dates/rules.",
       "commit": "docs(requirements): define roles and workflows",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M1.md; artifacts/m1/",
+      "implementation": "AI-assisted by Codex under student authorization",
+      "human_review": "pending"
     },
     {
       "id": "I02",
@@ -322,8 +330,10 @@
       ],
       "acceptance": "Runnable frontend shell, consistent accessible controls and responsive layout; no simulated backend success claim.",
       "commit": "feat(ui): add responsive application shell",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M1.md; artifacts/m1/",
+      "implementation": "AI-assisted by Codex under student authorization",
+      "human_review": "pending"
     },
     {
       "id": "I03",
@@ -345,8 +355,10 @@
       ],
       "acceptance": "N/J can implement independently without guessing field names or request outcomes.",
       "commit": "docs(api): specify enrollment contracts",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M1.md; artifacts/m1/",
+      "implementation": "AI-assisted by Codex under student authorization",
+      "human_review": "pending"
     },
     {
       "id": "I04",
@@ -579,8 +591,10 @@
       ],
       "acceptance": "Test and performance design traces G§4–6/T§4–5/SCL; measured fields remain blank.",
       "commit": "docs(quality): define test and capacity strategy",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M1.md; artifacts/m1/",
+      "implementation": "AI-assisted by Codex under student authorization",
+      "human_review": "pending"
     },
     {
       "id": "J02",
@@ -601,8 +615,10 @@
       ],
       "acceptance": "Runnable skeleton/health route and shared error behavior support M1; no secrets in responses.",
       "commit": "feat(api): add Express application foundation",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M1.md; artifacts/m1/",
+      "implementation": "AI-assisted by Codex under student authorization",
+      "human_review": "pending"
     },
     {
       "id": "J03",
@@ -625,8 +641,10 @@
       ],
       "acceptance": "SCL ADR proposed with falsifiable hypothesis; no unmeasured gain; integration contract usable.",
       "commit": "docs(scl): define measurable optimization experiment",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M1.md; artifacts/m1/",
+      "implementation": "AI-assisted by Codex under student authorization",
+      "human_review": "pending"
     },
     {
       "id": "J04",
@@ -917,5 +935,6 @@
     [
       "I12"
     ]
-  ]
+  ],
+  "human_review": "pending; no teammate authorship or mastery inferred"
 }

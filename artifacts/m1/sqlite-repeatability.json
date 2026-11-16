@@ -1,0 +1,26 @@
+[
+  {
+    "claimed": 1,
+    "full": 19,
+    "persistedCount": 1,
+    "rollbackCount": 0,
+    "observedBusyRetries": 0,
+    "observedAcquisitionRetries": 120
+  },
+  {
+    "claimed": 1,
+    "full": 19,
+    "persistedCount": 1,
+    "rollbackCount": 0,
+    "observedBusyRetries": 0,
+    "observedAcquisitionRetries": 102
+  },
+  {
+    "claimed": 1,
+    "full": 19,
+    "persistedCount": 1,
+    "rollbackCount": 0,
+    "observedBusyRetries": 0,
+    "observedAcquisitionRetries": 106
+  }
+]

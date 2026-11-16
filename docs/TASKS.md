@@ -1,6 +1,6 @@
 # Detailed implementation backlog
 
-All 36 work packages are **planned**, not complete. Each has a single accountable owner; implement its code, checks and explanatory documentation together. Points include all those activities. Dependencies are hard prerequisites unless a documented interface-only stub is explicitly used at M1. Tests and metrics must be observed before a work package is marked done.
+M1 tasks N01–N03, I01–I03 and J01–J03 are **implemented and technically verified**. The other 27 packages remain planned. Human review/teammate contribution is not implied; see milestones/M1.md and tasks.json. Each has a single accountable owner; implement its code, checks and explanatory documentation together. Points include all those activities. Dependencies are hard prerequisites unless a documented interface-only stub is explicitly used at M1. Tests and metrics must be observed before a work package is marked done.
 
 ## Al-Sammarraie Nooruldeen Sameer Fawzi — 12 packages, 40 points
 
@@ -106,7 +106,7 @@ All 36 work packages are **planned**, not complete. Each has a single accountabl
 
 **Files/scope:** `server/tests/concurrency/, artifacts/con/`
 
-1. Seed one-seat open course and20 independent authenticated students.
+1. Seed one-seat open course and 20 independent authenticated students.
 2. Release20 HTTP enrollment requests together with a start barrier.
 3. Assert 1 ACTIVE + 19 WAITLISTED and all 20 contract results; query persisted DB independently.
 4. Run concurrent same-student requests and ensure one current membership.

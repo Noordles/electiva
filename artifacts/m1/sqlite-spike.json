@@ -1,0 +1,189 @@
+{
+  "scope": "M1 transaction/driver experiment, not the authenticated HTTP CON acceptance test",
+  "node": "v24.22.1",
+  "sqlite": "3.52.0",
+  "sequelize": "6.37.8",
+  "storage": "temporary local file outside repository",
+  "journal": "wal",
+  "claimantCount": 20,
+  "sequelizeWriterInstances": 2,
+  "claimed": 1,
+  "full": 19,
+  "persistedCount": 1,
+  "rollbackCount": 0,
+  "foreignKeyBypassRejected": true,
+  "capacityBypassRejected": true,
+  "acquisitionRetryLimit": 30,
+  "observedAcquisitionRetries": 106,
+  "retryLimit": 8,
+  "observedBusyRetries": 0,
+  "transactionPragmas": [
+    {
+      "foreignKeys": 1,
+      "busyTimeoutMs": 0
+    },
+    {
+      "foreignKeys": 1,
+      "busyTimeoutMs": 0
+    },
+    {
+      "foreignKeys": 1,
+      "busyTimeoutMs": 0
+    },
+    {
+      "foreignKeys": 1,
+      "busyTimeoutMs": 0
+    },
+    {
+      "foreignKeys": 1,
+      "busyTimeoutMs": 0
+    },
+    {
+      "foreignKeys": 1,
+      "busyTimeoutMs": 0
+    },
+    {
+      "foreignKeys": 1,
+      "busyTimeoutMs": 0
+    },
+    {
+      "foreignKeys": 1,
+      "busyTimeoutMs": 0
+    },
+    {
+      "foreignKeys": 1,
+      "busyTimeoutMs": 0
+    },
+    {
+      "foreignKeys": 1,
+      "busyTimeoutMs": 0
+    },
+    {
+      "foreignKeys": 1,
+      "busyTimeoutMs": 0
+    },
+    {
+      "foreignKeys": 1,
+      "busyTimeoutMs": 0
+    },
+    {
+      "foreignKeys": 1,
+      "busyTimeoutMs": 0
+    },
+    {
+      "foreignKeys": 1,
+      "busyTimeoutMs": 0
+    },
+    {
+      "foreignKeys": 1,
+      "busyTimeoutMs": 0
+    },
+    {
+      "foreignKeys": 1,
+      "busyTimeoutMs": 0
+    },
+    {
+      "foreignKeys": 1,
+      "busyTimeoutMs": 0
+    },
+    {
+      "foreignKeys": 1,
+      "busyTimeoutMs": 0
+    },
+    {
+      "foreignKeys": 1,
+      "busyTimeoutMs": 0
+    },
+    {
+      "foreignKeys": 1,
+      "busyTimeoutMs": 0
+    },
+    {
+      "foreignKeys": 1,
+      "busyTimeoutMs": 0
+    }
+  ],
+  "outcomes": [
+    {
+      "claimant": "probe-1",
+      "outcome": "claimed"
+    },
+    {
+      "claimant": "probe-2",
+      "outcome": "full"
+    },
+    {
+      "claimant": "probe-3",
+      "outcome": "full"
+    },
+    {
+      "claimant": "probe-4",
+      "outcome": "full"
+    },
+    {
+      "claimant": "probe-5",
+      "outcome": "full"
+    },
+    {
+      "claimant": "probe-6",
+      "outcome": "full"
+    },
+    {
+      "claimant": "probe-7",
+      "outcome": "full"
+    },
+    {
+      "claimant": "probe-8",
+      "outcome": "full"
+    },
+    {
+      "claimant": "probe-9",
+      "outcome": "full"
+    },
+    {
+      "claimant": "probe-10",
+      "outcome": "full"
+    },
+    {
+      "claimant": "probe-11",
+      "outcome": "full"
+    },
+    {
+      "claimant": "probe-12",
+      "outcome": "full"
+    },
+    {
+      "claimant": "probe-13",
+      "outcome": "full"
+    },
+    {
+      "claimant": "probe-14",
+      "outcome": "full"
+    },
+    {
+      "claimant": "probe-15",
+      "outcome": "full"
+    },
+    {
+      "claimant": "probe-16",
+      "outcome": "full"
+    },
+    {
+      "claimant": "probe-17",
+      "outcome": "full"
+    },
+    {
+      "claimant": "probe-18",
+      "outcome": "full"
+    },
+    {
+      "claimant": "probe-19",
+      "outcome": "full"
+    },
+    {
+      "claimant": "probe-20",
+      "outcome": "full"
+    }
+  ],
+  "completedAt": "2026-11-16T19:02:00.548Z"
+}
