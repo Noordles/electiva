@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Electiva — Team JIN, ASE Web Technologies",
+  "description": "Electiva \u2014 Team JIN, ASE Web Technologies",
   "workspaces": [
     "server",
     "client"
@@ -20,21 +20,32 @@
     "build": "vite build client --config client/vite.config.js",
     "start:production": "node --env-file-if-exists=.env server/src/start.js --production",
     "test": "node --test server/tests/*.test.js tools/tests/*.test.js",
-    "test:coverage": "node --experimental-test-coverage --test server/tests/*.test.js tools/tests/*.test.js",
+    "test:coverage": "c8 --all --include=\"server/src/**/*.js\" --reporter=text --reporter=json-summary --reporter=lcov --check-coverage --statements=70 --branches=60 node --test server/tests/*.test.js tools/tests/*.test.js",
     "test:ui": "node tools/pending.mjs test:ui",
     "spike:sqlite": "node tools/spikes/sqlite-concurrency.js --output artifacts/m1/sqlite-spike.json",
-    "db:migrate": "node tools/pending.mjs db:migrate",
-    "db:seed": "node tools/pending.mjs db:seed",
-    "test:concurrency": "node tools/pending.mjs test:concurrency",
+    "db:migrate": "node --env-file-if-exists=.env tools/database.mjs",
+    "db:seed": "node --env-file-if-exists=.env tools/database.mjs --seed",
+    "test:concurrency": "node tools/test-concurrency.mjs",
     "test:e2e": "node tools/pending.mjs test:e2e",
-    "load:baseline": "node tools/pending.mjs load:baseline",
+    "load:baseline": "node tools/load/runner.mjs",
     "load:saturation": "node tools/pending.mjs load:saturation",
-    "load:compare": "node tools/pending.mjs load:compare"
+    "load:compare": "node tools/pending.mjs load:compare",
+    "db:seed:large": "node --env-file-if-exists=.env tools/database.mjs --seed --large",
+    "dev:directory": "node --env-file-if-exists=.env tools/directory-simulator.js",
+    "load:smoke": "node tools/load/runner.mjs --users 10 --seconds 2 --output artifacts/m2/load-smoke.json"
   },
   "overrides": {
-    "uuid": "11.1.1"
+    "uuid": "11.1.1",
+    "test-exclude": {
+      "glob": "14.0.6",
+      "minimatch": "11.0.9"
+    }
   },
   "allowScripts": {
     "sqlite3@6.0.1": true
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.1",
+    "c8": "12.0.0"
   }
 }
