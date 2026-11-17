@@ -21,6 +21,12 @@ try {
     receipt.commands.push(result); console.log(`${result.command}: ${result.exitCode === 0 ? 'passed' : 'FAILED'}`); assert.equal(result.exitCode, 0);
   }
   const accounts = JSON.parse(await readFile(path.join(directory, 'data/demo-accounts.json'), 'utf8'));
+  const index = await readFile(path.join(checkout, 'client/dist/index.html'), 'utf8');
+  const entrypoint = index.match(/src="(\/assets\/[^" ]+\.js)"/);
+  assert.ok(entrypoint, 'Built entrypoint missing');
+  const bundle = await readFile(path.join(checkout, 'client/dist', entrypoint[1]), 'utf8');
+  assert.equal(bundle.includes('react.dev/link/react-devtools'), false, 'Development React was included in the production bundle');
+  receipt.productionBundle = { inheritedNodeEnv: env.NODE_ENV, developmentNoticeAbsent: true, entrypoint: entrypoint[1], bytes: Buffer.byteLength(bundle) };
   service = spawn(process.execPath, ['server/src/start.js', '--production'], { cwd: checkout, env, stdio: ['ignore', 'pipe', 'pipe'] });
   const ended = new Promise(resolve => service.once('exit', resolve));
   const url = await new Promise((resolve, reject) => {

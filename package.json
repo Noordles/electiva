@@ -17,7 +17,7 @@
     "dev": "node --env-file-if-exists=.env tools/dev.mjs",
     "dev:server": "node --env-file-if-exists=.env --watch server/src/start.js",
     "dev:client": "vite client --config client/vite.config.js --host 127.0.0.1",
-    "build": "vite build client --config client/vite.config.js",
+    "build": "node tools/build.mjs",
     "start:production": "node --env-file-if-exists=.env server/src/start.js --production",
     "test": "node --test server/tests/*.test.js tools/tests/*.test.js",
     "test:coverage": "c8 --all --include=\"server/src/**/*.js\" --reporter=text --reporter=json-summary --reporter=lcov --reporter=html --check-coverage --statements=70 --branches=60 node --test server/tests/*.test.js tools/tests/*.test.js",
