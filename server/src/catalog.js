@@ -33,7 +33,13 @@ export function catalogStatements(query, now) {
   const { page, bind, where, order } = catalogQuery(query, now);
   return { page, bind,
     countSql: `SELECT count(*) AS total FROM offerings o JOIN courses c ON c.id=o.courseId WHERE ${where}`,
-    rowsSql: `${offeringSelect} WHERE ${where} ORDER BY ${order} LIMIT $pageSize OFFSET $offset` };
+    // Choose only the requested page before the correlated history counts.
+    // MATERIALIZED keeps SQLite from flattening this boundary back into the
+    // baseline plan. Counts remain fresh; no seat cache or integrity change.
+    rowsSql: `WITH selected_page AS MATERIALIZED (
+      SELECT o.id FROM offerings o JOIN courses c ON c.id=o.courseId
+      WHERE ${where} ORDER BY ${order} LIMIT $pageSize OFFSET $offset
+    ) ${offeringSelect} JOIN selected_page p ON p.id=o.id ORDER BY ${order}` };
 }
 export async function listCatalog(db, query, now) {
   const { page, bind, countSql, rowsSql } = catalogStatements(query, now);
