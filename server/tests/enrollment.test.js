@@ -19,6 +19,16 @@ test('enroll, replay, FIFO promotion, cancellation replay and re-enrollment hist
   assert.equal(await db.models.Enrollment.count(), 4);
 });
 
+test('one student cannot hold current requests in two offerings of the same course', async t => {
+  const { db } = await fixture(t); await domainFixture(db);
+  await db.run("INSERT INTO offerings SELECT 2,courseId,'another-term',capacity,opensAt,closesAt,lifecycle,1 FROM offerings WHERE id=1");
+  const service = createEnrollmentService(db), first = await service.enroll(1, 1);
+  await assert.rejects(service.enroll(1, 2), error => error.code === 'course_already_requested');
+  assert.equal(await db.models.Enrollment.count(), 1);
+  await service.cancel(1, first.enrollment.id);
+  assert.equal((await service.enroll(1, 2)).enrollment.status, 'ACTIVE');
+});
+
 test('cancel and promotion roll back together on a real failure', async t => {
   const { db } = await fixture(t); await domainFixture(db);
   const service = createEnrollmentService(db), broken = createEnrollmentService(db, { afterCancellation: () => { throw new Error('injected failure'); } });

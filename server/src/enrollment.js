@@ -27,6 +27,8 @@ export function createEnrollmentService(db, { now = Date.now, afterCancellation 
         requireOpen(offering, current);
         const [existing] = await db.all("SELECT * FROM enrollments WHERE userId=$userId AND offeringId=$offeringId AND status IN ('ACTIVE','WAITLISTED')", { userId, offeringId }, tx);
         if (existing) return { enrollment: enrollmentView(existing), created: false };
+        const [otherOffering] = await db.all("SELECT e.id FROM enrollments e JOIN offerings o ON o.id=e.offeringId WHERE e.userId=$userId AND o.courseId=$courseId AND e.status IN ('ACTIVE','WAITLISTED') LIMIT 1", { userId, courseId: offering.courseId }, tx);
+        if (otherOffering) throw new HttpError(409, 'course_already_requested', 'You already have an active request for this course');
         await promote(db, offering, current, tx);
         const [{ count }] = await db.all("SELECT count(*) AS count FROM enrollments WHERE offeringId=$offeringId AND status='ACTIVE'", { offeringId }, tx);
         const status = count < offering.capacity ? 'ACTIVE' : 'WAITLISTED';

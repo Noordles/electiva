@@ -15,4 +15,11 @@ export const migrations = [{ version: 1, statements: [
   `CREATE TRIGGER enrollment_capacity_update BEFORE UPDATE OF status ON enrollments WHEN NEW.status = 'ACTIVE' AND OLD.status != 'ACTIVE' AND (SELECT count(*) FROM enrollments WHERE offeringId = NEW.offeringId AND status = 'ACTIVE') >= (SELECT capacity FROM offerings WHERE id = NEW.offeringId) BEGIN SELECT RAISE(ABORT, 'capacity_exceeded'); END`,
   `CREATE TRIGGER offering_capacity BEFORE UPDATE OF capacity ON offerings WHEN NEW.capacity < (SELECT count(*) FROM enrollments WHERE offeringId = NEW.id AND status = 'ACTIVE') BEGIN SELECT RAISE(ABORT, 'capacity_below_occupancy'); END`,
   `CREATE TRIGGER offering_archive BEFORE UPDATE OF lifecycle ON offerings WHEN NEW.lifecycle = 'ARCHIVED' AND EXISTS (SELECT 1 FROM enrollments WHERE offeringId = NEW.id AND status IN ('ACTIVE','WAITLISTED')) BEGIN SELECT RAISE(ABORT, 'current_memberships'); END`,
-] }];
+] }, { version: 2,
+  preflight: `SELECT e.userId, o.courseId FROM enrollments e JOIN offerings o ON o.id=e.offeringId WHERE e.status IN ('ACTIVE','WAITLISTED') GROUP BY e.userId,o.courseId HAVING count(*)>1 LIMIT 1`,
+  statements: [
+    `CREATE TRIGGER enrollment_course_insert BEFORE INSERT ON enrollments WHEN NEW.status IN ('ACTIVE','WAITLISTED') AND EXISTS (SELECT 1 FROM enrollments e JOIN offerings o ON o.id=e.offeringId WHERE e.userId=NEW.userId AND e.status IN ('ACTIVE','WAITLISTED') AND o.courseId=(SELECT courseId FROM offerings WHERE id=NEW.offeringId)) BEGIN SELECT RAISE(ABORT, 'course_already_requested'); END`,
+    `CREATE TRIGGER enrollment_course_update BEFORE UPDATE OF status ON enrollments WHEN NEW.status IN ('ACTIVE','WAITLISTED') AND EXISTS (SELECT 1 FROM enrollments e JOIN offerings o ON o.id=e.offeringId WHERE e.userId=NEW.userId AND e.id!=NEW.id AND e.status IN ('ACTIVE','WAITLISTED') AND o.courseId=(SELECT courseId FROM offerings WHERE id=NEW.offeringId)) BEGIN SELECT RAISE(ABORT, 'course_already_requested'); END`,
+    `CREATE TRIGGER offering_course_identity BEFORE UPDATE OF courseId ON offerings WHEN NEW.courseId!=OLD.courseId AND EXISTS (SELECT 1 FROM enrollments WHERE offeringId=OLD.id) BEGIN SELECT RAISE(ABORT, 'immutable_offering_course'); END`,
+  ],
+}];

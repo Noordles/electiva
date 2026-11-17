@@ -60,11 +60,15 @@ export async function createDatabase(storage, { onAcquisitionRetry = () => {}, o
     await db.write(async transaction => {
       await db.run('CREATE TABLE IF NOT EXISTS schema_migrations (version INTEGER PRIMARY KEY, checksum TEXT NOT NULL)', {}, transaction);
       for (const migration of migrations) {
-        const checksum = createHash('sha256').update(JSON.stringify(migration.statements)).digest('hex');
+        const payload = migration.preflight ? { statements: migration.statements, preflight: migration.preflight } : migration.statements;
+        const checksum = createHash('sha256').update(JSON.stringify(payload)).digest('hex');
         const [existing] = await db.all('SELECT checksum FROM schema_migrations WHERE version = $version', { version: migration.version }, transaction);
         if (existing) {
           if (existing.checksum !== checksum) throw new Error(`Migration ${migration.version} has changed; restore it and add a new migration`);
           continue;
+        }
+        if (migration.preflight && (await db.all(migration.preflight, {}, transaction)).length) {
+          throw new Error(`Migration ${migration.version} blocked: duplicate current requests for one course need review; existing data was preserved`);
         }
         for (const sql of migration.statements) await db.run(sql, {}, transaction);
         await db.run('INSERT INTO schema_migrations VALUES ($version, $checksum)', { version: migration.version, checksum }, transaction);

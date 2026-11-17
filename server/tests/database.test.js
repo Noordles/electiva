@@ -9,7 +9,7 @@ test('migrations survive reopen and every connection enforces foreign keys', asy
   const second = await createDatabase(storage);
   try {
     assert.equal((await second.models.Course.count()), 1);
-    assert.equal((await second.all('SELECT * FROM schema_migrations')).length, 1);
+    assert.equal((await second.all('SELECT * FROM schema_migrations')).length, 2);
     await second.write(async tx => {
       assert.equal((await second.all('PRAGMA foreign_keys', {}, tx))[0].foreign_keys, 1);
       assert.equal((await second.all('PRAGMA busy_timeout', {}, tx))[0].timeout, 0);
@@ -44,4 +44,25 @@ test('a failed transaction rolls every change back', async t => {
     throw new Error('injected failure');
   }), /injected failure/);
   assert.equal(await db.models.Enrollment.count(), 0);
+});
+
+test('raw course-level guards reject duplicate requests across offerings and preserve historical identity', async t => {
+  const { db } = await fixture(t); await domainFixture(db);
+  await db.run("INSERT INTO offerings SELECT 2,courseId,'other',capacity,opensAt,closesAt,lifecycle,1 FROM offerings WHERE id=1");
+  await db.run("INSERT INTO enrollments VALUES (1,1,1,'ACTIVE',1,1,NULL)");
+  await assert.rejects(db.run("INSERT INTO enrollments VALUES (2,1,2,'WAITLISTED',1,1,NULL)"));
+  await assert.rejects(db.run('UPDATE offerings SET courseId=99 WHERE id=1'));
+  assert.equal(await db.models.Enrollment.count(), 1);
+});
+
+test('upgrade refuses existing duplicate course requests without deleting student data', async t => {
+  const { db, storage } = await fixture(t); await domainFixture(db);
+  // Reproduce a pre-v2 file in this isolated fixture, then exercise actual startup.
+  await db.run('DROP TRIGGER enrollment_course_insert'); await db.run('DROP TRIGGER enrollment_course_update'); await db.run('DROP TRIGGER offering_course_identity');
+  await db.run('DELETE FROM schema_migrations WHERE version=2');
+  await db.run("INSERT INTO offerings SELECT 2,courseId,'other',capacity,opensAt,closesAt,lifecycle,1 FROM offerings WHERE id=1");
+  await db.run("INSERT INTO enrollments VALUES (1,1,1,'ACTIVE',1,1,NULL),(2,1,2,'ACTIVE',1,1,NULL)");
+  await assert.rejects(createDatabase(storage), /Migration 2 blocked.*data was preserved/);
+  assert.equal(await db.models.Enrollment.count(), 2);
+  assert.equal((await db.all('SELECT * FROM schema_migrations')).length, 1);
 });
