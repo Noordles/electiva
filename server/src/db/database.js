@@ -12,12 +12,13 @@ class LocalDatabase extends sqlite3.Database {
   constructor(...args) { super(...args); this.configure('busyTimeout', 0); }
 }
 
-export async function createDatabase(storage) {
+export async function createDatabase(storage, { onAcquisitionRetry = () => {}, onTransactionRetry = () => {} } = {}) {
   const { databasePath } = loadConfig({ ...process.env, DATABASE_PATH: storage });
   await mkdir(path.dirname(databasePath), { recursive: true });
   const sequelize = new Sequelize({ dialect: 'sqlite', storage: databasePath,
     dialectModule: { ...sqlite3, Database: LocalDatabase }, logging: false,
-    retry: { max: 30, match: [/SQLITE_BUSY/], backoffBase: 10, backoffExponent: 1.12, backoffJitter: 10 } });
+    retry: { max: 30, match: [/SQLITE_BUSY/], backoffBase: 10, backoffExponent: 1.12, backoffJitter: 10,
+      report: message => { if (String(message).startsWith('Retrying')) onAcquisitionRetry(); } } });
   // Models describe the application schema; migrations own physical constraints.
   const integer = { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true };
   const define = (name, fields) => sequelize.define(name, fields, { tableName: name, timestamps: false });
@@ -45,6 +46,7 @@ export async function createDatabase(storage) {
         try { return await sequelize.transaction({ type: Transaction.TYPES.IMMEDIATE }, operation); }
         catch (error) {
           if (error.original?.code !== 'SQLITE_BUSY') throw error;
+          onTransactionRetry();
           if (attempt === 4) throw new HttpError(503, 'temporarily_busy', 'Please try again shortly');
           await sleep(Math.min(10 * 2 ** attempt, 160));
         }
