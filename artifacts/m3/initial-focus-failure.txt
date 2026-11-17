@@ -1,0 +1,38 @@
+npm notice run electiva@0.1.0 test:e2e
+npm notice run node --test client/tests/*.test.js
+✔ production admin: course, offering, stale edit, promotion, report, archive and HTTP import (12339.6026ms)
+✖ production browser: sign in, enroll, waitlist, cancel, promote and reload at three widths (13233.1708ms)
+✔ catalog shows a real API failure and Retry recovers without a page reload (1468.4145ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 18514.595
+
+✖ failing tests:
+
+test at client\tests\student-flow.test.js:9:1
+✖ production browser: sign in, enroll, waitlist, cancel, promote and reload at three widths (13233.1708ms)
+  Error: expect(locator).toBeFocused() failed
+  
+  Locator:  getByRole('button', { name: 'Explore course' })
+  Expected: focused
+  Received: inactive
+  Timeout:  5000ms
+  
+  Call log:
+    - Expect "toBeFocused" getByRole('button', { name: 'Explore course' }) with timeout 5000ms
+    - waiting for getByRole('button', { name: 'Explore course' })
+      13 × locator resolved to <button type="button" class="button button-text ">…</button>
+         - unexpected value "inactive"
+  
+      at captureRawStack (C:\Users\IKeep\OneDrive\Documents\ASE\Web Technologies\Electiva\node_modules\playwright-core\lib\coreBundle.js:9551:17)
+      at callMatcherAsStep (C:\Users\IKeep\OneDrive\Documents\ASE\Web Technologies\Electiva\node_modules\playwright\lib\matchers\expect.js:13342:57)
+      at Object.toBeFocused (C:\Users\IKeep\OneDrive\Documents\ASE\Web Technologies\Electiva\node_modules\playwright\lib\matchers\expect.js:13334:23)
+      at choose (C:\Users\IKeep\OneDrive\Documents\ASE\Web Technologies\Electiva\client\tests\student-flow.test.js:40:26)
+      at async TestContext.<anonymous> (C:\Users\IKeep\OneDrive\Documents\ASE\Web Technologies\Electiva\client\tests\student-flow.test.js:42:3) {
+    matcherResult: { message: `expect(locator).toBeFocused() failed\n\nLocator:  getByRole('button', { name: 'Explore course' })\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n  - Expect "toBeFocused" getByRole('button', { name: 'Explore course' }) with timeout 5000ms\n  - waiting for getByRole('button', { name: 'Explore course' })\n    13 × locator resolved to <button type="button" class="button button-text ">…</button>\n       - unexpected value "inactive"\n`, pass: false, actual: 'inactive', name: 'toBeFocused', expected: 'focused', log: [ `  - Expect "toBeFocused" getByRole('button', { name: 'Explore course' }) with timeout 5000ms`, "  - waiting for getByRole('button', { name: 'Explore course' })", '    13 × locator resolved to <button type="button" class="button button-text ">…</button>', '       - unexpected value "inactive"' ], timeout: 5000, ariaSnapshot: '- button "Explore course"' }
+  }

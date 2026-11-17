@@ -1,9 +1,9 @@
 {
-  "completedAt": "2026-11-17T08:52:54.586Z",
+  "completedAt": "2026-11-17T13:28:07.412Z",
   "distinctStudents": 20,
   "distinctServerPids": [
-    8356,
-    19672
+    27984,
+    27820
   ],
   "active": 1,
   "waitlisted": 19,
@@ -24,92 +24,92 @@
     },
     {
       "id": 3,
-      "userId": 7,
-      "status": "WAITLISTED"
-    },
-    {
-      "id": 4,
-      "userId": 6,
-      "status": "WAITLISTED"
-    },
-    {
-      "id": 5,
       "userId": 11,
       "status": "WAITLISTED"
     },
     {
-      "id": 6,
-      "userId": 19,
-      "status": "WAITLISTED"
-    },
-    {
-      "id": 7,
-      "userId": 13,
-      "status": "WAITLISTED"
-    },
-    {
-      "id": 8,
-      "userId": 9,
-      "status": "WAITLISTED"
-    },
-    {
-      "id": 9,
-      "userId": 2,
-      "status": "WAITLISTED"
-    },
-    {
-      "id": 10,
+      "id": 4,
       "userId": 15,
       "status": "WAITLISTED"
     },
     {
-      "id": 11,
+      "id": 5,
+      "userId": 6,
+      "status": "WAITLISTED"
+    },
+    {
+      "id": 6,
+      "userId": 9,
+      "status": "WAITLISTED"
+    },
+    {
+      "id": 7,
+      "userId": 2,
+      "status": "WAITLISTED"
+    },
+    {
+      "id": 8,
       "userId": 20,
       "status": "WAITLISTED"
     },
     {
-      "id": 12,
-      "userId": 12,
-      "status": "WAITLISTED"
-    },
-    {
-      "id": 13,
+      "id": 9,
       "userId": 14,
       "status": "WAITLISTED"
     },
     {
-      "id": 14,
+      "id": 10,
+      "userId": 12,
+      "status": "WAITLISTED"
+    },
+    {
+      "id": 11,
+      "userId": 19,
+      "status": "WAITLISTED"
+    },
+    {
+      "id": 12,
       "userId": 8,
       "status": "WAITLISTED"
     },
     {
-      "id": 15,
-      "userId": 17,
-      "status": "WAITLISTED"
-    },
-    {
-      "id": 16,
-      "userId": 4,
-      "status": "WAITLISTED"
-    },
-    {
-      "id": 17,
-      "userId": 5,
-      "status": "WAITLISTED"
-    },
-    {
-      "id": 18,
+      "id": 13,
       "userId": 18,
       "status": "WAITLISTED"
     },
     {
-      "id": 19,
+      "id": 14,
+      "userId": 4,
+      "status": "WAITLISTED"
+    },
+    {
+      "id": 15,
+      "userId": 7,
+      "status": "WAITLISTED"
+    },
+    {
+      "id": 16,
+      "userId": 16,
+      "status": "WAITLISTED"
+    },
+    {
+      "id": 17,
       "userId": 10,
       "status": "WAITLISTED"
     },
     {
+      "id": 18,
+      "userId": 17,
+      "status": "WAITLISTED"
+    },
+    {
+      "id": 19,
+      "userId": 13,
+      "status": "WAITLISTED"
+    },
+    {
       "id": 20,
-      "userId": 16,
+      "userId": 5,
       "status": "WAITLISTED"
     }
   ]

@@ -4,9 +4,9 @@
 
 ## Current milestone
 
-**Paused for Noor's app review,17 November:** the latest M3 implementation and unfinished verification work are saved in [CHECKPOINT.md](docs/CHECKPOINT.md). The local app is running for inspection. Continue development only when the student asks.
+**M3 technical review candidate:** integrated student and administrator workspaces, persisted enrollment/FIFO, course-level integrity guards, real directory HTTP integration, independent-process crash recovery, automated production-browser journeys and measured CON/SCL evidence. See [M3 verification](docs/milestones/M3.md) and the [performance report](docs/capacity-results.md).
 
-**M2 implemented and technically verified:** real sign-in, persisted catalog, enrollment, cancellation, FIFO waitlists and protected administrator APIs. The student enrollment interface was also brought forward from M3. Administration/report/import screens, measured SCL experiments, separate-process recovery and genuine individual teammate reviews remain outstanding. See [M2 evidence](docs/milestones/M2.md).
+The student resumed after the recorded app-review pause. The [checkpoint](docs/CHECKPOINT.md) preserves that history. Genuine individual member reviews/cases, teacher acceptance of the proposed integration substitute and actual submission dates remain open. This repository distinguishes technical verification from final college acceptance.
 
 **Designed by Noor.** The wine/cyan visual system follows his Iraq Economic Observatory direction and supplied Electiva icon. [Design tokens](docs/design-system.md) · [Full implementation plan](docs/IMPLEMENTATION_PLAN.md) · [Granular backlog](docs/TASKS.md).
 
@@ -38,7 +38,8 @@ npm run test:concurrency
 npm run build
 npx playwright install chromium
 npm run test:e2e
-npm run load:smoke
+npm run verify:m3
+npm run rehearse
 npm run start:production
 ```
 
@@ -46,15 +47,17 @@ Production-mode local check: **http://127.0.0.1:3000/courses**. Built files use 
 
 - `/health` and `/api/v1/health`:200 for process liveness.
 - `/ready` and `/api/v1/ready`: actual database readiness; 200 when ready.
-- `/api/v1/meta`: reports M2 and implemented capabilities.
+- `/api/v1/meta`: reports M3 and implemented capabilities.
 - `npm test`: unit/API/persistence/negative/concurrency tests, isolated temporary file databases and synthetic accounts.
 - `test:coverage`: c8 statement/branch report for all server/src files, including unexecuted startup code; enforces draft70/60 targets. HTML/LCOV/JSON generated in ignored coverage/.
-- `test:e2e` / `test:ui`: real production-browser student flow with two sessions, persisted promotion and responsive widths360/768/1280. Administration UI journeys remain pending.
-- `load:smoke`: bounded two-second/10-user harness check against10,000 synthetic students, including SQL invariant verification. This is not SCL capacity evidence. `npm run load:baseline -- --users 50 --seconds 15 --output artifacts/raw/load-50.json` runs another local scenario.
+- `test:e2e` / `test:ui`: production-browser student/admin flows, stale forms, provider errors, keyboard/focus and widths360/768/1280. Critical enrollment APIs are real.
+- `test:concurrency`: independent application processes,20 authenticated students, duplicate clicks, capacity/cancellation/window races and durable rollback after killing a process mid-transaction.
+- `verify:m3`: records exact local source hashes, commands and exits for tests/coverage/build/E2E/CON/audit. `rehearse` verifies a fresh local clone/install/migrate/seed/build/production HTTP flow.
+- `load:baseline`: repeated10/50/100-user scenarios on10,000 students/50,000 attempts. `load:saturation` uses a separate no-think overload model; give a new output path for a new experiment. `load:compare` regenerates saved CSV/PNG/SVG reports with the optional Python/Matplotlib environment in tools/analysis-requirements.txt. [Protocol](docs/capacity-protocol.md) explains exact clocks/fixtures/windows and reproduction.
 - `spike:sqlite`: temporary local DB with 20 claimants, two Sequelize writer instances, rollback and integrity checks. It is not the authenticated HTTP CON acceptance test.
-- Saturation and controlled comparison commands remain explicit pending failures until M3. CI installs/tests/checks coverage/builds/runs Chromium; hosted results are verified separately.
+- CI installs/tests/checks coverage/builds/runs Chromium. Hosted results are verified separately. Heavy performance runs stay local/manual and never target a public service.
 
-`npm audit` is recorded separately; the M2 lockfile returned zero findings after selecting patched coverage-tool transitive versions. This is a dated check, not a security certification.
+Saved M3 evidence includes the measured catalog improvement, overload failures and recovery, full coverage and dependency audit. These are dated checks, not a security certification or long-duration production SLA. Runtime/OS/hardware and short experiment limits are preserved with the data.
 
 ## Documents
 
@@ -68,4 +71,4 @@ The application database defaults to `%LOCALAPPDATA%/Electiva/dev.sqlite` outsid
 
 Noor supplied product/design direction and requested incremental tested implementation. Codex assisted implementation and verification. [Team review guide](docs/team-review.md) assigns each member a balanced technical inspection; the contribution ledger records reviews when they happen. No teammate supervision or approval is invented.
 
-All three source specifications remain user-supplied Draft v2.0. Milestone dates are unknown. FIFO/window decisions and local external-directory substitute are explicit team proposals; instructor acceptance of the substitute remains unverified. No public deployment, teammate invitation, attendance action, email or submission is part of M1.
+All three source specifications remain user-supplied Draft v2.0. Milestone dates are unknown. FIFO/window policies and the directory substitute remain explicit team choices; instructor acceptance of the substitute is unverified. The [release checklist](docs/release.md) and [demo plan](docs/demo.md) keep final review/upload under student control. No public deployment, teammate invitation, attendance action, email or college submission is performed.

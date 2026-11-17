@@ -1,5 +1,7 @@
 # Paused for Noor's app review — 17 November 2026
 
+**Historical checkpoint, superseded by the student's explicit continuation.** The saved pause snapshot is commit e872db9. Resumed work completed the missing overload repetition, fixed finite-value validation, added course-level duplicate guards and generated reports. Current status and remaining human gates are in milestones/M3.md and release.md; do not treat the historical pause below as a new stop instruction.
+
 The student explicitly asked to stop development, run the app and continue only when told to resume. Do not restart implementation or benchmark work automatically.
 
 ## Running preview

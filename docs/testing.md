@@ -1,6 +1,6 @@
 # Test and coverage plan
 
-M2 verification is recorded in milestones/M2.md and artifacts/m2. Real unit/API/persistence/negative/concurrency tests and production student-browser journeys now run. The matrix below includes broader M3 scenarios; it is not a claim that every row is complete. npm test exits nonzero on failure.
+M3 verification is recorded in milestones/M3.md and artifacts/m3. Real unit/API/persistence/negative/concurrency tests and production student/admin browser journeys run; npm test exits nonzero on failure. The scenario matrix is mapped to concrete files in traceability.md. No requirement is satisfied by printing a success message or skipping a critical failure.
 
 ## Layers and fixtures
 
@@ -38,7 +38,7 @@ M2 verification is recorded in milestones/M2.md and artifacts/m2. Real unit/API/
 
 Implemented: Node test runner with c8 12.0.0/V8, all server/src/**/*.js, including unimported files. Enforce provisional >=70% statements AND >=60% branches; generate JSON summary and HTML/LCOV. These are c8's V8-to-Istanbul statement/branch metrics. Browser tests run separately and do not contribute to this backend report.
 
-The include pattern excludes dependencies, generated client output and test/load/simulator tooling. No authored backend file is excluded: config, migrations, seeding and startup are included. Startup is currently unexecuted by this suite; retry exhaustion, checksum mismatch, rare HTTP encoding/error branches and broader process recovery are gaps. Coverage percentages do not establish their correctness.
+The include pattern excludes dependencies, generated client output and test/load/simulator tooling. No authored backend file is excluded: config, migrations, seeding and startup are included. Retry exhaustion, checksum mismatch and cross-offering legacy migration refusal now have tests. Independent process crash/restart is covered. start.js remains unexecuted by this coverage suite, although clean rehearsal launches it and verifies production HTTP behavior; that separate run is not back-counted into coverage. Rare HTTP encoding/error branches, exhaustive shutdown races and complete assistive-technology/penetration/long-duration deployment tests remain gaps. Percentages do not establish their correctness.
 
 Tests must check correctness beyond the thresholds. No skipped critical tests, unconditional retries to hide flakiness, forced exit to conceal resource leaks, or stubbing a repository in the only persistence/concurrency test. Keep server startup, app factory, DB creation and close hooks separate. Test retries remain zero for core assertions; investigate failures.
 

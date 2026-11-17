@@ -1,6 +1,6 @@
 # Detailed implementation backlog
 
-M1 tasks N01–N03, I01–I03 and J01–J03 are **implemented and technically verified**. M2 tasks04–07 for each member and N08 are now implemented and technically verified; remaining M3 work stays pending. I09 has initial student-flow evidence and is partial. Human review/teammate contribution is not implied; see milestones/M1.md and tasks.json. Each has a single accountable owner; implement its code, checks and explanatory documentation together. Points include all those activities. Dependencies are hard prerequisites unless a documented interface-only stub is explicitly used at M1. Tests and metrics must be observed before a work package is marked done.
+M1–M3 implementation now has31 technically verified packages. N11/I11/J12 personal cases and N12/I12 final acceptance/rehearsal gates remain partial pending genuine member participation and open approval items. See milestones/M3.md, traceability.md and tasks.json. The36 original work packages below preserve the balanced responsibility plan; their steps are not claims of completed human contribution.
 
 ## Al-Sammarraie Nooruldeen Sameer Fawzi — 12 packages, 40 points
 

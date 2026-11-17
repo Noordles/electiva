@@ -1,0 +1,8 @@
+{
+  "sourceHashesMatch": true,
+  "originalSpecificationHashesPreserved": true,
+  "verificationCommandsPassed": 6,
+  "candidateFilesScanned": 213,
+  "knownCredentialPatternFindings": [],
+  "scope": "Known private-key/token patterns and forbidden runtime/dependency paths; not an exhaustive security certification"
+}

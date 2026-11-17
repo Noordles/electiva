@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "state": "M1 and M2 implemented and technically verified; N08 brought forward; remaining M3 tasks pending",
+  "state": "M1-M3 technical review candidate:31 packages technically verified;5 personal-review/final acceptance gates partial",
   "point_meaning": "relative effort, not hours or completed contribution",
   "tasks": [
     {
@@ -197,8 +197,8 @@
       "acceptance": "Student can enroll/waitlist/cancel/view own state using real API; error and loading states visible.",
       "commit": "feat(ui): add student enrollment workspace",
       "status": "implemented_verified",
-      "evidence": "docs/milestones/M2.md; artifacts/m2/verification.json",
-      "implementation": "AI-assisted by Codex under Noor direction; planned owner is not actual teammate authorship",
+      "evidence": "docs/milestones/M3.md; artifacts/m3/verification.json; artifacts/capacity/",
+      "implementation": "AI-assisted by Codex under Noor direction; planned ownership is not teammate authorship",
       "human_review": "pending"
     },
     {
@@ -222,8 +222,10 @@
       ],
       "acceptance": "CON canonical and adversarial scenarios pass; actual single-writer/latency limits explicitly reported.",
       "commit": "test(con): verify contention and recovery",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M3.md; artifacts/m3/verification.json; artifacts/capacity/",
+      "implementation": "AI-assisted by Codex under Noor direction; planned ownership is not teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "N10",
@@ -246,8 +248,10 @@
       ],
       "acceptance": "Provisional70/60 coverage gates pass with real report; no critical security gap hidden; risk list current.",
       "commit": "test(security): cover authorization and error gaps",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M3.md; artifacts/m3/verification.json; artifacts/capacity/",
+      "implementation": "AI-assisted by Codex under Noor direction; planned ownership is not teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "N11",
@@ -268,8 +272,10 @@
       ],
       "acceptance": "One genuine N case, code/test locators and accurate actual contribution ledger.",
       "commit": "docs(ai): record enrollment engineering case",
-      "status": "planned",
-      "evidence": null
+      "status": "partial",
+      "evidence": "docs/defense/; docs/release.md; docs/traceability.md; actual member participation pending",
+      "implementation": "AI-assisted by Codex under Noor direction; planned ownership is not teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "N12",
@@ -293,8 +299,10 @@
       ],
       "acceptance": "Every required acceptance criterion has concrete evidence or explicit unresolved failure; no invented completion.",
       "commit": "docs(release): verify requirements and contributions",
-      "status": "planned",
-      "evidence": null
+      "status": "partial",
+      "evidence": "docs/defense/; docs/release.md; docs/traceability.md; actual member participation pending",
+      "implementation": "AI-assisted by Codex under Noor direction; planned ownership is not teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "I01",
@@ -492,8 +500,10 @@
       ],
       "acceptance": "Admin completes W4 using real API; ordinary student cannot access private data or execute actions.",
       "commit": "feat(ui): add offering and waitlist administration",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M3.md; artifacts/m3/verification.json; artifacts/capacity/",
+      "implementation": "AI-assisted by Codex under Noor direction; planned ownership is not teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "I09",
@@ -517,9 +527,10 @@
       ],
       "acceptance": "At least1 complete real E2E green; production behavior verified; no mocks for critical API.",
       "commit": "test(e2e): verify enrollment and promotion journey",
-      "status": "partial",
-      "evidence": "client/tests/student-flow.test.js; admin browser journeys pending",
-      "human_review": "pending"
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M3.md; artifacts/m3/verification.json; artifacts/capacity/",
+      "human_review": "pending",
+      "implementation": "AI-assisted by Codex under Noor direction; planned ownership is not teammate authorship"
     },
     {
       "id": "I10",
@@ -541,8 +552,10 @@
       ],
       "acceptance": "Another team member can reproduce without hidden machine state; record actual commands/results.",
       "commit": "docs(setup): document reproducible production run",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M3.md; artifacts/m3/verification.json; artifacts/capacity/",
+      "implementation": "AI-assisted by Codex under Noor direction; planned ownership is not teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "I11",
@@ -563,8 +576,10 @@
       ],
       "acceptance": "One genuine I engineering case plus reproducible demo segment and current contribution evidence.",
       "commit": "docs(ai): record waitlist engineering case",
-      "status": "planned",
-      "evidence": null
+      "status": "partial",
+      "evidence": "docs/defense/; docs/release.md; docs/traceability.md; actual member participation pending",
+      "implementation": "AI-assisted by Codex under Noor direction; planned ownership is not teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "I12",
@@ -587,8 +602,10 @@
       ],
       "acceptance": "Reviewable final bundle and rehearsed demonstration; no automatic submission or invented grade.",
       "commit": "docs(delivery): finalize demonstration and bundle",
-      "status": "planned",
-      "evidence": null
+      "status": "partial",
+      "evidence": "docs/defense/; docs/release.md; docs/traceability.md; actual member participation pending",
+      "implementation": "AI-assisted by Codex under Noor direction; planned ownership is not teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "J01",
@@ -791,8 +808,10 @@
       ],
       "acceptance": "Admin completes W5 through real APIs; reports match fixtures; student sees no roster data.",
       "commit": "feat(ui): add reports and directory import",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M3.md; artifacts/m3/verification.json; artifacts/capacity/",
+      "implementation": "AI-assisted by Codex under Noor direction; planned ownership is not teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "J09",
@@ -815,8 +834,10 @@
       ],
       "acceptance": "Actual baseline datasets/charts include100-user level and saturation; capacity result is measured.",
       "commit": "perf(baseline): measure load and saturation",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M3.md; artifacts/m3/verification.json; artifacts/capacity/",
+      "implementation": "AI-assisted by Codex under Noor direction; planned ownership is not teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "J10",
@@ -837,8 +858,10 @@
       ],
       "acceptance": "Real application behavior preserved; optimization independently reviewable and measurable.",
       "commit": "perf(catalog): optimize measured listing bottleneck",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M3.md; artifacts/m3/verification.json; artifacts/capacity/",
+      "implementation": "AI-assisted by Codex under Noor direction; planned ownership is not teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "J11",
@@ -859,8 +882,10 @@
       ],
       "acceptance": "SCL measured optimization supported by repeatable before/after data; report states actual limits.",
       "commit": "docs(scl): report optimization and tested capacity",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M3.md; artifacts/m3/verification.json; artifacts/capacity/",
+      "implementation": "AI-assisted by Codex under Noor direction; planned ownership is not teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "J12",
@@ -881,8 +906,10 @@
       ],
       "acceptance": "One genuine J case and reproducible evidence index for final release.",
       "commit": "docs(ai): record performance engineering case",
-      "status": "planned",
-      "evidence": null
+      "status": "partial",
+      "evidence": "docs/defense/; docs/release.md; docs/traceability.md; actual member participation pending",
+      "implementation": "AI-assisted by Codex under Noor direction; planned ownership is not teammate authorship",
+      "human_review": "pending"
     }
   ],
   "topological_waves": [

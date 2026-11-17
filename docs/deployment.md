@@ -2,6 +2,8 @@
 
 Use the locked Node/npm versions in README. `npm ci` installs native SQLite through the project-specific allowScripts policy; browser binaries are installed separately with `npx playwright install chromium`. No module, binary or live database is copied from another machine. `npm run rehearse` performs a fresh local clone, install, migrate, seed, production build and actual same-origin HTTP login/enrollment check in a temporary directory, then records outcomes in artifacts/m3/clean-rehearsal.json.
 
+The build command explicitly sets production mode before loading Vite/React, so a development NODE_ENV or .env cannot select the larger development bundle. Rehearsal intentionally inherits development mode for seeding and checks the built JavaScript excludes React's development notice. The initial environment-dependent output is retained as a diagnostic artifact.
+
 Normal setup: npm ci → db:migrate → db:seed → build → start:production. Start dev:directory separately for the local metadata simulator. The .env.example documents ports, DATABASE_PATH and DIRECTORY_URL. Built assets are served by Express; SPA navigation falls back to HTML, while unknown APIs/assets retain404. Readiness checks SQLite.
 
 Live SQLite/WAL files belong on local disk outside this OneDrive repository, defaulting to LOCALAPPDATA/Electiva/dev.sqlite. Preserve the database/WAL together when stopping/moving a service. For backups, stop the application first and copy the quiescent database; do not copy a changing database file alone or place a running one on cloud/network sync. Migrations are ordered/checksummed; restore altered old migrations instead of changing their checksums to bypass detection.

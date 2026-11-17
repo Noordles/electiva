@@ -1,7 +1,7 @@
 # Electiva — complete implementation plan
 
 **Team JIN · Theme 1 · ASE Web Technologies · 2026–2027**  
-Prepared 16 November 2026 from the three user-supplied specifications. Current state: **M1 and M2 technically implemented**, plus the N08 student interface. Remaining M3 work and genuine teammate reviews stay pending. See milestones/M2.md. See [M1 evidence](milestones/M1.md).
+Prepared 16 November 2026 from the three user-supplied specifications. Current state: **M1–M3 technical review candidate**, with31 technically verified packages and5 partial personal-review/final acceptance gates. See milestones/M3.md and traceability.md. See [M1 evidence](milestones/M1.md).
 
 Electiva is a university elective-course enrollment SPA. Students discover offerings, enroll or join a waitlist, cancel and check their status. Administrators manage courses, capacities, enrollment windows and reports. Backend/database rules preserve seat capacity and unique current enrollment under concurrency. The two assigned architectural packages are **CON (Concurrency and Consistency)** and **SCL (Scalability and Capacity)**.
 
@@ -24,7 +24,7 @@ Governing sources are in [docs/sources](sources/). All say **Draft v2.0 for revi
 
 Each member has M1=9, M2=15, M3=16 estimated effort points. Points are relative planning units, not exact hours. Rebalance future work if real effort differs. Reviews: I reviews N, J reviews I, N reviews J. Each member must explain overall workflows and their own work; no specialist is excused from understanding invariants or tests. [Team record](team.md) preserves the roster's additional A initial without inventing its expansion.
 
-Every package has steps, dependencies, file boundaries, an acceptance gate and one proposed short commit subject in [TASKS.md](TASKS.md). Machine-readable [tasks.json](tasks.json) is the same backlog. M1/M2 tasks and N08 are implemented_verified in tasks.json; I09 is partial; other M3 tasks remain planned. Planning artifacts are not completed application contributions.
+Every package has steps, dependencies, file boundaries, an acceptance gate and one proposed short commit subject in [TASKS.md](TASKS.md). Machine-readable [tasks.json](tasks.json) is the same backlog. 31 tasks are implemented_verified in tasks.json; N11/I11/J12/N12/I12 remain partial because actual personal reviews/team rehearsal and final acceptance are not invented. Planning artifacts are not completed application contributions.
 
 ## 3. Bottom-up execution phases
 

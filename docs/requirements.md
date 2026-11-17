@@ -1,8 +1,8 @@
 # Requirements, acceptance criteria and traceability
 
-Source labels refer to preserved originals: **G** = 00-general-specifications.md, **T** = tema1-course-enrollment.md, **P** = 01-architectural-challenges.md. Section numbers refer to their English headings. The table describes final required evidence; current M2 implementation/verification is in milestones/M2.md and artifacts/m2/verification.json. Team design choices remain explicit.
+Source labels refer to preserved originals: **G** = 00-general-specifications.md, **T** = tema1-course-enrollment.md, **P** = 01-architectural-challenges.md. Section numbers refer to their English headings. The table describes final required evidence; current technical implementation/verification is in milestones/M3.md, artifacts/m3 and capacity-results.md. Team design choices remain explicit.
 
-M2 supplies persisted/authenticated student workflows, protected administration APIs, database/concurrency checks, synthetic seeding, all-backend coverage, a separate HTTP simulator and actual student-browser evidence. Remaining gaps affect R07/R10/R14 full administration UI, R12 substitute acceptance, R20/R22/R23 measured SCL, R26/R27/R28 broader recovery/security/package audit, R29 genuine individual cases and R30–R33 final reviews/reproducibility/delivery. No full-project acceptance or grade is claimed.
+M3 supplies integrated student/admin workflows, database/course-level invariants, independent-process CON/crash recovery, measured SCL, complete automated suites, all-backend coverage and clean setup evidence. Final traceability is in traceability.md. Remaining acceptance gates concern R12 substitute approval, R29 genuine personal cases and R30/R33/R34 actual human reviews/team rehearsal/demonstration. Limits and untested deployment/security/assistive-technology corners remain explicit under R26; no final college acceptance or grade is claimed.
 
 | ID | Requirement and source | Planned work | Required completion evidence |
 |---|---|---|---|

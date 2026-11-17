@@ -1,0 +1,37 @@
+{
+  "startedAt": "2026-11-17T13:20:01.787Z",
+  "commit": "91366fed7197f3df5eb09db01f1e2963ef97e514",
+  "scope": "Fresh local clone and npm ci/migrate/seed/build/production HTTP behavior; npm registry and browser cache are external dependencies, no node_modules copied",
+  "commands": [
+    {
+      "command": "npm ci",
+      "exitCode": 0,
+      "output": "npm warn deprecated dottie@2.0.7: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.\nnpm warn deprecated prebuild-install@7.1.3: No longer maintained. Please contact the author of the relevant native addon; alternatives are available.\n\nadded 216 packages, and audited 219 packages in 22s\n\n68 packages are looking for funding\n  run `npm fund` for details\n\nfound 0 vulnerabilities\n"
+    },
+    {
+      "command": "npm run db:migrate",
+      "exitCode": 0,
+      "output": "npm notice run electiva@0.1.0 db:migrate\nnpm notice run node --env-file-if-exists=.env tools/database.mjs\n.env not found. Continuing without it.\r\nDatabase migrations are up to date\n"
+    },
+    {
+      "command": "npm run db:seed",
+      "exitCode": 0,
+      "output": "npm notice run electiva@0.1.0 db:seed\nnpm notice run node --env-file-if-exists=.env tools/database.mjs --seed\n.env not found. Continuing without it.\r\nSynthetic data ready: 30 students, 6 courses. Local demo credentials: C:\\Users\\IKeep\\AppData\\Local\\Temp\\electiva-rehearsal-6aG5NU\\data\\demo-accounts.json\n"
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "output": "npm notice run electiva@0.1.0 build\nnpm notice run vite build client --config client/vite.config.js\nvite v8.3.8 building client environment for production...\ntransforming...\n✓ 31 modules transformed.\nrendering chunks...\ncomputing gzip size...\nclient/dist/index.html                   0.72 kB │ gzip:   0.40 kB\nclient/dist/assets/index-x3bmt4sq.css   27.03 kB │ gzip:   6.74 kB\nclient/dist/assets/index-BC7A_6SB.js   535.19 kB │ gzip: 156.76 kB\n\n[plugin builtin:vite-reporter] \n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n✓ built in 1.12s\n"
+    }
+  ],
+  "production": {
+    "ready": 200,
+    "login": 200,
+    "authenticatedListing": 200,
+    "csrfEnrollment": 201,
+    "spaRoute": 200,
+    "apiMiss": 404,
+    "assetMiss": 404
+  },
+  "completedAt": "2026-11-17T13:20:46.828Z"
+}

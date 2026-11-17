@@ -1,0 +1,63 @@
+npm notice run electiva@0.1.0 test
+npm notice run node --test server/tests/*.test.js tools/tests/*.test.js
+✔ health and metadata describe M1 honestly without invented capabilities (327.3446ms)
+✔ readiness checks dependency state and never reveals connection failures (143.3263ms)
+✔ JSON/media/size validation returns stable safe errors with request identity (245.0812ms)
+✔ unknown APIs remain JSON404 and unexpected/domain errors are classified (62.7108ms)
+✔ one completion log excludes body, query, authorization and cookies (30.7089ms)
+✔ production serves SPA deep links, while assets and API misses stay404 (145.9829ms)
+✔ missing production build fails clearly, and server closes idempotently (34.7669ms)
+✔ salted passwords, private session cookies, CSRF, expiry and logout (3468.9382ms)
+✔ login limits are bounded and expire; anonymous and duplicate cookies are rejected (984.3992ms)
+✔ authenticated HTTP workflows enforce roles, ownership and validation (4378.5176ms)
+✔ catalog filters, stable SQL pagination, dates and advisory seat counts (1394.659ms)
+✔ page-first counts preserve baseline rows, counts, filtering and stable ordering (421.6131ms)
+✔ CON: 20 authenticated HTTP sessions compete for the last seat through two app instances (5534.1838ms)
+✔ CON: duplicate HTTP clicks create one attempt and return the same record (1292.4551ms)
+✔ simultaneous cancellations and capacity changes preserve occupancy and FIFO (621.4149ms)
+✔ a request waiting for the writer lock checks the window after acquiring it (276.7108ms)
+✔ config defaults to loopback and local database outside synced source (6.9843ms)
+✔ config validates exact numeric ports, mode and bind host (15.7297ms)
+✔ runtime storage cannot be relative, in-memory or under OneDrive (1.3575ms)
+✔ migrations survive reopen and every connection enforces foreign keys (1408.1059ms)
+✔ raw SQL cannot oversell, duplicate membership, resurrect history or change identity (313.8587ms)
+✔ a failed transaction rolls every change back (275.8076ms)
+✔ raw course-level guards reject duplicate requests across offerings and preserve historical identity (359.5254ms)
+✔ upgrade refuses existing duplicate course requests without deleting student data (435.2439ms)
+✖ real HTTP directory preview/import is idempotent and failure leaves no partial course (1050.0828ms)
+✔ enroll, replay, FIFO promotion, cancellation replay and re-enrollment history (1731.9532ms)
+✔ one student cannot hold current requests in two offerings of the same course (839.9446ms)
+✔ cancel and promotion roll back together on a real failure (452.1648ms)
+✔ server time boundaries block writes and capacity edits promote the oldest waiters (1087.5628ms)
+✔ admin validation, draft/publish/archive transitions and unique course codes (338.5582ms)
+✔ two independent API processes preserve last-seat/FIFO state, including crash rollback and restart (16076.7163ms)
+✔ all management reads and writes reject students, hostile origins and identity fields (2387.8949ms)
+✔ password whitespace is significant and invalid UTC dates are rejected (1077.7351ms)
+✔ busy retry is bounded and migration checksum mismatch fails safely (458.7981ms)
+✔ large synthetic seed contains 10,000 students and refuses to overwrite data (2689.4836ms)
+✔ load CLI rejects unsafe bounds and unsupported flags before generating traffic (11410.1236ms)
+✔ file SQLite: competing writers, rollback, per-connection settings and DB guards (1541.389ms)
+✔ busy retry retries whole operation and remains bounded (6.3444ms)
+✔ unexpected/constraint errors retain identity and are not retried (0.7239ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 38
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 24567.7153
+
+✖ failing tests:
+
+test at server\tests\directory.test.js:8:1
+✖ real HTTP directory preview/import is idempotent and failure leaves no partial course (1050.0828ms)
+  Error: The course directory did not respond in time
+      at Object.preview (file:///C:/Users/IKeep/OneDrive/Documents/ASE/Web%20Technologies/Electiva/server/src/directory.js:32:79)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///C:/Users/IKeep/OneDrive/Documents/ASE/Web%20Technologies/Electiva/server/tests/directory.test.js:12:17)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    status: 504,
+    code: 'directory_timeout'
+  }

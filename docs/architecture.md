@@ -1,6 +1,6 @@
 # Proposed architecture and bottom-up design
 
-M2 status: business schema/auth/enrollment/admin APIs and the student SPA are implemented. See milestones/M2.md. The separate simulator lives at tools/directory-simulator.js, browser tests at client/tests, and runtime storage defaults to LOCALAPPDATA/Electiva/dev.sqlite. Administration UI and measured SCL work remain M3. Original planning alternatives below remain context where explicitly proposed.
+M3 technical candidate: integrated student/admin SPA, business APIs, course-level guards, separate-process CON/recovery and measured SCL are implemented. See milestones/M3.md. The simulator lives at tools/directory-simulator.js, browser tests at client/tests, and runtime storage defaults to LOCALAPPDATA/Electiva/dev.sqlite. Genuine member reviews and teacher acceptance remain separate gates. Original planning alternatives below remain historical context where explicitly proposed.
 
 ## Shape and technology
 

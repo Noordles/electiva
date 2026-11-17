@@ -28,6 +28,16 @@ Observed corrections: normal prepared writes initially saw stale schema after mi
 
 M2 evidence includes20 authenticated competing students, duplicate clicks, cancellation/capacity/window races, real provider HTTP fault cases,10,000 synthetic student seeding and production student browser flows. The short load smoke is only harness verification. No claimed separate-process recovery, measured SCL improvement, approved substitute, human peer review or individual student mastery is inferred from these results.
 
+## M3 implementation and source audit — 17 November 2026
+
+Codex implemented administration/report/import screens, separate-process crash recovery, expanded security tests and actual performance experiments under Noor's direction. The admin browser test caught an authenticated redirect overriding the admin destination; the role-aware redirect was corrected. SQL profiling supported page-first enrollment-history counting, and matching fixture/result hashes plus repeated HTTP measurements verified it. The student's pause is preserved in the checkpoint and interrupted overload snapshot; resumed measurements are explicitly identified.
+
+A final audit against the literal source invariant reproduced two ACTIVE enrollments for one course through distinct offerings. The original guard was per offering. Migration2/service checks now protect current requests across the course, reject unsafe legacy duplicates without deleting data and preserve original migration checksums. Regression/raw-SQL/upgrade tests verify this correction. This is an actual AI implementation/audit finding; no teammate is claimed to have independently discovered or reviewed it.
+
+The prepared member worksheets identify concrete code, findings, tests and explanation prompts. They remain pending genuine personal inspection/reflection. Source study, automated checks and a prepared script are not evidence that the student mastered the code or that all three supervised this session directly.
+
+Full verification exposed two further concrete issues: the directory success test used an artificial100ms deadline under concurrent startup, and the keyboard test lost focus when Escape unmounted a controlled dialog. Success HTTP checks now use the actual2s adapter contract, while the deliberate timeout keeps a short deadline. Dialog teardown explicitly restores its opener or the main region. The clean rehearsal also revealed NODE_ENV=development selecting a development React bundle; the build now sets production mode before loading Vite and rehearsal asserts the development notice is absent. Initial failure/output artifacts remain in artifacts/m3. These corrections are attributed to the AI-assisted implementation/test session, not invented teammate reviews.
+
 
 ## Phase 1 implementation — 16 November 2026
 

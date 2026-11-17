@@ -29,6 +29,28 @@ Noor directed continuation, requested small tested commits and supplied the desi
 
 Actual verification outputs and exact source hashes are in artifacts/m2/verification.json. Later narrow repair/evidence commits remain traceable in git log. Independent human peer sign-off and three individual AI supervision cases are pending; no AI-produced test result is represented as student mastery.
 
+## M3 — technical implementation and review candidate
+
+Noor authorized continuation, paused for a live app review and explicitly resumed. The pause/checkpoint/interrupted results are preserved. Design direction remains credited to Noor. Codex assisted implementation, inspection, measurement and verification under the verified Git author; planned ownership still does not establish direct teammate participation.
+
+| Commit | Actual AI-assisted technical work | Planned responsibility |
+|---|---|---|
+|2271fc8|Administration/report/import UI and real browser proof; admin redirect correction|Ilinca + Jwan, I08/J08/I09|
+|9264291|Separate-process last-seat/crash/rollback/restart proof|Noor, N09|
+|d788952|Expanded role/origin/date/password/retry/checksum boundary tests|Noor, N10|
+|664cf14|Realistic50,000-attempt capacity fixture and independent backend metrics|Jwan, J09|
+|2363b72|Frozen protocol before baseline measurement|Jwan, J09|
+|5aa19c7|Measured page-first catalog-count optimization and SQL-equivalence test|Jwan, J10|
+|e872db9|Student-requested local pause/checkpoint and incomplete overload record|Shared checkpoint|
+|56649e5|Finite CLI bounds and guarded continuation preserving six earlier runs|Jwan, J09/J11|
+|1476232|Source-audit fix for duplicate requests across course offerings; safe migration|Noor, N10|
+|91366fe|Real directory success deadline; deliberate timeout preserved|Shared verification repair|
+|636a306|Keyboard focus restored after dialog teardown|Ilinca, I09|
+|a4ac31f|Production build independent of development shell; fresh-clone assertion|Ilinca, I10|
+|2cca60e|Matched comparison data/plots, overload limits and final guard validation|Jwan, J11|
+
+Final outputs:39 backend/tool tests,3 production browser journeys, enforced all-backend coverage, real CON/crash/recovery, measured before/after/overload data and fresh-clone production rehearsal. Evidence commits record the generated reports; git log supplies their exact SHAs. team-review.md/defense worksheets assign each member concrete inspections and explanations. Their actual dated reviews/personal cases and group rehearsal remain pending. No professor contact, college upload or invented authorship is included.
+
 
 ## M1 implementation session
 

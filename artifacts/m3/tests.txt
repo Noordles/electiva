@@ -1,0 +1,49 @@
+npm notice run electiva@0.1.0 test
+npm notice run node --test server/tests/*.test.js tools/tests/*.test.js
+✔ health and metadata describe M1 honestly without invented capabilities (352.8921ms)
+✔ readiness checks dependency state and never reveals connection failures (158.9341ms)
+✔ JSON/media/size validation returns stable safe errors with request identity (213.9012ms)
+✔ unknown APIs remain JSON404 and unexpected/domain errors are classified (57.1959ms)
+✔ one completion log excludes body, query, authorization and cookies (29.6731ms)
+✔ production serves SPA deep links, while assets and API misses stay404 (170.7407ms)
+✔ missing production build fails clearly, and server closes idempotently (27.8092ms)
+✔ salted passwords, private session cookies, CSRF, expiry and logout (3355.1221ms)
+✔ login limits are bounded and expire; anonymous and duplicate cookies are rejected (903.8195ms)
+✔ authenticated HTTP workflows enforce roles, ownership and validation (4392.4135ms)
+✔ catalog filters, stable SQL pagination, dates and advisory seat counts (1533.0859ms)
+✔ page-first counts preserve baseline rows, counts, filtering and stable ordering (650.7828ms)
+✔ CON: 20 authenticated HTTP sessions compete for the last seat through two app instances (5493.5748ms)
+✔ CON: duplicate HTTP clicks create one attempt and return the same record (1294.2911ms)
+✔ simultaneous cancellations and capacity changes preserve occupancy and FIFO (823.7281ms)
+✔ a request waiting for the writer lock checks the window after acquiring it (295.5218ms)
+✔ config defaults to loopback and local database outside synced source (6.5139ms)
+✔ config validates exact numeric ports, mode and bind host (5.3009ms)
+✔ runtime storage cannot be relative, in-memory or under OneDrive (3.3755ms)
+✔ migrations survive reopen and every connection enforces foreign keys (1468.6068ms)
+✔ raw SQL cannot oversell, duplicate membership, resurrect history or change identity (520.7995ms)
+✔ a failed transaction rolls every change back (476.1745ms)
+✔ raw course-level guards reject duplicate requests across offerings and preserve historical identity (470.345ms)
+✔ upgrade refuses existing duplicate course requests without deleting student data (846.4887ms)
+✔ real HTTP directory preview/import is idempotent and failure leaves no partial course (4798.5618ms)
+✔ enroll, replay, FIFO promotion, cancellation replay and re-enrollment history (2416.0499ms)
+✔ one student cannot hold current requests in two offerings of the same course (589.4796ms)
+✔ cancel and promotion roll back together on a real failure (451.4123ms)
+✔ server time boundaries block writes and capacity edits promote the oldest waiters (673.383ms)
+✔ admin validation, draft/publish/archive transitions and unique course codes (537.3718ms)
+✔ two independent API processes preserve last-seat/FIFO state, including crash rollback and restart (14744.4225ms)
+✔ all management reads and writes reject students, hostile origins and identity fields (2251.5636ms)
+✔ password whitespace is significant and invalid UTC dates are rejected (1185.5044ms)
+✔ busy retry is bounded and migration checksum mismatch fails safely (424.9533ms)
+✔ large synthetic seed contains 10,000 students and refuses to overwrite data (2940.0663ms)
+✔ load CLI rejects unsafe bounds and unsupported flags before generating traffic (11200.9575ms)
+✔ file SQLite: competing writers, rollback, per-connection settings and DB guards (1393.8792ms)
+✔ busy retry retries whole operation and remains bounded (4.4254ms)
+✔ unexpected/constraint errors retain identity and are not retried (1.9879ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 24277.6483

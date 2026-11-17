@@ -1,0 +1,72 @@
+npm notice run electiva@0.1.0 test:coverage
+npm notice run c8 --all --include="server/src/**/*.js" --reporter=text --reporter=json-summary --reporter=lcov --reporter=html --check-coverage --statements=70 --branches=60 node --test server/tests/*.test.js tools/tests/*.test.js
+✔ health and metadata describe M1 honestly without invented capabilities (388.6415ms)
+✔ readiness checks dependency state and never reveals connection failures (92.6007ms)
+✔ JSON/media/size validation returns stable safe errors with request identity (203.9769ms)
+✔ unknown APIs remain JSON404 and unexpected/domain errors are classified (63.5181ms)
+✔ one completion log excludes body, query, authorization and cookies (44.4219ms)
+✔ production serves SPA deep links, while assets and API misses stay404 (105.7151ms)
+✔ missing production build fails clearly, and server closes idempotently (24.8765ms)
+✔ salted passwords, private session cookies, CSRF, expiry and logout (4136.7047ms)
+✔ login limits are bounded and expire; anonymous and duplicate cookies are rejected (1194.4998ms)
+✔ authenticated HTTP workflows enforce roles, ownership and validation (4873.3928ms)
+✔ catalog filters, stable SQL pagination, dates and advisory seat counts (1251.1676ms)
+✔ page-first counts preserve baseline rows, counts, filtering and stable ordering (587.3725ms)
+✔ CON: 20 authenticated HTTP sessions compete for the last seat through two app instances (6626.3474ms)
+✔ CON: duplicate HTTP clicks create one attempt and return the same record (1233.9663ms)
+✔ simultaneous cancellations and capacity changes preserve occupancy and FIFO (839.3483ms)
+✔ a request waiting for the writer lock checks the window after acquiring it (293.1403ms)
+✔ config defaults to loopback and local database outside synced source (7.9208ms)
+✔ config validates exact numeric ports, mode and bind host (4.8149ms)
+✔ runtime storage cannot be relative, in-memory or under OneDrive (1.6968ms)
+✔ migrations survive reopen and every connection enforces foreign keys (1247.9062ms)
+✔ raw SQL cannot oversell, duplicate membership, resurrect history or change identity (375.3192ms)
+✔ a failed transaction rolls every change back (302.626ms)
+✔ raw course-level guards reject duplicate requests across offerings and preserve historical identity (330.7043ms)
+✔ upgrade refuses existing duplicate course requests without deleting student data (581.8384ms)
+✔ real HTTP directory preview/import is idempotent and failure leaves no partial course (4978.3346ms)
+✔ enroll, replay, FIFO promotion, cancellation replay and re-enrollment history (2403.8153ms)
+✔ one student cannot hold current requests in two offerings of the same course (730.4749ms)
+✔ cancel and promotion roll back together on a real failure (674.405ms)
+✔ server time boundaries block writes and capacity edits promote the oldest waiters (1428.2976ms)
+✔ admin validation, draft/publish/archive transitions and unique course codes (498.8264ms)
+✔ two independent API processes preserve last-seat/FIFO state, including crash rollback and restart (13583.7628ms)
+✔ all management reads and writes reject students, hostile origins and identity fields (2482.428ms)
+✔ password whitespace is significant and invalid UTC dates are rejected (1197.0541ms)
+✔ busy retry is bounded and migration checksum mismatch fails safely (470.8014ms)
+✔ large synthetic seed contains 10,000 students and refuses to overwrite data (2973.8981ms)
+✔ load CLI rejects unsafe bounds and unsupported flags before generating traffic (10491.0074ms)
+✔ file SQLite: competing writers, rollback, per-connection settings and DB guards (1536.146ms)
+✔ busy retry retries whole operation and remains bounded (7.6665ms)
+✔ unexpected/constraint errors retain identity and are not retried (0.45ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 22091.8847
+-----------------|---------|----------|---------|---------|-------------------
+File             | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-----------------|---------|----------|---------|---------|-------------------
+All files        |   96.33 |     95.6 |    97.4 |   96.33 |                   
+ src             |   95.53 |    95.18 |   96.87 |   95.53 |                   
+  admin.js       |     100 |    96.77 |     100 |     100 | 64,68             
+  app.js         |     100 |    93.93 |      90 |     100 | 28-35             
+  application.js |     100 |      100 |     100 |     100 |                   
+  auth.js        |     100 |    97.22 |     100 |     100 | 29,58             
+  catalog.js     |     100 |    96.66 |     100 |     100 | 22                
+  config.js      |   94.11 |    92.85 |     100 |   94.11 | 25-26             
+  directory.js   |     100 |    97.56 |     100 |     100 | 28                
+  enrollment.js  |     100 |      100 |     100 |     100 |                   
+  errors.js      |    93.1 |    78.57 |     100 |    93.1 | 22,24             
+  routes.js      |   98.87 |    91.93 |     100 |   98.87 | 43                
+  server.js      |     100 |       90 |     100 |     100 | 15                
+  start.js       |       0 |        0 |       0 |       0 | 1-24              
+  validation.js  |     100 |     97.5 |     100 |     100 | 10                
+ src/db          |     100 |    98.43 |     100 |     100 |                   
+  database.js    |     100 |    97.67 |     100 |     100 | 54                
+  migrations.js  |     100 |      100 |     100 |     100 |                   
+  seed.js        |     100 |      100 |     100 |     100 |                   
+-----------------|---------|----------|---------|---------|-------------------
