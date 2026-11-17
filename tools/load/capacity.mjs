@@ -12,7 +12,9 @@ import { capacityFixture } from './fixture.mjs';
 
 export const percentile = (values, fraction) => values.length ? [...values].sort((a, b) => a - b)[Math.max(0, Math.ceil(values.length * fraction) - 1)] : null;
 export async function capacityScenario({ users, fixtureClock, warmupSeconds = 3, seconds = 12, recoverySeconds = 3, seed = 20261117, think = true }) {
-  if (!Number.isInteger(users) || users < 1 || users > 400 || seconds < 1 || seconds > 120) throw new Error('Bounded capacity scenario required');
+  if (!Number.isInteger(users) || users < 1 || users > 400 || !Number.isFinite(seconds) || seconds < 1 || seconds > 120 ||
+      !Number.isSafeInteger(fixtureClock) || !Number.isFinite(new Date(fixtureClock).getTime()) ||
+      ![warmupSeconds, recoverySeconds].every(value => Number.isFinite(value) && value >= 0 && value <= 30)) throw new Error('Bounded capacity scenario required');
   const directory = await mkdtemp(path.join(tmpdir(), 'electiva-capacity-')); let db, service;
   try {
     db = await createDatabase(path.join(directory, 'capacity.sqlite'));
