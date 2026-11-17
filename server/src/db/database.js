@@ -32,10 +32,14 @@ export async function createDatabase(storage) {
   models.Offering.belongsTo(models.Course, { foreignKey: 'courseId' });
   models.User.hasMany(models.Enrollment, { foreignKey: 'userId' });
   models.Offering.hasMany(models.Enrollment, { foreignKey: 'offeringId' });
+  const bindings = (sql, values) => {
+    const names = new Set([...sql.matchAll(/\$([a-zA-Z]\w*)/g)].map(match => match[1]));
+    return Object.fromEntries(Object.entries(values).filter(([key]) => names.has(key)));
+  };
   const db = {
     sequelize, models,
-    all: (sql, bind = {}, transaction) => sequelize.query(sql, { bind, transaction, type: QueryTypes.SELECT }),
-    run: (sql, bind = {}, transaction) => sequelize.query(sql, { bind, transaction }),
+    all: (sql, bind = {}, transaction) => sequelize.query(sql, { bind: bindings(sql, bind), transaction, type: QueryTypes.SELECT }),
+    run: (sql, bind = {}, transaction) => sequelize.query(sql, { bind: bindings(sql, bind), transaction }),
     async write(operation) {
       for (let attempt = 0; attempt < 5; attempt += 1) {
         try { return await sequelize.transaction({ type: Transaction.TYPES.IMMEDIATE }, operation); }
