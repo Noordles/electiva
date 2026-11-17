@@ -29,9 +29,15 @@ export function catalogQuery(query, now) {
   return { page, bind, where: clauses.join(' AND '), order: `${sorts[sort]} ${order.toUpperCase()}, o.id ASC` };
 }
 
-export async function listCatalog(db, query, now) {
+export function catalogStatements(query, now) {
   const { page, bind, where, order } = catalogQuery(query, now);
-  const [{ total }] = await db.all(`SELECT count(*) AS total FROM offerings o JOIN courses c ON c.id=o.courseId WHERE ${where}`, bind);
-  const rows = await db.all(`${offeringSelect} WHERE ${where} ORDER BY ${order} LIMIT $pageSize OFFSET $offset`, bind);
+  return { page, bind,
+    countSql: `SELECT count(*) AS total FROM offerings o JOIN courses c ON c.id=o.courseId WHERE ${where}`,
+    rowsSql: `${offeringSelect} WHERE ${where} ORDER BY ${order} LIMIT $pageSize OFFSET $offset` };
+}
+export async function listCatalog(db, query, now) {
+  const { page, bind, countSql, rowsSql } = catalogStatements(query, now);
+  const [{ total }] = await db.all(countSql, bind);
+  const rows = await db.all(rowsSql, bind);
   return paged(rows.map(row => offeringView(row, now)), total, page);
 }
