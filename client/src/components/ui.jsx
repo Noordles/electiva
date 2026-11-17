@@ -34,7 +34,17 @@ export function Pagination({ page, total, pageSize, onChange }) {
 }
 export function Modal({ title, onClose, children }) {
   const ref = useRef(null);
-  useEffect(() => { const dialog = ref.current; dialog.showModal(); return () => dialog.close(); }, []);
+  // Capture before React's autoFocus moves focus into the dialog. Native focus
+  // restoration alone is unreliable when Escape unmounts a controlled dialog.
+  const openedFrom = useRef(document.activeElement);
+  useEffect(() => {
+    const dialog = ref.current; dialog.showModal();
+    return () => {
+      dialog.close();
+      const target = openedFrom.current?.isConnected ? openedFrom.current : document.getElementById('main');
+      target?.focus();
+    };
+  }, []);
   return <dialog ref={ref} className="modal" aria-labelledby="dialog-title" onClose={onClose} onCancel={event => { event.preventDefault(); onClose(); }} onClick={event => { if (event.target === ref.current) onClose(); }}><div className="modal-heading"><h2 id="dialog-title">{title}</h2><button type="button" className="icon-button" aria-label="Close dialog" onClick={onClose} autoFocus><Icon name="close"/></button></div>{children}</dialog>;
 }
 
