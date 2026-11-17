@@ -1,6 +1,6 @@
 # Capacity, saturation and optimization protocol
 
-Status: M2 implements a bounded harness and a two-second/10-user smoke; final SCL experiments remain pending. artifacts/m2/load-smoke.json records endpoint-specific p50/p95/errors and combined runner/server CPU/RSS. Do not infer capacity or optimization from it. The remaining protocol below describes future controlled work. Source: G§5, T§4–5, P/SCL.
+Status: M3 measurements and plots are complete under capacity-protocol.md; results/limitations are in capacity-results.md and artifacts/capacity. The older M2 smoke remains harness-only evidence. The planning alternatives below preserve the earlier proposal; the3s/12s/3s repeated protocol was frozen before execution and supersedes the proposed120s steady window. Source: G§5, T§4–5, P/SCL.
 
 ## Reproducible seed and traffic model
 

@@ -36,6 +36,7 @@ for axis, (metric, title) in zip(axes.flat, metrics):
         axis.errorbar(levels, centers, yerr=[[c - min(g) for c, g in zip(centers, groups)], [max(g) - c for c, g in zip(centers, groups)]], color=color, marker='o', capsize=4, label=version)
     axis.set_title(title); axis.set_xlabel('Concurrent users'); axis.set_xticks([10, 50, 100]); axis.grid(alpha=.18)
     if metric == 'listing_p95_ms': axis.axhline(800, color='#777', linestyle='--', linewidth=1, label='Draft 800ms target')
+    if metric == 'error_percent': axis.set_ylim(0, max(1, max(r[metric] for r in rows) * 1.15))
 axes[0, 0].legend(fontsize=8)
 fig.suptitle('Electiva: matched ordinary-user workload\nMedians and min–max across three independent runs; 3s warmup / 12s steady / 3s recovery', fontsize=13)
 for suffix in ['png', 'svg']: fig.savefig(root / f'comparison.{suffix}', dpi=180)
@@ -74,5 +75,13 @@ if stress:
     fig.suptitle('Separate overload model; medians of available repetitions, safety stops retained')
     for suffix in ['png', 'svg']: fig.savefig(root / f'saturation.{suffix}', dpi=180)
     summary['saturation'] = {label: {'runs': len(report['runs']), 'testedLevels': sorted({r['users'] for r in report['runs']}), 'resourceStop': report.get('stoppedForResourceSafety', False)} for label, report in stress}
+final_file = root / 'final-guard-validation.json'
+if final_file.exists():
+    final = json.loads(final_file.read_text(encoding='utf-8'))
+    assert len(final['runs']) == 3
+    assert all(r['fixture']['logicalSha256'] == summary['fixtureSha256'] for r in final['runs'])
+    assert all(not rows for r in final['runs'] for rows in r['invariants'].values())
+    values = [r['operations']['catalog']['p95Ms'] for r in final['runs']]
+    summary['finalGuardValidation'] = {'commit': final['commit'], 'runs': 3, 'users': 100, 'listingP95Ms': {'median': median(values), 'min': min(values), 'max': max(values)}, 'errors': sum(r['aggregate']['errors'] for r in final['runs']), 'allInvariantsClean': True}
 (root / 'summary.json').write_text(json.dumps(summary, indent=2) + '\n', encoding='utf-8')
 print(json.dumps(summary, indent=2))

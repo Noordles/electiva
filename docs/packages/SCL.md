@@ -1,7 +1,9 @@
 # SCL — verification contract
 
-Owner J, reviewer N. Mandatory topic package; all evidence pending.
+Owner J, reviewer N pending actual human inspection. Technical evidence is recorded in capacity-results.md and artifacts/capacity; the frozen protocol is capacity-protocol.md.
 
 Execute the protocol in capacity.md:10,000 synthetic students; L1/L2/L3 including 100 active users; saturation experiment; one justified, measured optimization; controlled before/after runs and p50/p95/throughput/error/resource charts. Listing target is source-illustrative, provisionally adopted. Validate same workload/data/hardware/runtime and preserve safety constraints in both variants.
 
 Deliver actual baseline/optimized SHAs, fixture hashes, environment manifest, raw-data references, scripts, charts, repeated-run spread, bottleneck/optimization reasoning, estimated tested sustainable capacity, recovery/invariant results and limitations. Do not substitute theoretical estimates or fabricate numerical reports. Finish ADR0002 only after the measured experiment.
+
+Observed: three matched repetitions at10/50/100 ordinary users before/after page-first history counting; median100-user listing p95 improved353.72→104.99ms, with0 errors/invariant violations across18 scenarios. Source/fixture/result hashes and plans are retained. Independent final course-guard validation at100 users passed three runs with p95≤137.30ms. No-think overload100/200/400 retains the baseline400-user timeout safety stop; optimized overload has three repetitions but still fails the800ms latency target. Recovery/SQL checks passed. Baseline overload stopped after one repetition for safety; that imbalance is disclosed. Charts include percentile latency, throughput, errors, backend CPU/RSS/event loop. These short co-located classroom measurements do not establish production capacity beyond the tested model/duration.
