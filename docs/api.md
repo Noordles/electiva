@@ -1,6 +1,6 @@
 # Planned API v1 contract
 
-API base `/api/v1`. Response examples are design contracts, not implemented endpoints. JSON success `{data,...meta}`; error `{error:{code,message,requestId,details?}}`. Exclude sensitive values from details. Paginated collections `{data:[],meta:{page,pageSize,total,totalPages}}`. Dates are UTC ISO-8601 at HTTP boundary and normalized to integer UTC milliseconds internally.
+API base `/api/v1`. The table is implemented in M2; see server/src/routes.js/auth.js and business-api.test.js. JSON success `{data,...meta}`; error `{error:{code,message,requestId,details?}}`. Paginated collections `{data:[],meta:{page,pageSize,total,totalPages}}`. Dates are UTC ISO-8601 at HTTP boundary and integer UTC milliseconds internally. Additional GET routes: /offerings/facets returns bounded department options, /me/enrollments/:id returns an owned record, /admin/offerings returns bounded management rows. Enrollment Location headers resolve to the owned-record endpoint.
 
 | Method/path | Access | Behavior/status |
 |---|---|---|

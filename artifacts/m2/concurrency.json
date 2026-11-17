@@ -1,7 +1,7 @@
 {
   "scope": "Real HTTP, two app/database instances in one Node process; not yet multi-process recovery or SCL load evidence",
-  "startedAt": "2026-11-17T07:46:06.117Z",
-  "completedAt": "2026-11-17T07:46:06.433Z",
+  "startedAt": "2026-11-17T08:13:58.402Z",
+  "completedAt": "2026-11-17T08:13:58.719Z",
   "node": "v24.22.1",
   "concurrentRequests": 20,
   "distinctAuthenticatedStudents": 20,
@@ -20,115 +20,115 @@
     },
     {
       "id": 2,
-      "userId": 15,
-      "offeringId": 3,
-      "status": "WAITLISTED"
-    },
-    {
-      "id": 3,
       "userId": 11,
       "offeringId": 3,
       "status": "WAITLISTED"
     },
     {
-      "id": 4,
-      "userId": 20,
-      "offeringId": 3,
-      "status": "WAITLISTED"
-    },
-    {
-      "id": 5,
+      "id": 3,
       "userId": 9,
       "offeringId": 3,
       "status": "WAITLISTED"
     },
     {
-      "id": 6,
-      "userId": 8,
-      "offeringId": 3,
-      "status": "WAITLISTED"
-    },
-    {
-      "id": 7,
-      "userId": 4,
-      "offeringId": 3,
-      "status": "WAITLISTED"
-    },
-    {
-      "id": 8,
-      "userId": 3,
-      "offeringId": 3,
-      "status": "WAITLISTED"
-    },
-    {
-      "id": 9,
-      "userId": 19,
-      "offeringId": 3,
-      "status": "WAITLISTED"
-    },
-    {
-      "id": 10,
-      "userId": 5,
-      "offeringId": 3,
-      "status": "WAITLISTED"
-    },
-    {
-      "id": 11,
-      "userId": 12,
-      "offeringId": 3,
-      "status": "WAITLISTED"
-    },
-    {
-      "id": 12,
-      "userId": 17,
-      "offeringId": 3,
-      "status": "WAITLISTED"
-    },
-    {
-      "id": 13,
-      "userId": 14,
-      "offeringId": 3,
-      "status": "WAITLISTED"
-    },
-    {
-      "id": 14,
+      "id": 4,
       "userId": 13,
       "offeringId": 3,
       "status": "WAITLISTED"
     },
     {
-      "id": 15,
-      "userId": 7,
+      "id": 5,
+      "userId": 15,
       "offeringId": 3,
       "status": "WAITLISTED"
     },
     {
-      "id": 16,
-      "userId": 6,
+      "id": 6,
+      "userId": 14,
       "offeringId": 3,
       "status": "WAITLISTED"
     },
     {
-      "id": 17,
-      "userId": 21,
+      "id": 7,
+      "userId": 12,
       "offeringId": 3,
       "status": "WAITLISTED"
     },
     {
-      "id": 18,
-      "userId": 16,
+      "id": 8,
+      "userId": 17,
       "offeringId": 3,
       "status": "WAITLISTED"
     },
     {
-      "id": 19,
+      "id": 9,
       "userId": 18,
       "offeringId": 3,
       "status": "WAITLISTED"
     },
     {
-      "id": 20,
+      "id": 10,
+      "userId": 19,
+      "offeringId": 3,
+      "status": "WAITLISTED"
+    },
+    {
+      "id": 11,
+      "userId": 4,
+      "offeringId": 3,
+      "status": "WAITLISTED"
+    },
+    {
+      "id": 12,
+      "userId": 5,
+      "offeringId": 3,
+      "status": "WAITLISTED"
+    },
+    {
+      "id": 13,
+      "userId": 7,
+      "offeringId": 3,
+      "status": "WAITLISTED"
+    },
+    {
+      "id": 14,
+      "userId": 8,
+      "offeringId": 3,
+      "status": "WAITLISTED"
+    },
+    {
+      "id": 15,
       "userId": 10,
+      "offeringId": 3,
+      "status": "WAITLISTED"
+    },
+    {
+      "id": 16,
+      "userId": 20,
+      "offeringId": 3,
+      "status": "WAITLISTED"
+    },
+    {
+      "id": 17,
+      "userId": 3,
+      "offeringId": 3,
+      "status": "WAITLISTED"
+    },
+    {
+      "id": 18,
+      "userId": 21,
+      "offeringId": 3,
+      "status": "WAITLISTED"
+    },
+    {
+      "id": 19,
+      "userId": 16,
+      "offeringId": 3,
+      "status": "WAITLISTED"
+    },
+    {
+      "id": 20,
+      "userId": 6,
       "offeringId": 3,
       "status": "WAITLISTED"
     }

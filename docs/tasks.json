@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "state": "M1 implemented and verified; M2/M3 planned",
+  "state": "M1 and M2 implemented and technically verified; N08 brought forward; remaining M3 tasks pending",
   "point_meaning": "relative effort, not hours or completed contribution",
   "tasks": [
     {
@@ -95,8 +95,10 @@
       ],
       "acceptance": "Real SQLite integration checks reject invalid writes even outside services; clean migration/rollback demonstrated.",
       "commit": "feat(db): enforce enrollment integrity",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M2.md; artifacts/m2/verification.json",
+      "implementation": "AI-assisted by Codex under Noor direction; planned owner is not actual teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "N05",
@@ -118,8 +120,10 @@
       ],
       "acceptance": "Real login/session tests; 401/403/CSRF cases; plaintext secrets absent from DB/responses/logs.",
       "commit": "feat(auth): add sessions and role guards",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M2.md; artifacts/m2/verification.json",
+      "implementation": "AI-assisted by Codex under Noor direction; planned owner is not actual teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "N06",
@@ -141,8 +145,10 @@
       ],
       "acceptance": "Enroll/waitlist/replay/window-rejection integration tests inspect final DB state; no trust in client seat count.",
       "commit": "feat(enrollment): allocate seats transactionally",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M2.md; artifacts/m2/verification.json",
+      "implementation": "AI-assisted by Codex under Noor direction; planned owner is not actual teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "N07",
@@ -164,8 +170,10 @@
       ],
       "acceptance": "R16–18/R21 evidence; no ignored rejected promise or silent503; tests fail on overbooking.",
       "commit": "test(con): verify last-seat and duplicate races",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M2.md; artifacts/m2/verification.json",
+      "implementation": "AI-assisted by Codex under Noor direction; planned owner is not actual teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "N08",
@@ -188,8 +196,10 @@
       ],
       "acceptance": "Student can enroll/waitlist/cancel/view own state using real API; error and loading states visible.",
       "commit": "feat(ui): add student enrollment workspace",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M2.md; artifacts/m2/verification.json",
+      "implementation": "AI-assisted by Codex under Noor direction; planned owner is not actual teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "N09",
@@ -381,8 +391,10 @@
       ],
       "acceptance": "Admin APIs work and preserve invariants; student crafted requests denied; invalid inputs do not persist.",
       "commit": "feat(admin): manage courses and offerings",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M2.md; artifacts/m2/verification.json",
+      "implementation": "AI-assisted by Codex under Noor direction; planned owner is not actual teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "I05",
@@ -405,8 +417,10 @@
       ],
       "acceptance": "Real student session and server-filtered pages; no client-only authorization or full-dataset slicing.",
       "commit": "feat(ui): connect login and course catalog",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M2.md; artifacts/m2/verification.json",
+      "implementation": "AI-assisted by Codex under Noor direction; planned owner is not actual teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "I06",
@@ -427,8 +441,10 @@
       ],
       "acceptance": "Cancellation and FIFO handoff durable and atomic; duplicate actions do not release/promote twice.",
       "commit": "feat(waitlist): promote students after cancellation",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M2.md; artifacts/m2/verification.json",
+      "implementation": "AI-assisted by Codex under Noor direction; planned owner is not actual teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "I07",
@@ -450,8 +466,10 @@
       ],
       "acceptance": "FIFO/atomicity/window/admin cases pass against real DB; no duplicate handoff.",
       "commit": "test(waitlist): cover lifecycle and rollback rules",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M2.md; artifacts/m2/verification.json",
+      "implementation": "AI-assisted by Codex under Noor direction; planned owner is not actual teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "I08",
@@ -499,8 +517,9 @@
       ],
       "acceptance": "At least1 complete real E2E green; production behavior verified; no mocks for critical API.",
       "commit": "test(e2e): verify enrollment and promotion journey",
-      "status": "planned",
-      "evidence": null
+      "status": "partial",
+      "evidence": "client/tests/student-flow.test.js; admin browser journeys pending",
+      "human_review": "pending"
     },
     {
       "id": "I10",
@@ -667,8 +686,10 @@
       ],
       "acceptance": "API contract and database-backed pages pass; baseline query plan/query count documented for SCL.",
       "commit": "feat(catalog): add filtered paginated offerings",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M2.md; artifacts/m2/verification.json",
+      "implementation": "AI-assisted by Codex under Noor direction; planned owner is not actual teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "J05",
@@ -691,8 +712,10 @@
       ],
       "acceptance": "Real local HTTP request proves meaningful integration; approval pending until recorded; no external messages.",
       "commit": "feat(integration): add course directory adapter",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M2.md; artifacts/m2/verification.json",
+      "implementation": "AI-assisted by Codex under Noor direction; planned owner is not actual teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "J06",
@@ -714,8 +737,10 @@
       ],
       "acceptance": "Deterministic valid seed and report aggregates; no real classmates as load accounts.",
       "commit": "feat(data): add synthetic seed and enrollment reports",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M2.md; artifacts/m2/verification.json",
+      "implementation": "AI-assisted by Codex under Noor direction; planned owner is not actual teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "J07",
@@ -740,8 +765,10 @@
       ],
       "acceptance": "Meaningful npm commands run and emit artifacts; missing scenarios are failures; no hidden internet service.",
       "commit": "chore(test): wire coverage and load verification",
-      "status": "planned",
-      "evidence": null
+      "status": "implemented_verified",
+      "evidence": "docs/milestones/M2.md; artifacts/m2/verification.json",
+      "implementation": "AI-assisted by Codex under Noor direction; planned owner is not actual teammate authorship",
+      "human_review": "pending"
     },
     {
       "id": "J08",

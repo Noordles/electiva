@@ -1,6 +1,6 @@
 # Frozen M1 role and ownership contract
 
-Design contract for implementation in M2. The M1 admin page is an explicitly labelled, non-privileged preview and cannot perform management operations.
+Implemented server contract in M2. The admin page is role-restricted; management screens remain M3. API tests verify roles, object ownership, CSRF and session behavior.
 
 | Operation | Anonymous | Student | Administrator |
 |---|---|---|---|

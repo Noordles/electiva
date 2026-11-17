@@ -1,10 +1,10 @@
 # Capacity, saturation and optimization protocol
 
-Status: experiment design only; no measured figures. Source: G§5, T§4–5, P/SCL. Topic requires 10,000 synthetic students, 100 active users, a 20-request last-seat race, and illustrative listing p95<800ms. SCL adds saturation plus measured optimization.
+Status: M2 implements a bounded harness and a two-second/10-user smoke; final SCL experiments remain pending. artifacts/m2/load-smoke.json records endpoint-specific p50/p95/errors and combined runner/server CPU/RSS. Do not infer capacity or optimization from it. The remaining protocol below describes future controlled work. Source: G§5, T§4–5, P/SCL.
 
 ## Reproducible seed and traffic model
 
-Proposed deterministic `large` profile: exactly 10,000 student accounts plus separate clearly labelled admin accounts, 500 course definitions, 2,000 offerings across historical/current terms (200 current), and 50,000 enrollment-attempt records across valid ACTIVE/WAITLISTED/CANCELLED states. These course/enrollment counts are team choices; the teacher specifies 10,000 students, not 100,000 main rows from the unassigned DBP package. Seed generator computes valid capacity/window distributions, uses fixed seed/reference clock, and writes counts/checksums. No plaintext password file of real users. Demo profile is small with an explicit last-seat fixture.
+Implemented M2 large profile:10,000 synthetic students, one admin,100 courses and100 published offerings, initially no enrollment history. Demo:30 students/six offerings, including one-seat courses. Dates are relative to an explicit seed clock; passwords are randomly generated synthetic credentials. Larger historical fixtures remain a future profiling choice, not a teacher requirement. M2 load uses fixed per-user pseudorandom seeds, a70/15/10/5 catalog/history/enroll/cancel mix, one listing warmup per user and no think time. Its client and server share a process; final SCL topology and steady/recovery windows need separate verification.
 
 Seed credentials are synthetic and documented locally; accounts for load tests have precomputed password hashes during setup. Authenticate 100 distinct users before timing business requests. Report login performance separately; do not make a password-hashing benchmark accidentally stand in for listing performance. Persist/reuse sessions only for that controlled run, and exclude tokens from reports.
 

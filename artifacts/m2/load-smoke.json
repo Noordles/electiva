@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "completedAt": "2026-11-17T08:14:04.774Z",
+  "commit": "a5015d7924062dbc5beb4a45d37fb2c6cec4d09e",
+  "scope": "M2 harness check; in-process client and server, not an isolated capacity claim or controlled before/after comparison",
+  "environment": {
+    "node": "v24.22.1",
+    "sequelize": "6.37.8",
+    "sqlite": "3.52.0",
+    "platform": "win32",
+    "release": "10.0.26200",
+    "cpu": "11th Gen Intel(R) Core(TM) i7-11370H @ 3.30GHz",
+    "logicalCpus": 8,
+    "journal": "WAL",
+    "localFile": true
+  },
+  "scenario": {
+    "users": 10,
+    "requestedSeconds": 2,
+    "elapsedSeconds": 2.0525512999999997,
+    "syntheticStudents": 10000,
+    "offerings": 100,
+    "seed": 20261117,
+    "mix": "70% catalog, 15% own history, 10% enroll, 5% cancel; cancellation falls back to enroll if no tracked attempt",
+    "warmup": "one listing per session; excluded",
+    "model": "closed loop, one outstanding request per user; latency includes client scheduling; completions drained"
+  },
+  "aggregate": {
+    "requests": 674,
+    "p50Ms": 23.78800000000001,
+    "p95Ms": 67.11840000000029,
+    "errors": 0,
+    "requestsPerSecond": 328.3718170649377
+  },
+  "operations": {
+    "catalog": {
+      "requests": 482,
+      "p50Ms": 22.285699999999906,
+      "p95Ms": 33.23540000000003,
+      "errors": 0
+    },
+    "history": {
+      "requests": 83,
+      "p50Ms": 21.589699999999993,
+      "p95Ms": 30.889599999999973,
+      "errors": 0
+    },
+    "enroll": {
+      "requests": 87,
+      "p50Ms": 47.51879999999983,
+      "p95Ms": 205.08199999999988,
+      "errors": 0
+    },
+    "cancel": {
+      "requests": 22,
+      "p50Ms": 45.05649999999969,
+      "p95Ms": 121.95409999999993,
+      "errors": 0
+    }
+  },
+  "outcomes": {
+    "catalog:200": 482,
+    "enroll:201": 84,
+    "history:200": 83,
+    "cancel:200": 22,
+    "enroll:200": 3
+  },
+  "resources": {
+    "scope": "combined runner and server process, SQLite native threads included",
+    "userCpuMs": 2422,
+    "systemCpuMs": 703,
+    "peakRssBytes": 151785472
+  },
+  "invariants": {
+    "overCapacity": [],
+    "duplicateCurrent": [],
+    "foreignKeys": []
+  }
+}

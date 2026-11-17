@@ -1,0 +1,288 @@
+{
+  "startedAt": "2026-11-17T08:13:30.143Z",
+  "commitBeforeRun": "a5015d7924062dbc5beb4a45d37fb2c6cec4d09e",
+  "sourceTreeSha256": "fc4ce0f034f2bdcf1eb7ac68c622471f95ee7162a5d9ffe3ae300af59d618e5e",
+  "sources": [
+    {
+      "file": ".github/workflows/verify.yml",
+      "sha256": "e3a175262c95d9194e7f8b2e311ecd6f20a7e6324cfd6157fe0503dadae2c248"
+    },
+    {
+      "file": "client/index.html",
+      "sha256": "740049f89f2ee3a9dae9285399795675743626b39b600c20114fd80db648982b"
+    },
+    {
+      "file": "client/vite.config.js",
+      "sha256": "3008cec8398180144cd94f0b7b4451b2923d9dda8228cc5327e0b686b392effb"
+    },
+    {
+      "file": "client/src/app/App.jsx",
+      "sha256": "05419dcd2a82c3545d000ef417cb89226de4fe439cc4e99a79e61a5fffd7e2cc"
+    },
+    {
+      "file": "client/src/app/Session.jsx",
+      "sha256": "3cc30d6b606718dfc2008b8a07f0b31aa05446aff7b77c86b4b43982628d2c19"
+    },
+    {
+      "file": "client/src/app/api.js",
+      "sha256": "29fe03225468e809342a217f18cf49bd208e2359f11999971d3134be7420eb9a"
+    },
+    {
+      "file": "client/src/app/useCollection.js",
+      "sha256": "f54074be3f15b840b1fc5fdd143cee55d50e3893ea835258cb5f2d7988280bd8"
+    },
+    {
+      "file": "client/src/components/ui.jsx",
+      "sha256": "d4b0c0e41f37bc5e5b08fd95af1b92715f1b61001d3ee228dce40512ebb6ef85"
+    },
+    {
+      "file": "client/src/features/Enrollments.jsx",
+      "sha256": "e6b124888e3261ad5a4c2c1b9fef11aced77c91642e8bd0f226d1dc5d2ba599c"
+    },
+    {
+      "file": "client/src/features/Login.jsx",
+      "sha256": "2264af93dd5e66f40cb386fd26927078f8703b53553c94f1c4c857d6a8c4b425"
+    },
+    {
+      "file": "client/src/features/catalog/Catalog.jsx",
+      "sha256": "894a182dfbd39cb971156d91c1749c69b21dacb05539b81d56d59755e3190fb6"
+    },
+    {
+      "file": "client/src/features/catalog/preview-courses.js",
+      "sha256": "12aa8567df34dd77e1f4d1d818bbaf0eb29414dac7a1538f86078bd34c0a72ae"
+    },
+    {
+      "file": "client/src/main.jsx",
+      "sha256": "07c13eaf60b402a59bf9463f8fe060bedf7da834498f28495ba416c96d31792d"
+    },
+    {
+      "file": "client/src/styles/app.css",
+      "sha256": "cec0fb8fa7bd76240988da2389b5cb7b5120aa5cc1ab6ef73a39459c2d54d02b"
+    },
+    {
+      "file": "client/tests/student-flow.test.js",
+      "sha256": "a9414b1b8c806144a702b11bcfa77ef2d3260b58b7f9bef674633d3ac45b2b85"
+    },
+    {
+      "file": "package-lock.json",
+      "sha256": "6f319b94cca851eb5c25909aa9a9d30d2e9af7845a9b347e0ada4865ab5faab4"
+    },
+    {
+      "file": "package.json",
+      "sha256": "dbb197036029ceb7add33de20b3972963378609b472ad87650937b45c3559220"
+    },
+    {
+      "file": "server/src/admin.js",
+      "sha256": "b8dac485dbabe86356eea9967503d22a005704d787c72feb9c85da51135debff"
+    },
+    {
+      "file": "server/src/app.js",
+      "sha256": "1ab1a20334917cbb9e9a46910c430e50b89ccd3eb817df8903887c34322c0648"
+    },
+    {
+      "file": "server/src/application.js",
+      "sha256": "9694f720eaa41087d3f1ede11a750333eb46f3181891e1d3b8a7582ceb4bbfd0"
+    },
+    {
+      "file": "server/src/auth.js",
+      "sha256": "51cc2be771dbf62293b06cf43c39550099f16127a81ddf8132298325e8fbbd09"
+    },
+    {
+      "file": "server/src/catalog.js",
+      "sha256": "77bc3438969eba98ecf4ca0691e6f4e921d50d66299d55ba6fc8fc81277a9003"
+    },
+    {
+      "file": "server/src/config.js",
+      "sha256": "e34c0e6f79d8065ccc916d9bdca3e464ede009d59d73f0d98524323a9445a128"
+    },
+    {
+      "file": "server/src/db/database.js",
+      "sha256": "1eb409d93cb582ab19c923cfec0e1fb06dc7cf20f187118d574885cde8066470"
+    },
+    {
+      "file": "server/src/db/migrations.js",
+      "sha256": "8cd835f5b2aa7d78511b4657c30ff686f28e44a80939bcf597e019812caadddf"
+    },
+    {
+      "file": "server/src/db/seed.js",
+      "sha256": "136fd748d0c27c6c392ea9c0219e13c6bc8f97608b79eddb1ad6d94a90d1d864"
+    },
+    {
+      "file": "server/src/directory.js",
+      "sha256": "af4bba083583864a512b50276e0ef6c1a76ece28a8e3e75c82b73d4335113672"
+    },
+    {
+      "file": "server/src/enrollment.js",
+      "sha256": "b1cb5d80ca780bcf50673fe7104ffba4520d52eb1247cbd271ec689fe9165e31"
+    },
+    {
+      "file": "server/src/errors.js",
+      "sha256": "cf7af66dd8d5046e27947272742c26a95b3b0f2f151a289a616b5ce857ad1a87"
+    },
+    {
+      "file": "server/src/routes.js",
+      "sha256": "a8ccfcbf6bb09b258c8846c7f5ed9214f4da10a082f06301302f5ccd8f8489d1"
+    },
+    {
+      "file": "server/src/server.js",
+      "sha256": "af29493af48c8dee4d16cdfde0d77e1284e78e59822b5272b5aca64bb625431f"
+    },
+    {
+      "file": "server/src/start.js",
+      "sha256": "98d4839274006bd95a80cfe635aae18c8d4853b9c15fa6117ebd161d630d8b18"
+    },
+    {
+      "file": "server/src/validation.js",
+      "sha256": "ae81ce34e12073722312aa02bf7b77392f2225dd91d8a5c5385d0b5cc54aa1d3"
+    },
+    {
+      "file": "server/tests/api-helpers.js",
+      "sha256": "bf5da794a4aa48648c41e06704bbf534b60b203f808fae915e211df85df19693"
+    },
+    {
+      "file": "server/tests/app.test.js",
+      "sha256": "00e47ad552036a74135fb075b77dfabbfd132583d1eb701ce1f99b5464a0a084"
+    },
+    {
+      "file": "server/tests/auth.test.js",
+      "sha256": "4c70cdf35da9585b5c5c774ec35fb5f9b6a87237d7ed64f8b135f21df1ab1e3c"
+    },
+    {
+      "file": "server/tests/business-api.test.js",
+      "sha256": "56c27ce056ceee8d4125f9e1fef85831b96550b7ac9a4812fdbef17f9b95a166"
+    },
+    {
+      "file": "server/tests/catalog.test.js",
+      "sha256": "1f1045b7553629d29222d639dbeed8bc274cd11add37a7af63d32ba9f4396891"
+    },
+    {
+      "file": "server/tests/concurrency.test.js",
+      "sha256": "02f019427939a3112458fdb32d454613c163813933a3f7fdeb8c46c0b28cbfa9"
+    },
+    {
+      "file": "server/tests/config.test.js",
+      "sha256": "c8ad4898338fd184a40f4edc4815e453d4201774469f05554ed786cbea4bf442"
+    },
+    {
+      "file": "server/tests/database.test.js",
+      "sha256": "c474aa6a302d5bb4fb6adaef6a54c3cff84ff4367a888f3074389f670b4af58e"
+    },
+    {
+      "file": "server/tests/directory.test.js",
+      "sha256": "91476b61efd7a15b9d4a39b189a6c5ec94b92efa109108345e8ddcb2e5b516ee"
+    },
+    {
+      "file": "server/tests/enrollment.test.js",
+      "sha256": "c4ad9e1cc7ff66717d82c9f193bf9ea031f3c64ae379d101b205a350526c13c1"
+    },
+    {
+      "file": "server/tests/helpers.js",
+      "sha256": "7c918484ca95e1503372b8234cd4a3093701bd0d71d728c398717e1c47bebc21"
+    },
+    {
+      "file": "server/tests/seed.test.js",
+      "sha256": "74b3ab7e55e18b4503bba85bd9ea6d8ea01e3ec125288467c613a02e3d648f45"
+    },
+    {
+      "file": "tools/database.mjs",
+      "sha256": "3a56f89f399e7c235a1f0dd2f10070571c164e715851a6492f29745b9a62c632"
+    },
+    {
+      "file": "tools/dev.mjs",
+      "sha256": "996f853e25353b35ed379eb6eb818dce309dec96a637a8cf8ab95f005d1099bc"
+    },
+    {
+      "file": "tools/directory-simulator.js",
+      "sha256": "bc17ffca81bb3f00b5a1597133d79157b67cf5ab3da7dbab16948a948b8bc1c8"
+    },
+    {
+      "file": "tools/load/runner.mjs",
+      "sha256": "38155e62fffc88000a60c5607ab7ee9ff2a95927ec11b2306e8421ba871169e1"
+    },
+    {
+      "file": "tools/pending.mjs",
+      "sha256": "0114e47e1cbe0b05defec8714278ef06efbb631fc2688ac87f4901a78907d51b"
+    },
+    {
+      "file": "tools/spikes/sqlite-concurrency.js",
+      "sha256": "263e440955371bbf797a428bd9d3f9c1dcc98e8501bd7137b1af2181568f8e52"
+    },
+    {
+      "file": "tools/test-concurrency.mjs",
+      "sha256": "42203a15c93d2aa3d53e66d3035a166607681399bfefe08e323ab246b21e7ed9"
+    },
+    {
+      "file": "tools/tests/pending.test.js",
+      "sha256": "13b8efd35b23f8f3a7983275cd5b742e0b38e84a081b874653752bc219e5c255"
+    },
+    {
+      "file": "tools/tests/sqlite-spike.test.js",
+      "sha256": "64d4d91ff128edbeefc1aaed5bdaa8127f72eb4c89ced6a1ef2045b61c4d2867"
+    },
+    {
+      "file": "tools/verify-m2.mjs",
+      "sha256": "f864e14a84bc3a6a9b07b2512425fabec69f121bca8ac9a9d34c83d231c47d96"
+    }
+  ],
+  "node": "v24.22.1",
+  "scope": "Local M2 verification. Source hashes identify exact tested files even if commitBeforeRun has uncommitted changes.",
+  "checks": [
+    {
+      "name": "tests",
+      "command": "npm test",
+      "startedAt": "2026-11-17T08:13:30.232Z",
+      "completedAt": "2026-11-17T08:13:36.312Z",
+      "exitCode": 0,
+      "output": "artifacts/m2/tests.txt"
+    },
+    {
+      "name": "coverage",
+      "command": "npm run test:coverage",
+      "startedAt": "2026-11-17T08:13:36.313Z",
+      "completedAt": "2026-11-17T08:13:44.352Z",
+      "exitCode": 0,
+      "output": "artifacts/m2/coverage.txt"
+    },
+    {
+      "name": "build",
+      "command": "npm run build",
+      "startedAt": "2026-11-17T08:13:44.352Z",
+      "completedAt": "2026-11-17T08:13:45.792Z",
+      "exitCode": 0,
+      "output": "artifacts/m2/build.txt"
+    },
+    {
+      "name": "browser",
+      "command": "npm run test:e2e",
+      "startedAt": "2026-11-17T08:13:45.792Z",
+      "completedAt": "2026-11-17T08:13:54.971Z",
+      "exitCode": 0,
+      "output": "artifacts/m2/browser.txt"
+    },
+    {
+      "name": "concurrency",
+      "command": "npm run test:concurrency",
+      "startedAt": "2026-11-17T08:13:54.971Z",
+      "completedAt": "2026-11-17T08:13:59.881Z",
+      "exitCode": 0,
+      "output": "artifacts/m2/concurrency.txt"
+    },
+    {
+      "name": "load-smoke",
+      "command": "npm run load:smoke",
+      "startedAt": "2026-11-17T08:13:59.881Z",
+      "completedAt": "2026-11-17T08:14:04.933Z",
+      "exitCode": 0,
+      "output": "artifacts/m2/load-smoke.txt"
+    },
+    {
+      "name": "audit",
+      "command": "npm audit --json",
+      "startedAt": "2026-11-17T08:14:04.933Z",
+      "completedAt": "2026-11-17T08:14:07.669Z",
+      "exitCode": 0,
+      "output": "artifacts/m2/audit.txt"
+    }
+  ],
+  "completedAt": "2026-11-17T08:14:07.672Z"
+}

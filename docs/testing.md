@@ -1,6 +1,6 @@
 # Test and coverage plan
 
-All checks below are planned. No application tests have run in this repository. `npm test` must execute the real suite and return nonzero on failure; never replace it with a success echo or suppress failing assertions.
+M2 verification is recorded in milestones/M2.md and artifacts/m2. Real unit/API/persistence/negative/concurrency tests and production student-browser journeys now run. The matrix below includes broader M3 scenarios; it is not a claim that every row is complete. npm test exits nonzero on failure.
 
 ## Layers and fixtures
 
@@ -36,9 +36,9 @@ All checks below are planned. No application tests have run in this repository. 
 
 ## Coverage
 
-Use a supported coverage tool (proposed Vitest with V8 coverage) consistently for backend unit/integration suites. Report all student-authored backend routes, middleware, services, repositories, models and adapter logic, including unimported files via an explicit include pattern. Enforce provisional >=70% statements AND >=60% branches as project gates; publish JSON summary and HTML/LCOV. Record actual counts/versions and uncovered critical branches.
+Implemented: Node test runner with c8 12.0.0/V8, all server/src/**/*.js, including unimported files. Enforce provisional >=70% statements AND >=60% branches; generate JSON summary and HTML/LCOV. These are c8's V8-to-Istanbul statement/branch metrics. Browser tests run separately and do not contribute to this backend report.
 
-Exclude node_modules, generated build output, configuration and migration files with explicit documented reasons. Migration behavior still gets integration tests. Do not exclude business services, error/permission branches or difficult concurrency code to raise coverage. Separate pure load tooling/simulator coverage from backend requirement, and state denominator. E2E does not automatically contribute backend coverage; explain actual instrumentation.
+The include pattern excludes dependencies, generated client output and test/load/simulator tooling. No authored backend file is excluded: config, migrations, seeding and startup are included. Startup is currently unexecuted by this suite; retry exhaustion, checksum mismatch, rare HTTP encoding/error branches and broader process recovery are gaps. Coverage percentages do not establish their correctness.
 
 Tests must check correctness beyond the thresholds. No skipped critical tests, unconditional retries to hide flakiness, forced exit to conceal resource leaks, or stubbing a repository in the only persistence/concurrency test. Keep server startup, app factory, DB creation and close hooks separate. Test retries remain zero for core assertions; investigate failures.
 

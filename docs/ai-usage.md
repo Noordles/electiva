@@ -20,6 +20,14 @@ Same fields. Suggested investigation: inefficient listing query, misleading aggr
 
 Each member must explain important overall flows and their own code/tests during defense. Future case records can change if a different significant real issue arises.
 
+## M2 implementation — 17 November 2026
+
+Noor asked to continue through the plan, keep commits natural/small and preserve his design direction. Codex implemented the persisted backend and student interface, then exercised real file SQLite, HTTP sessions and production Chromium. Noor's actual design/product steering is credited; direct supervision by Ilinca/Jwan is not claimed without their inspection evidence. team-review.md assigns concrete technical reviews to all three members.
+
+Observed corrections: normal prepared writes initially saw stale schema after migration DDL on another connection; a post-migration schema read corrected the reproduced failure. Multi-instance Windows fixture cleanup initially attempted removal before closing the second connection; registered cleanup ordering fixed it. Password review preserved significant whitespace rather than trimming it. Origin/CSRF, role/owner checks, raw DB guards, rollback, replay and FIFO were tested independently. Native Escape handling now respects pending dialog actions. Coverage installation initially introduced four moderate transitive findings; explicitly pinned patched glob/minimatch dependencies under test-exclude restored audit0, with coverage/build/browser behavior verified.
+
+M2 evidence includes20 authenticated competing students, duplicate clicks, cancellation/capacity/window races, real provider HTTP fault cases,10,000 synthetic student seeding and production student browser flows. The short load smoke is only harness verification. No claimed separate-process recovery, measured SCL improvement, approved substitute, human peer review or individual student mastery is inferred from these results.
+
 
 ## Phase 1 implementation — 16 November 2026
 

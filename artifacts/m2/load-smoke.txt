@@ -1,0 +1,3 @@
+npm notice run electiva@0.1.0 load:smoke
+npm notice run node tools/load/runner.mjs --users 10 --seconds 2 --output artifacts/m2/load-smoke.json
+{"output":"C:\\Users\\IKeep\\OneDrive\\Documents\\ASE\\Web Technologies\\Electiva\\artifacts\\m2\\load-smoke.json","requests":674,"p50Ms":23.78800000000001,"p95Ms":67.11840000000029,"errors":0,"requestsPerSecond":328.3718170649377,"invariants":{"overCapacity":[],"duplicateCurrent":[],"foreignKeys":[]}}

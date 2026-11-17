@@ -1,0 +1,14 @@
+npm notice run electiva@0.1.0 test:concurrency
+npm notice run node tools/test-concurrency.mjs
+✔ CON: 20 authenticated HTTP sessions compete for the last seat through two app instances (1528.4411ms)
+✔ CON: duplicate HTTP clicks create one attempt and return the same record (541.2633ms)
+✔ simultaneous cancellations and capacity changes preserve occupancy and FIFO (335.5548ms)
+✔ a request waiting for the writer lock checks the window after acquiring it (154.3591ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3841.1381

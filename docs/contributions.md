@@ -8,6 +8,27 @@ M1 foundation was implemented by Codex under the student’s authorization. No i
 
 Append evidence as work happens. Do not turn planned-owner trailers into claims of real authorship or create equal-looking fictional history. Correct attribution and genuine inspections matter more than matching line/commit counts.
 
+## M2 — 17 November 2026
+
+Noor directed continuation, requested small tested commits and supplied the design credit. His earlier palette/icon choices remain the implemented direction. Codex assisted implementation and verification. All commits use the existing verified Al Sammarraie Nooruldeen Git identity. Planned-owner trailers retain the balanced team split; Ilinca's and Jwan's direct supervision/review has not yet been evidenced. Their assigned inspection tasks are in team-review.md.
+
+| Commit | Change | Planned responsibility |
+|---|---|---|
+| 017e2cc | Database/migrations/integrity | Noor, N04 |
+| 4573420 | Authentication/session/CSRF | Noor, N05 |
+| 6d346f6 | SQL catalog | Jwan, J04 |
+| 63d85e6 | Administration/enrollment/FIFO transactions | Ilinca + Noor, I04/N06/I06 |
+| 07d5ba8 | HTTP directory/import/failures | Jwan, J05 |
+| 69e0679 | Synthetic seed | Jwan, J06 |
+| 44a6df2 | Real API/startup/workflow tests | Shared integration |
+| 562cb0c | Authenticated last-seat/race evidence | Noor + Ilinca, N07/I07 |
+| d39aec3 | Coverage/load harness | Jwan, J07 |
+| a5015d7 | Real student screens/browser journey/CI | Ilinca + Noor, I05/N08; partial I09 |
+| f0c46bb | Interrupted requests/dialogs/startup cleanup; error recovery browser test | Shared quality repair |
+| 88bb573 | Planned workload mix and reproducible evidence runner | Jwan, J07 |
+
+Actual verification outputs and exact source hashes are in artifacts/m2/verification.json. Later narrow repair/evidence commits remain traceable in git log. Independent human peer sign-off and three individual AI supervision cases are pending; no AI-produced test result is represented as student mastery.
+
 
 ## M1 implementation session
 

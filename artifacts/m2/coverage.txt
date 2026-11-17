@@ -1,0 +1,64 @@
+npm notice run electiva@0.1.0 test:coverage
+npm notice run c8 --all --include="server/src/**/*.js" --reporter=text --reporter=json-summary --reporter=lcov --reporter=html --check-coverage --statements=70 --branches=60 node --test server/tests/*.test.js tools/tests/*.test.js
+✔ health and metadata describe M1 honestly without invented capabilities (278.0376ms)
+✔ readiness checks dependency state and never reveals connection failures (53.9687ms)
+✔ JSON/media/size validation returns stable safe errors with request identity (90.0315ms)
+✔ unknown APIs remain JSON404 and unexpected/domain errors are classified (24.7517ms)
+✔ one completion log excludes body, query, authorization and cookies (18.676ms)
+✔ production serves SPA deep links, while assets and API misses stay404 (47.8205ms)
+✔ missing production build fails clearly, and server closes idempotently (11.1673ms)
+✔ salted passwords, private session cookies, CSRF, expiry and logout (1703.0967ms)
+✔ login limits are bounded and expire; anonymous and duplicate cookies are rejected (366.2507ms)
+✔ authenticated HTTP workflows enforce roles, ownership and validation (2005.7123ms)
+✔ catalog filters, stable SQL pagination, dates and advisory seat counts (653.2329ms)
+✔ CON: 20 authenticated HTTP sessions compete for the last seat through two app instances (2246.6619ms)
+✔ CON: duplicate HTTP clicks create one attempt and return the same record (467.572ms)
+✔ simultaneous cancellations and capacity changes preserve occupancy and FIFO (372.5942ms)
+✔ a request waiting for the writer lock checks the window after acquiring it (311.261ms)
+✔ config defaults to loopback and local database outside synced source (3.0388ms)
+✔ config validates exact numeric ports, mode and bind host (2.1889ms)
+✔ runtime storage cannot be relative, in-memory or under OneDrive (0.5692ms)
+✔ migrations survive reopen and every connection enforces foreign keys (626.0854ms)
+✔ raw SQL cannot oversell, duplicate membership, resurrect history or change identity (251.037ms)
+✔ a failed transaction rolls every change back (278.1126ms)
+✔ real HTTP directory preview/import is idempotent and failure leaves no partial course (3951.0513ms)
+✔ enroll, replay, FIFO promotion, cancellation replay and re-enrollment history (1066.5898ms)
+✔ cancel and promotion roll back together on a real failure (212.6414ms)
+✔ server time boundaries block writes and capacity edits promote the oldest waiters (262.7541ms)
+✔ admin validation, draft/publish/archive transitions and unique course codes (214.5071ms)
+✔ large synthetic seed contains 10,000 students and refuses to overwrite data (1076.1845ms)
+✔ future milestone commands fail explicitly rather than reporting false success (228.9083ms)
+✔ file SQLite: competing writers, rollback, per-connection settings and DB guards (549.1789ms)
+✔ busy retry retries whole operation and remains bounded (4.6904ms)
+✔ unexpected/constraint errors retain identity and are not retried (1.2198ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6201.6889
+-----------------|---------|----------|---------|---------|-------------------
+File             | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-----------------|---------|----------|---------|---------|-------------------
+All files        |   95.77 |    93.64 |   97.26 |   95.77 |                   
+ src             |   95.38 |    93.93 |   96.82 |   95.38 |                   
+  admin.js       |     100 |    96.66 |     100 |     100 | 64,68             
+  app.js         |     100 |    93.93 |      90 |     100 | 28-35             
+  application.js |     100 |      100 |     100 |     100 |                   
+  auth.js        |     100 |    95.71 |     100 |     100 | 27,29,58          
+  catalog.js     |     100 |    96.55 |     100 |     100 | 21                
+  config.js      |   94.11 |    92.85 |     100 |   94.11 | 25-26             
+  directory.js   |     100 |    97.56 |     100 |     100 | 28                
+  enrollment.js  |     100 |      100 |     100 |     100 |                   
+  errors.js      |    93.1 |    78.57 |     100 |    93.1 | 22,24             
+  routes.js      |    98.8 |    90.56 |     100 |    98.8 | 43                
+  server.js      |     100 |       90 |     100 |     100 | 15                
+  start.js       |       0 |        0 |       0 |       0 | 1-24              
+  validation.js  |     100 |    87.87 |     100 |     100 | 5,10,22-24        
+ src/db          |   97.67 |     90.9 |     100 |   97.67 |                   
+  database.js    |   96.05 |     82.6 |     100 |   96.05 | 48-50             
+  migrations.js  |     100 |      100 |     100 |     100 |                   
+  seed.js        |     100 |      100 |     100 |     100 |                   
+-----------------|---------|----------|---------|---------|-------------------

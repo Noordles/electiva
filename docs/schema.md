@@ -1,6 +1,6 @@
 # M1 schema and integrity contract
 
-Design complete for M1; application migrations/models arrive in N04. The spike uses separate probe tables and is not the production schema.
+Implemented in M2 in server/src/db/migrations.js and database.js. The original M1 spike retains separate probe tables; application integrity is independently tested in server/tests/database.test.js and concurrency.test.js.
 
 ```mermaid
 erDiagram
