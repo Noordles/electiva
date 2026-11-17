@@ -35,7 +35,7 @@ export function Pagination({ page, total, pageSize, onChange }) {
 export function Modal({ title, onClose, children }) {
   const ref = useRef(null);
   useEffect(() => { const dialog = ref.current; dialog.showModal(); return () => dialog.close(); }, []);
-  return <dialog ref={ref} className="modal" aria-labelledby="dialog-title" onClose={onClose} onClick={event => { if (event.target === ref.current) onClose(); }}><div className="modal-heading"><h2 id="dialog-title">{title}</h2><button type="button" className="icon-button" aria-label="Close dialog" onClick={onClose} autoFocus><Icon name="close"/></button></div>{children}</dialog>;
+  return <dialog ref={ref} className="modal" aria-labelledby="dialog-title" onClose={onClose} onCancel={event => { event.preventDefault(); onClose(); }} onClick={event => { if (event.target === ref.current) onClose(); }}><div className="modal-heading"><h2 id="dialog-title">{title}</h2><button type="button" className="icon-button" aria-label="Close dialog" onClick={onClose} autoFocus><Icon name="close"/></button></div>{children}</dialog>;
 }
 
 export function Field({ label, error, ...props }) {

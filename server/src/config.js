@@ -13,7 +13,7 @@ export function loadConfig(env = process.env) {
   const mode = env.NODE_ENV ?? "development";
   if (!["development", "test", "production"].includes(mode)) throw new Error("Invalid NODE_ENV");
   const host = env.HOST ?? "127.0.0.1";
-  if (host !== "127.0.0.1") throw new Error("M1 must bind to loopback (127.0.0.1)");
+  if (host !== "127.0.0.1") throw new Error("Electiva must bind to loopback (127.0.0.1)");
   const localRoot = env.LOCALAPPDATA || path.join(homedir(), ".local", "share");
   const databasePath = env.DATABASE_PATH || path.join(localRoot, "Electiva", "dev.sqlite");
   if (databasePath.startsWith(String.fromCharCode(92, 92)) || databasePath.startsWith("//") || !path.isAbsolute(databasePath) || /(^|[\\/])onedrive(?:[^\\/]*)?([\\/]|$)/i.test(databasePath) || databasePath === ":memory:") {

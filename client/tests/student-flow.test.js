@@ -4,6 +4,7 @@ import path from 'node:path';
 import { mkdir } from 'node:fs/promises';
 import { chromium, expect } from '@playwright/test';
 import { apiFixture } from '../../server/tests/api-helpers.js';
+import { HttpError } from '../../server/src/errors.js';
 
 test('production browser: sign in, enroll, waitlist, cancel, promote and reload at three widths', { timeout: 60000 }, async t => {
   const { running, accounts } = await apiFixture(t, { staticDirectory: path.resolve('client/dist') });
@@ -54,4 +55,24 @@ test('production browser: sign in, enroll, waitlist, cancel, promote and reload 
   await page.goto(running.url + '/my-enrollments');
   await expect(page.getByRole('heading', { name: 'Your workspace starts here.' })).toBeVisible();
   assert.deepEqual(errors, []);
+});
+
+test('catalog shows a real API failure and Retry recovers without a page reload', { timeout: 30000 }, async t => {
+  const { db, running, accounts } = await apiFixture(t, { staticDirectory: path.resolve('client/dist') });
+  const all = db.all; let unavailable = true;
+  db.all = (sql, ...args) => {
+    if (unavailable && sql.includes('count(*) AS total FROM offerings o JOIN')) throw new HttpError(503, 'temporarily_busy', 'Please try again shortly');
+    return all(sql, ...args);
+  };
+  const browser = await chromium.launch(); t.after(() => browser.close());
+  const page = await browser.newPage();
+  await page.goto(running.url + '/login');
+  await page.getByLabel('Account email').fill('student1@example.test');
+  await page.getByLabel('Password', { exact: true }).fill(accounts.password);
+  await page.getByRole('button', { name: 'Sign in', exact: true }).click();
+  await expect(page.getByRole('alert')).toContainText('Please try again shortly');
+  unavailable = false;
+  await page.getByRole('button', { name: 'Retry', exact: true }).click();
+  await expect(page.locator('.course-card')).toHaveCount(6);
+  await expect(page.getByRole('alert')).toHaveCount(0);
 });

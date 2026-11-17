@@ -1,7 +1,8 @@
 let csrfToken;
 export const setCsrfToken = value => { csrfToken = value; };
 export async function api(route, { method = 'GET', body, signal, quiet401 = false } = {}) {
-  const response = await fetch('/api/v1' + route, { method, credentials: 'same-origin', signal: signal ?? AbortSignal.timeout(10000),
+  const timeout = AbortSignal.timeout(10000);
+  const response = await fetch('/api/v1' + route, { method, credentials: 'same-origin', signal: signal ? AbortSignal.any([signal, timeout]) : timeout,
     headers: { ...(body !== undefined ? { 'content-type': 'application/json' } : {}), ...(method !== 'GET' && csrfToken ? { 'x-csrf-token': csrfToken } : {}) },
     ...(body !== undefined ? { body: JSON.stringify(body) } : {}) });
   const result = response.status === 204 ? null : await response.json();
