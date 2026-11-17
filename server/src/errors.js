@@ -22,6 +22,8 @@ export function errorHandler(error, request, response, next) {
     status = 415; code = "unsupported_encoding"; message = "Unsupported request encoding";
   } else if (error instanceof URIError) {
     status = 400; code = "invalid_path"; message = "Invalid resource path";
+  } else if (error.original?.code === "SQLITE_CONSTRAINT") {
+    status = 409; code = "integrity_conflict"; message = "This change conflicts with an existing record or enrollment rule";
   }
   return response.status(status).json({ error: { code, message, requestId: request.requestId } });
 }

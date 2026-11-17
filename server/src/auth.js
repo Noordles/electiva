@@ -59,7 +59,8 @@ export function createAuth(db, { now = Date.now, secureCookies = false, allowedO
       const current = now();
       for (const [key, entry] of attempts) if (entry.until <= current) attempts.delete(key);
       const keys = [`ip:${req.socket.remoteAddress}`, `account:${email}`];
-      if (attempts.size >= 2000 || keys.some(key => (attempts.get(key)?.count ?? 0) >= loginLimit)) throw new HttpError(429, 'login_limited', 'Too many sign-in attempts. Try again in five minutes');
+      // Account protection stays tight without blocking an entire classroom NAT.
+      if (attempts.size >= 2000 || keys.some(key => (attempts.get(key)?.count ?? 0) >= (key.startsWith('ip:') ? loginLimit * 10 : loginLimit))) throw new HttpError(429, 'login_limited', 'Too many sign-in attempts. Try again in five minutes');
       for (const key of keys) { const entry = attempts.get(key) ?? { count: 0, until: current + 300000 }; entry.count += 1; attempts.set(key, entry); }
       const [user] = await db.all('SELECT * FROM users WHERE email=$email', { email });
       dummyHash ??= hashPassword('not-a-real-account-password');

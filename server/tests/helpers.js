@@ -8,13 +8,15 @@ export async function fixture(t) {
   const directory = await mkdtemp(path.join(tmpdir(), 'electiva-test-'));
   const storage = path.join(directory, 'test.sqlite');
   const db = await createDatabase(storage);
+  const cleanups = [];
   t.after(async () => {
+    for (const cleanup of cleanups.reverse()) await cleanup();
     await db.close();
     assert.equal(path.dirname(path.resolve(directory)), path.resolve(tmpdir()));
     assert.ok(path.basename(directory).startsWith('electiva-test-'));
     await rm(directory, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
   });
-  return { db, storage };
+  return { db, storage, onCleanup: cleanup => cleanups.push(cleanup) };
 }
 
 export async function domainFixture(db, { capacity = 1, count = 4, now = Date.now() } = {}) {

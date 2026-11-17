@@ -10,6 +10,8 @@ export function createApp({
   logger = { info() {} },
   staticDirectory,
   configureRoutes = () => {},
+  milestone = "M1",
+  capabilities = { authentication: false, persistedCatalog: false, enrollment: false },
 } = {}) {
   const app = express();
   app.disable("x-powered-by");
@@ -44,7 +46,7 @@ export function createApp({
     }
     next();
   }, express.json({ limit: "16kb" }));
-  const health = (_request, response) => response.json({ data: { status: "ok", service: "electiva", milestone: "M1" } });
+  const health = (_request, response) => response.json({ data: { status: "ok", service: "electiva", milestone } });
   const ready = async (_request, response) => {
     let available = false;
     try { available = (await checkReady()) === true; } catch { /* unavailable, without leaking infrastructure details */ }
@@ -53,8 +55,8 @@ export function createApp({
   app.get(["/health", "/api/v1/health"], health);
   app.get(["/ready", "/api/v1/ready"], ready);
   app.get("/api/v1/meta", (_request, response) => response.json({ data: {
-    product: "Electiva", team: "JIN", milestone: "M1", preview: true,
-    capabilities: { authentication: false, persistedCatalog: false, enrollment: false },
+    product: "Electiva", team: "JIN", milestone, preview: !capabilities.persistedCatalog,
+    capabilities,
   } }));
   configureRoutes(app);
   app.use("/api", (_request, _response) => { throw new HttpError(404, "not_found", "API resource not found"); });
