@@ -15,6 +15,10 @@ export function businessRoutes(db, options = {}) {
     auth.mount(app);
     const student = [auth.session, auth.role('student')], administrator = [auth.session, auth.role('admin')];
     app.get('/api/v1/offerings', auth.session, async (req, res) => res.json(await listCatalog(db, req.query, now())));
+    app.get('/api/v1/offerings/facets', auth.session, async (_req, res) => {
+      const departments = await db.all("SELECT DISTINCT c.department FROM courses c JOIN offerings o ON o.courseId=c.id WHERE o.lifecycle='PUBLISHED' ORDER BY c.department LIMIT 200");
+      res.json({ data: { departments: departments.map(row => row.department) } });
+    });
     app.get('/api/v1/offerings/:id', auth.session, async (req, res) => {
       const [row] = await db.all(`${offeringSelect} WHERE o.id=$id AND o.lifecycle='PUBLISHED'`, { id: id(req.params.id) });
       if (!row) throw new HttpError(404, 'not_found', 'Offering not found');

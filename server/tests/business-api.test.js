@@ -11,6 +11,7 @@ test('authenticated HTTP workflows enforce roles, ownership and validation', asy
   assert.equal((await request('/offerings')).status, 401);
   assert.equal((await request('/ready')).status, 200);
   assert.equal((await request('/meta')).body.data.preview, false);
+  assert.ok((await request('/offerings/facets', { session: student })).body.data.departments.includes('Informatics'));
   assert.equal((await request('/admin/courses', { session: student })).status, 403);
   assert.equal((await request('/offerings/1/enrollments', { session: admin, method: 'POST', body: {} })).status, 403);
   assert.equal((await request('/offerings/1/enrollments', { session: student, method: 'POST', body: { userId: other.user.id } })).status, 422);

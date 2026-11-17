@@ -21,5 +21,5 @@ export async function apiFixture(t, options = {}) {
     assert.equal(result.status, 200);
     return { ...result.body.data, cookie: result.response.headers.get('set-cookie').split(';')[0] };
   };
-  return { db, storage, running, request, login, onCleanup };
+  return { db, storage, running, request, login, onCleanup, accounts };
 }
