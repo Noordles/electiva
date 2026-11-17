@@ -7,7 +7,7 @@ export function Login() {
   const { user, login, loading } = useSession(), navigate = useNavigate();
   const [email, setEmail] = useState(''), [password, setPassword] = useState(''), [pending, setPending] = useState(false), [error, setError] = useState('');
   if (loading) return <Loading>Checking your session…</Loading>;
-  if (user) return <Navigate to="/courses" replace/>;
+  if (user) return <Navigate to={user.role === 'admin' ? '/admin' : '/courses'} replace/>;
   const submit = async event => {
     event.preventDefault(); setPending(true); setError('');
     try { const identity = await login(email, password); setPassword(''); navigate(identity.role === 'admin' ? '/admin' : '/courses', { replace: true }); }

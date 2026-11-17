@@ -3,7 +3,8 @@ import { paging, paged } from './validation.js';
 
 export const offeringSelect = `SELECT o.*, c.code, c.title, c.description, c.department, c.credits,
   (SELECT count(*) FROM enrollments e WHERE e.offeringId=o.id AND e.status='ACTIVE') AS activeCount,
-  (SELECT count(*) FROM enrollments e WHERE e.offeringId=o.id AND e.status='WAITLISTED') AS waitlistCount
+  (SELECT count(*) FROM enrollments e WHERE e.offeringId=o.id AND e.status='WAITLISTED') AS waitlistCount,
+  (SELECT count(*) FROM enrollments e WHERE e.offeringId=o.id AND e.status='CANCELLED') AS cancelledCount
   FROM offerings o JOIN courses c ON c.id=o.courseId`;
 export const offeringView = (row, now) => ({ ...row, opensAt: new Date(row.opensAt).toISOString(), closesAt: new Date(row.closesAt).toISOString(),
   availableSeats: row.capacity - row.activeCount, enrollmentOpen: row.lifecycle === 'PUBLISHED' && now >= row.opensAt && now < row.closesAt });

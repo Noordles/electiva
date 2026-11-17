@@ -46,8 +46,13 @@ export function businessRoutes(db, options = {}) {
       object(req.body, []); res.json({ data: await enrollment.cancel(req.user.id, id(req.params.id)) });
     });
     app.get('/api/v1/admin/courses', ...administrator, async (req, res) => {
-      const page = paging(req.query), [{ total }] = await db.all('SELECT count(*) AS total FROM courses');
-      res.json(paged(await db.all('SELECT * FROM courses ORDER BY code,id LIMIT $pageSize OFFSET $offset', page), total, page));
+      const page = paging(req.query, ['q']);
+      const query = req.query.q?.trim() ?? '';
+      if (query.length > 200) throw new HttpError(400, 'invalid_query', 'Search is too long');
+      const bind = { ...page, q: `%${query.replace(/[\\%_]/g, '\\$&')}%` };
+      const where = query ? " WHERE (title LIKE $q ESCAPE '\\' OR code LIKE $q ESCAPE '\\')" : '';
+      const [{ total }] = await db.all(`SELECT count(*) AS total FROM courses${where}`, bind);
+      res.json(paged(await db.all(`SELECT * FROM courses${where} ORDER BY code,id LIMIT $pageSize OFFSET $offset`, bind), total, page));
     });
     app.post('/api/v1/admin/courses', ...administrator, ...auth.mutation, async (req, res) => res.status(201).json({ data: await admin.createCourse(req.body) }));
     app.patch('/api/v1/admin/courses/:id', ...administrator, ...auth.mutation, async (req, res) => res.json({ data: await admin.editCourse(id(req.params.id), req.body) }));
@@ -74,7 +79,7 @@ export function businessRoutes(db, options = {}) {
       const [{ total }] = await db.all(`SELECT count(*) AS total FROM offerings o${where}`, bind);
       const rows = await db.all(`${offeringSelect}${where} ORDER BY o.id LIMIT $pageSize OFFSET $offset`, bind);
       // Aggregate only: never expose students or credentials through reports.
-      res.json(paged(rows.map(({ id, code, title, term, capacity, activeCount, waitlistCount }) => ({ id, code, title, term, capacity, activeCount, waitlistCount })), total, page));
+      res.json(paged(rows.map(({ id, code, title, term, capacity, activeCount, waitlistCount, cancelledCount }) => ({ id, code, title, term, capacity, activeCount, waitlistCount, cancelledCount })), total, page));
     });
     app.get('/api/v1/admin/directory/courses/:code', ...administrator, async (req, res) => res.json({ data: await directory.preview(req.params.code) }));
     app.post('/api/v1/admin/directory/import', ...administrator, ...auth.mutation, async (req, res) => {
