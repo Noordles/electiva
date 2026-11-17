@@ -20,7 +20,9 @@ export function id(value) {
 }
 export function date(value, name) {
   if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?Z$/.test(value) || !Number.isFinite(Date.parse(value))) invalid(`${name} must be a UTC ISO date`);
-  return Date.parse(value);
+  const time = Date.parse(value);
+  if (new Date(time).toISOString().slice(0, 19) !== value.slice(0, 19)) invalid(`${name} must be a valid calendar date`);
+  return time;
 }
 export function paging(query, allowed = []) {
   if (Object.keys(query).some(key => !['page', 'pageSize', ...allowed].includes(key)) || Object.values(query).some(value => typeof value !== 'string')) throw new HttpError(400, 'invalid_query', 'Unsupported query parameter');
