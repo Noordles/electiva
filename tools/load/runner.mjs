@@ -38,7 +38,8 @@ export async function runLoad({ users = 10, seconds = 15, seed = 20261117 } = {}
           if (observations.length >= 1000000) throw new Error('Load sample bound reached');
           const choice = random(); let operation, route, method = 'GET';
           if (choice < 0.7) { operation = 'catalog'; route = `/offerings?pageSize=20&page=${1 + Math.floor(random() * 5)}&sort=title`; }
-          else if (choice < 0.9 || !membership) { operation = 'enroll'; route = `/offerings/${1 + Math.floor(random() * 100)}/enrollments`; method = 'POST'; }
+          else if (choice < 0.85) { operation = 'history'; route = '/me/enrollments?pageSize=20'; }
+          else if (choice < 0.95 || !membership) { operation = 'enroll'; route = `/offerings/${1 + Math.floor(random() * 100)}/enrollments`; method = 'POST'; }
           else { operation = 'cancel'; route = `/me/enrollments/${membership}/cancel`; method = 'POST'; }
           const before = performance.now(); let status = 'network_error';
           try {
@@ -64,9 +65,9 @@ export async function runLoad({ users = 10, seconds = 15, seed = 20261117 } = {}
     return { schemaVersion: 1, completedAt: new Date().toISOString(), commit: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
       scope: 'M2 harness check; in-process client and server, not an isolated capacity claim or controlled before/after comparison',
       environment: { node: process.version, sequelize: db.sequelize.constructor.version, sqlite: (await db.all('SELECT sqlite_version() AS version'))[0].version, platform: platform(), release: release(), cpu: cpus()[0]?.model, logicalCpus: cpus().length, journal: 'WAL', localFile: true },
-      scenario: { users, requestedSeconds: seconds, elapsedSeconds, syntheticStudents: 10000, offerings: 100, seed, mix: '70% catalog, 20% enroll, 10% cancel; cancellation falls back to enroll if no tracked attempt', warmup: 'one listing per session; excluded', model: 'closed loop, one outstanding request per user; latency includes client scheduling; completions drained' },
+      scenario: { users, requestedSeconds: seconds, elapsedSeconds, syntheticStudents: 10000, offerings: 100, seed, mix: '70% catalog, 15% own history, 10% enroll, 5% cancel; cancellation falls back to enroll if no tracked attempt', warmup: 'one listing per session; excluded', model: 'closed loop, one outstanding request per user; latency includes client scheduling; completions drained' },
       aggregate: { ...summarize(observations), requestsPerSecond: observations.length / elapsedSeconds },
-      operations: Object.fromEntries(['catalog', 'enroll', 'cancel'].map(operation => [operation, summarize(observations.filter(row => row.operation === operation))])), outcomes,
+      operations: Object.fromEntries(['catalog', 'history', 'enroll', 'cancel'].map(operation => [operation, summarize(observations.filter(row => row.operation === operation))])), outcomes,
       resources: { scope: 'combined runner and server process, SQLite native threads included', userCpuMs: cpu.user / 1000, systemCpuMs: cpu.system / 1000, peakRssBytes }, invariants };
   } finally {
     if (running) await running.close(); if (db) await db.close();

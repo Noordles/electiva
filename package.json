@@ -20,7 +20,7 @@
     "build": "vite build client --config client/vite.config.js",
     "start:production": "node --env-file-if-exists=.env server/src/start.js --production",
     "test": "node --test server/tests/*.test.js tools/tests/*.test.js",
-    "test:coverage": "c8 --all --include=\"server/src/**/*.js\" --reporter=text --reporter=json-summary --reporter=lcov --check-coverage --statements=70 --branches=60 node --test server/tests/*.test.js tools/tests/*.test.js",
+    "test:coverage": "c8 --all --include=\"server/src/**/*.js\" --reporter=text --reporter=json-summary --reporter=lcov --reporter=html --check-coverage --statements=70 --branches=60 node --test server/tests/*.test.js tools/tests/*.test.js",
     "test:ui": "node --test client/tests/*.test.js",
     "spike:sqlite": "node tools/spikes/sqlite-concurrency.js --output artifacts/m1/sqlite-spike.json",
     "db:migrate": "node --env-file-if-exists=.env tools/database.mjs",
@@ -32,7 +32,8 @@
     "load:compare": "node tools/pending.mjs load:compare",
     "db:seed:large": "node --env-file-if-exists=.env tools/database.mjs --seed --large",
     "dev:directory": "node --env-file-if-exists=.env tools/directory-simulator.js",
-    "load:smoke": "node tools/load/runner.mjs --users 10 --seconds 2 --output artifacts/m2/load-smoke.json"
+    "load:smoke": "node tools/load/runner.mjs --users 10 --seconds 2 --output artifacts/m2/load-smoke.json",
+    "verify:m2": "node tools/verify-m2.mjs"
   },
   "overrides": {
     "uuid": "11.1.1",
