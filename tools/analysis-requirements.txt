@@ -1,0 +1,2 @@
+# Optional chart regeneration only; the application itself uses Node/npm.
+matplotlib==3.9.2

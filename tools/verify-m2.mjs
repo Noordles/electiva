@@ -3,8 +3,9 @@ import { createHash } from 'node:crypto';
 import { mkdir, readFile, readdir, writeFile, copyFile } from 'node:fs/promises';
 import path from 'node:path';
 
-if (!process.env.npm_execpath) throw new Error('Run through npm run verify:m2');
-const directory = 'artifacts/m2'; await mkdir(directory, { recursive: true });
+if (!process.env.npm_execpath) throw new Error('Run through npm run verify:m2 or verify:m3');
+const milestone = process.argv.includes('--m3') ? 'm3' : 'm2';
+const directory = `artifacts/${milestone}`; await mkdir(directory, { recursive: true });
 const sourceFiles = [];
 async function collect(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
@@ -18,11 +19,11 @@ const sources = [];
 for (const file of sourceFiles.sort()) sources.push({ file: file.replaceAll('\\', '/'), sha256: createHash('sha256').update(await readFile(file)).digest('hex') });
 const receipt = { startedAt: new Date().toISOString(), commitBeforeRun: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
   sourceTreeSha256: createHash('sha256').update(JSON.stringify(sources)).digest('hex'), sources, node: process.version,
-  scope: 'Local M2 verification. Source hashes identify exact tested files even if commitBeforeRun has uncommitted changes.', checks: [] };
+  scope: `Local ${milestone.toUpperCase()} verification. Hashes identify exact local tested bytes, before any Git line-ending normalization.`, checks: [] };
 const commands = [
   ['tests', ['test']], ['coverage', ['run', 'test:coverage']], ['build', ['run', 'build']],
   ['browser', ['run', 'test:e2e']], ['concurrency', ['run', 'test:concurrency']],
-  ['load-smoke', ['run', 'load:smoke']], ['audit', ['audit', '--json']],
+  ...(milestone === 'm2' ? [['load-smoke', ['run', 'load:smoke']]] : []), ['audit', ['audit', '--json']],
 ];
 for (const [name, args] of commands) {
   const startedAt = new Date().toISOString();

@@ -1,0 +1,920 @@
+{
+  "schemaVersion": 1,
+  "commit": "5aa19c7265ff944e326df2064aabe73010086d3e",
+  "fixtureClock": 1794902400000,
+  "protocol": "3s warmup /12s steady /3s recovery by default; short classroom benchmark, not a long-duration SLA. All scenarios reset the same domain fixture. No public target.",
+  "runs": [
+    {
+      "startedAt": "2026-11-17T09:08:19.160Z",
+      "completedAt": "2026-11-17T09:08:35.836Z",
+      "users": 10,
+      "warmupSeconds": 3,
+      "requestedSeconds": 12,
+      "drainedSeconds": 13.554926300000002,
+      "recoverySeconds": 3,
+      "recoveryMs": 23.514799999997194,
+      "fixture": {
+        "students": 10000,
+        "courses": 100,
+        "offerings": 100,
+        "enrollmentAttempts": 50000,
+        "clock": "2026-11-17T08:00:00.000Z",
+        "logicalSha256": "716fd743a980a8ded530755ff4c848154fa2f99c702e9eceb60326a266a01fe0",
+        "hashScope": "ordered domain rows; random password hashes and sessions excluded"
+      },
+      "aggregate": {
+        "requests": 121,
+        "errors": 0,
+        "p50Ms": 13.420100000001185,
+        "p95Ms": 46.267799999999625,
+        "requestsPerSecond": 8.926643887396127
+      },
+      "operations": {
+        "catalog": {
+          "requests": 80,
+          "errors": 0,
+          "p50Ms": 11.680500000002212,
+          "p95Ms": 21.57380000000012
+        },
+        "history": {
+          "requests": 19,
+          "errors": 0,
+          "p50Ms": 27.726299999998446,
+          "p95Ms": 49.68819999999869
+        },
+        "enroll": {
+          "requests": 18,
+          "errors": 0,
+          "p50Ms": 40.46739999999954,
+          "p95Ms": 49.85779999999977
+        },
+        "cancel": {
+          "requests": 4,
+          "errors": 0,
+          "p50Ms": 35.2432000000008,
+          "p95Ms": 44.589499999998225
+        }
+      },
+      "outcomes": {
+        "catalog:200": 80,
+        "enroll:201": 18,
+        "cancel:200": 4,
+        "history:200": 19
+      },
+      "resources": {
+        "userCpuMs": 1437,
+        "systemCpuMs": 454,
+        "peakRssBytes": 104599552,
+        "acquisitionRetries": 0,
+        "transactionRetries": 0,
+        "eventLoopP95Ms": 38.371327,
+        "eventLoopMaxMs": 56.524799
+      },
+      "invariants": {
+        "overCapacity": [],
+        "duplicateCurrent": [],
+        "foreignKeys": []
+      },
+      "model": {
+        "seed": 20261117,
+        "thinkMs": [
+          500,
+          1500
+        ],
+        "initialStaggerMs": [
+          0,
+          1000
+        ],
+        "mix": "70/15/10/5 catalog/history/enroll/cancel; cancel falls back to enrollment when no tracked attempt",
+        "requestTimeoutMs": 5000,
+        "clientServerSeparateProcesses": true,
+        "sameMachine": true,
+        "loginExcluded": true,
+        "requestedWindowAndDrainReported": true
+      },
+      "environment": {
+        "node": "v24.22.3",
+        "sqlite": "3.52.0",
+        "platform": "win32",
+        "release": "10.0.26200",
+        "cpu": "11th Gen Intel(R) Core(TM) i7-11370H @ 3.30GHz",
+        "logicalCpus": 8,
+        "totalMemoryBytes": 16983347200,
+        "powerMode": "not controlled or independently measured",
+        "journal": "WAL"
+      },
+      "repetition": 1
+    },
+    {
+      "startedAt": "2026-11-17T09:08:50.265Z",
+      "completedAt": "2026-11-17T09:09:06.796Z",
+      "users": 50,
+      "warmupSeconds": 3,
+      "requestedSeconds": 12,
+      "drainedSeconds": 13.4437344,
+      "recoverySeconds": 3,
+      "recoveryMs": 24.10729999999603,
+      "fixture": {
+        "students": 10000,
+        "courses": 100,
+        "offerings": 100,
+        "enrollmentAttempts": 50000,
+        "clock": "2026-11-17T08:00:00.000Z",
+        "logicalSha256": "716fd743a980a8ded530755ff4c848154fa2f99c702e9eceb60326a266a01fe0",
+        "hashScope": "ordered domain rows; random password hashes and sessions excluded"
+      },
+      "aggregate": {
+        "requests": 594,
+        "errors": 0,
+        "p50Ms": 12.965199999998731,
+        "p95Ms": 38.758600000001024,
+        "requestsPerSecond": 44.18415168928062
+      },
+      "operations": {
+        "catalog": {
+          "requests": 411,
+          "errors": 0,
+          "p50Ms": 9.563500000003842,
+          "p95Ms": 24.839099999997416
+        },
+        "history": {
+          "requests": 92,
+          "errors": 0,
+          "p50Ms": 17.113799999999173,
+          "p95Ms": 30.93189999999595
+        },
+        "enroll": {
+          "requests": 74,
+          "errors": 0,
+          "p50Ms": 26.639999999999418,
+          "p95Ms": 54.21789999999601
+        },
+        "cancel": {
+          "requests": 17,
+          "errors": 0,
+          "p50Ms": 32.73500000000058,
+          "p95Ms": 78.88130000000092
+        }
+      },
+      "outcomes": {
+        "catalog:200": 411,
+        "enroll:201": 74,
+        "history:200": 92,
+        "cancel:200": 17
+      },
+      "resources": {
+        "userCpuMs": 3390,
+        "systemCpuMs": 984,
+        "peakRssBytes": 118882304,
+        "acquisitionRetries": 14,
+        "transactionRetries": 0,
+        "eventLoopP95Ms": 36.110335,
+        "eventLoopMaxMs": 65.372159
+      },
+      "invariants": {
+        "overCapacity": [],
+        "duplicateCurrent": [],
+        "foreignKeys": []
+      },
+      "model": {
+        "seed": 20261117,
+        "thinkMs": [
+          500,
+          1500
+        ],
+        "initialStaggerMs": [
+          0,
+          1000
+        ],
+        "mix": "70/15/10/5 catalog/history/enroll/cancel; cancel falls back to enrollment when no tracked attempt",
+        "requestTimeoutMs": 5000,
+        "clientServerSeparateProcesses": true,
+        "sameMachine": true,
+        "loginExcluded": true,
+        "requestedWindowAndDrainReported": true
+      },
+      "environment": {
+        "node": "v24.22.3",
+        "sqlite": "3.52.0",
+        "platform": "win32",
+        "release": "10.0.26200",
+        "cpu": "11th Gen Intel(R) Core(TM) i7-11370H @ 3.30GHz",
+        "logicalCpus": 8,
+        "totalMemoryBytes": 16983347200,
+        "powerMode": "not controlled or independently measured",
+        "journal": "WAL"
+      },
+      "repetition": 1
+    },
+    {
+      "startedAt": "2026-11-17T09:09:17.900Z",
+      "completedAt": "2026-11-17T09:09:34.424Z",
+      "users": 100,
+      "warmupSeconds": 3,
+      "requestedSeconds": 12,
+      "drainedSeconds": 13.391122500000012,
+      "recoverySeconds": 3,
+      "recoveryMs": 15.61809999999241,
+      "fixture": {
+        "students": 10000,
+        "courses": 100,
+        "offerings": 100,
+        "enrollmentAttempts": 50000,
+        "clock": "2026-11-17T08:00:00.000Z",
+        "logicalSha256": "716fd743a980a8ded530755ff4c848154fa2f99c702e9eceb60326a266a01fe0",
+        "hashScope": "ordered domain rows; random password hashes and sessions excluded"
+      },
+      "aggregate": {
+        "requests": 1183,
+        "errors": 0,
+        "p50Ms": 14.826199999995879,
+        "p95Ms": 42.42939999999362,
+        "requestsPerSecond": 88.34210873659015
+      },
+      "operations": {
+        "catalog": {
+          "requests": 827,
+          "errors": 0,
+          "p50Ms": 11.047400000010384,
+          "p95Ms": 35.691199999986566
+        },
+        "history": {
+          "requests": 173,
+          "errors": 0,
+          "p50Ms": 19.538699999990058,
+          "p95Ms": 44.4033999999956
+        },
+        "enroll": {
+          "requests": 142,
+          "errors": 0,
+          "p50Ms": 23.950800000005984,
+          "p95Ms": 52.788000000000466
+        },
+        "cancel": {
+          "requests": 41,
+          "errors": 0,
+          "p50Ms": 22.49659999999858,
+          "p95Ms": 44.97580000000016
+        }
+      },
+      "outcomes": {
+        "catalog:200": 827,
+        "enroll:201": 137,
+        "history:200": 173,
+        "cancel:200": 41,
+        "enroll:200": 5
+      },
+      "resources": {
+        "userCpuMs": 5781,
+        "systemCpuMs": 2375,
+        "peakRssBytes": 121036800,
+        "acquisitionRetries": 40,
+        "transactionRetries": 0,
+        "eventLoopP95Ms": 33.816575,
+        "eventLoopMaxMs": 54.984703
+      },
+      "invariants": {
+        "overCapacity": [],
+        "duplicateCurrent": [],
+        "foreignKeys": []
+      },
+      "model": {
+        "seed": 20261117,
+        "thinkMs": [
+          500,
+          1500
+        ],
+        "initialStaggerMs": [
+          0,
+          1000
+        ],
+        "mix": "70/15/10/5 catalog/history/enroll/cancel; cancel falls back to enrollment when no tracked attempt",
+        "requestTimeoutMs": 5000,
+        "clientServerSeparateProcesses": true,
+        "sameMachine": true,
+        "loginExcluded": true,
+        "requestedWindowAndDrainReported": true
+      },
+      "environment": {
+        "node": "v24.22.3",
+        "sqlite": "3.52.0",
+        "platform": "win32",
+        "release": "10.0.26200",
+        "cpu": "11th Gen Intel(R) Core(TM) i7-11370H @ 3.30GHz",
+        "logicalCpus": 8,
+        "totalMemoryBytes": 16983347200,
+        "powerMode": "not controlled or independently measured",
+        "journal": "WAL"
+      },
+      "repetition": 1
+    },
+    {
+      "startedAt": "2026-11-17T09:09:45.934Z",
+      "completedAt": "2026-11-17T09:10:02.602Z",
+      "users": 10,
+      "warmupSeconds": 3,
+      "requestedSeconds": 12,
+      "drainedSeconds": 13.534715700000001,
+      "recoverySeconds": 3,
+      "recoveryMs": 22.986100000009174,
+      "fixture": {
+        "students": 10000,
+        "courses": 100,
+        "offerings": 100,
+        "enrollmentAttempts": 50000,
+        "clock": "2026-11-17T08:00:00.000Z",
+        "logicalSha256": "716fd743a980a8ded530755ff4c848154fa2f99c702e9eceb60326a266a01fe0",
+        "hashScope": "ordered domain rows; random password hashes and sessions excluded"
+      },
+      "aggregate": {
+        "requests": 121,
+        "errors": 0,
+        "p50Ms": 15.10000000000582,
+        "p95Ms": 44.07819999998901,
+        "requestsPerSecond": 8.939973523049323
+      },
+      "operations": {
+        "catalog": {
+          "requests": 80,
+          "errors": 0,
+          "p50Ms": 10.988400000002002,
+          "p95Ms": 27.570699999996577
+        },
+        "history": {
+          "requests": 19,
+          "errors": 0,
+          "p50Ms": 28.0564999999915,
+          "p95Ms": 47.71150000000489
+        },
+        "enroll": {
+          "requests": 18,
+          "errors": 0,
+          "p50Ms": 39.970000000001164,
+          "p95Ms": 77.41939999999886
+        },
+        "cancel": {
+          "requests": 4,
+          "errors": 0,
+          "p50Ms": 37.86560000000463,
+          "p95Ms": 44.07819999998901
+        }
+      },
+      "outcomes": {
+        "catalog:200": 80,
+        "enroll:201": 18,
+        "cancel:200": 4,
+        "history:200": 19
+      },
+      "resources": {
+        "userCpuMs": 1485,
+        "systemCpuMs": 313,
+        "peakRssBytes": 109088768,
+        "acquisitionRetries": 2,
+        "transactionRetries": 0,
+        "eventLoopP95Ms": 44.531711,
+        "eventLoopMaxMs": 62.226431
+      },
+      "invariants": {
+        "overCapacity": [],
+        "duplicateCurrent": [],
+        "foreignKeys": []
+      },
+      "model": {
+        "seed": 20261117,
+        "thinkMs": [
+          500,
+          1500
+        ],
+        "initialStaggerMs": [
+          0,
+          1000
+        ],
+        "mix": "70/15/10/5 catalog/history/enroll/cancel; cancel falls back to enrollment when no tracked attempt",
+        "requestTimeoutMs": 5000,
+        "clientServerSeparateProcesses": true,
+        "sameMachine": true,
+        "loginExcluded": true,
+        "requestedWindowAndDrainReported": true
+      },
+      "environment": {
+        "node": "v24.22.3",
+        "sqlite": "3.52.0",
+        "platform": "win32",
+        "release": "10.0.26200",
+        "cpu": "11th Gen Intel(R) Core(TM) i7-11370H @ 3.30GHz",
+        "logicalCpus": 8,
+        "totalMemoryBytes": 16983347200,
+        "powerMode": "not controlled or independently measured",
+        "journal": "WAL"
+      },
+      "repetition": 2
+    },
+    {
+      "startedAt": "2026-11-17T09:10:16.444Z",
+      "completedAt": "2026-11-17T09:10:33.071Z",
+      "users": 50,
+      "warmupSeconds": 3,
+      "requestedSeconds": 12,
+      "drainedSeconds": 13.508563599999993,
+      "recoverySeconds": 3,
+      "recoveryMs": 28.101699999999255,
+      "fixture": {
+        "students": 10000,
+        "courses": 100,
+        "offerings": 100,
+        "enrollmentAttempts": 50000,
+        "clock": "2026-11-17T08:00:00.000Z",
+        "logicalSha256": "716fd743a980a8ded530755ff4c848154fa2f99c702e9eceb60326a266a01fe0",
+        "hashScope": "ordered domain rows; random password hashes and sessions excluded"
+      },
+      "aggregate": {
+        "requests": 589,
+        "errors": 0,
+        "p50Ms": 19.497000000003027,
+        "p95Ms": 45.87290000001667,
+        "requestsPerSecond": 43.60197112296975
+      },
+      "operations": {
+        "catalog": {
+          "requests": 403,
+          "errors": 0,
+          "p50Ms": 13.499600000010105,
+          "p95Ms": 41.59990000000107
+        },
+        "history": {
+          "requests": 96,
+          "errors": 0,
+          "p50Ms": 28.69310000000405,
+          "p95Ms": 50.45540000000619
+        },
+        "enroll": {
+          "requests": 73,
+          "errors": 0,
+          "p50Ms": 31.699099999997998,
+          "p95Ms": 49.336699999985285
+        },
+        "cancel": {
+          "requests": 17,
+          "errors": 0,
+          "p50Ms": 35.14199999999255,
+          "p95Ms": 64.41699999998673
+        }
+      },
+      "outcomes": {
+        "catalog:200": 403,
+        "enroll:201": 73,
+        "history:200": 96,
+        "cancel:200": 17
+      },
+      "resources": {
+        "userCpuMs": 4453,
+        "systemCpuMs": 1500,
+        "peakRssBytes": 119906304,
+        "acquisitionRetries": 9,
+        "transactionRetries": 0,
+        "eventLoopP95Ms": 34.734079,
+        "eventLoopMaxMs": 60.915711
+      },
+      "invariants": {
+        "overCapacity": [],
+        "duplicateCurrent": [],
+        "foreignKeys": []
+      },
+      "model": {
+        "seed": 20261117,
+        "thinkMs": [
+          500,
+          1500
+        ],
+        "initialStaggerMs": [
+          0,
+          1000
+        ],
+        "mix": "70/15/10/5 catalog/history/enroll/cancel; cancel falls back to enrollment when no tracked attempt",
+        "requestTimeoutMs": 5000,
+        "clientServerSeparateProcesses": true,
+        "sameMachine": true,
+        "loginExcluded": true,
+        "requestedWindowAndDrainReported": true
+      },
+      "environment": {
+        "node": "v24.22.3",
+        "sqlite": "3.52.0",
+        "platform": "win32",
+        "release": "10.0.26200",
+        "cpu": "11th Gen Intel(R) Core(TM) i7-11370H @ 3.30GHz",
+        "logicalCpus": 8,
+        "totalMemoryBytes": 16983347200,
+        "powerMode": "not controlled or independently measured",
+        "journal": "WAL"
+      },
+      "repetition": 2
+    },
+    {
+      "startedAt": "2026-11-17T09:10:49.977Z",
+      "completedAt": "2026-11-17T09:11:06.450Z",
+      "users": 100,
+      "warmupSeconds": 3,
+      "requestedSeconds": 12,
+      "drainedSeconds": 13.318447400000004,
+      "recoverySeconds": 3,
+      "recoveryMs": 37.796899999986636,
+      "fixture": {
+        "students": 10000,
+        "courses": 100,
+        "offerings": 100,
+        "enrollmentAttempts": 50000,
+        "clock": "2026-11-17T08:00:00.000Z",
+        "logicalSha256": "716fd743a980a8ded530755ff4c848154fa2f99c702e9eceb60326a266a01fe0",
+        "hashScope": "ordered domain rows; random password hashes and sessions excluded"
+      },
+      "aggregate": {
+        "requests": 1121,
+        "errors": 0,
+        "p50Ms": 47.42699999999604,
+        "p95Ms": 185.72539999999572,
+        "requestsPerSecond": 84.16897002574036
+      },
+      "operations": {
+        "catalog": {
+          "requests": 781,
+          "errors": 0,
+          "p50Ms": 44.90080000000307,
+          "p95Ms": 194.21259999999893
+        },
+        "history": {
+          "requests": 163,
+          "errors": 0,
+          "p50Ms": 55.056299999996554,
+          "p95Ms": 180.90299999999115
+        },
+        "enroll": {
+          "requests": 142,
+          "errors": 0,
+          "p50Ms": 48.34210000000894,
+          "p95Ms": 96.40069999999832
+        },
+        "cancel": {
+          "requests": 35,
+          "errors": 0,
+          "p50Ms": 41.352599999983795,
+          "p95Ms": 111.17210000002524
+        }
+      },
+      "outcomes": {
+        "catalog:200": 781,
+        "enroll:201": 138,
+        "history:200": 163,
+        "cancel:200": 35,
+        "enroll:200": 4
+      },
+      "resources": {
+        "userCpuMs": 10219,
+        "systemCpuMs": 2922,
+        "peakRssBytes": 121294848,
+        "acquisitionRetries": 50,
+        "transactionRetries": 0,
+        "eventLoopP95Ms": 31.703039,
+        "eventLoopMaxMs": 55.607295
+      },
+      "invariants": {
+        "overCapacity": [],
+        "duplicateCurrent": [],
+        "foreignKeys": []
+      },
+      "model": {
+        "seed": 20261117,
+        "thinkMs": [
+          500,
+          1500
+        ],
+        "initialStaggerMs": [
+          0,
+          1000
+        ],
+        "mix": "70/15/10/5 catalog/history/enroll/cancel; cancel falls back to enrollment when no tracked attempt",
+        "requestTimeoutMs": 5000,
+        "clientServerSeparateProcesses": true,
+        "sameMachine": true,
+        "loginExcluded": true,
+        "requestedWindowAndDrainReported": true
+      },
+      "environment": {
+        "node": "v24.22.3",
+        "sqlite": "3.52.0",
+        "platform": "win32",
+        "release": "10.0.26200",
+        "cpu": "11th Gen Intel(R) Core(TM) i7-11370H @ 3.30GHz",
+        "logicalCpus": 8,
+        "totalMemoryBytes": 16983347200,
+        "powerMode": "not controlled or independently measured",
+        "journal": "WAL"
+      },
+      "repetition": 2
+    },
+    {
+      "startedAt": "2026-11-17T09:11:18.614Z",
+      "completedAt": "2026-11-17T09:11:35.223Z",
+      "users": 10,
+      "warmupSeconds": 3,
+      "requestedSeconds": 12,
+      "drainedSeconds": 13.485481700000005,
+      "recoverySeconds": 3,
+      "recoveryMs": 27.572100000019418,
+      "fixture": {
+        "students": 10000,
+        "courses": 100,
+        "offerings": 100,
+        "enrollmentAttempts": 50000,
+        "clock": "2026-11-17T08:00:00.000Z",
+        "logicalSha256": "716fd743a980a8ded530755ff4c848154fa2f99c702e9eceb60326a266a01fe0",
+        "hashScope": "ordered domain rows; random password hashes and sessions excluded"
+      },
+      "aggregate": {
+        "requests": 121,
+        "errors": 0,
+        "p50Ms": 11.971799999999348,
+        "p95Ms": 41.518499999976484,
+        "requestsPerSecond": 8.972612376167472
+      },
+      "operations": {
+        "catalog": {
+          "requests": 80,
+          "errors": 0,
+          "p50Ms": 10.067399999999907,
+          "p95Ms": 17.48420000000624
+        },
+        "history": {
+          "requests": 19,
+          "errors": 0,
+          "p50Ms": 23.25099999998929,
+          "p95Ms": 38.751799999998184
+        },
+        "enroll": {
+          "requests": 18,
+          "errors": 0,
+          "p50Ms": 34.361799999984214,
+          "p95Ms": 49.51980000000913
+        },
+        "cancel": {
+          "requests": 4,
+          "errors": 0,
+          "p50Ms": 36.312100000010105,
+          "p95Ms": 50.29409999999916
+        }
+      },
+      "outcomes": {
+        "catalog:200": 80,
+        "enroll:201": 18,
+        "cancel:200": 4,
+        "history:200": 19
+      },
+      "resources": {
+        "userCpuMs": 1157,
+        "systemCpuMs": 313,
+        "peakRssBytes": 105578496,
+        "acquisitionRetries": 0,
+        "transactionRetries": 0,
+        "eventLoopP95Ms": 40.828927,
+        "eventLoopMaxMs": 59.736063
+      },
+      "invariants": {
+        "overCapacity": [],
+        "duplicateCurrent": [],
+        "foreignKeys": []
+      },
+      "model": {
+        "seed": 20261117,
+        "thinkMs": [
+          500,
+          1500
+        ],
+        "initialStaggerMs": [
+          0,
+          1000
+        ],
+        "mix": "70/15/10/5 catalog/history/enroll/cancel; cancel falls back to enrollment when no tracked attempt",
+        "requestTimeoutMs": 5000,
+        "clientServerSeparateProcesses": true,
+        "sameMachine": true,
+        "loginExcluded": true,
+        "requestedWindowAndDrainReported": true
+      },
+      "environment": {
+        "node": "v24.22.3",
+        "sqlite": "3.52.0",
+        "platform": "win32",
+        "release": "10.0.26200",
+        "cpu": "11th Gen Intel(R) Core(TM) i7-11370H @ 3.30GHz",
+        "logicalCpus": 8,
+        "totalMemoryBytes": 16983347200,
+        "powerMode": "not controlled or independently measured",
+        "journal": "WAL"
+      },
+      "repetition": 3
+    },
+    {
+      "startedAt": "2026-11-17T09:11:47.224Z",
+      "completedAt": "2026-11-17T09:12:03.583Z",
+      "users": 50,
+      "warmupSeconds": 3,
+      "requestedSeconds": 12,
+      "drainedSeconds": 13.241551500000002,
+      "recoverySeconds": 3,
+      "recoveryMs": 22.611000000004424,
+      "fixture": {
+        "students": 10000,
+        "courses": 100,
+        "offerings": 100,
+        "enrollmentAttempts": 50000,
+        "clock": "2026-11-17T08:00:00.000Z",
+        "logicalSha256": "716fd743a980a8ded530755ff4c848154fa2f99c702e9eceb60326a266a01fe0",
+        "hashScope": "ordered domain rows; random password hashes and sessions excluded"
+      },
+      "aggregate": {
+        "requests": 591,
+        "errors": 0,
+        "p50Ms": 20.485000000015134,
+        "p95Ms": 45.555999999982305,
+        "requestsPerSecond": 44.63223210663795
+      },
+      "operations": {
+        "catalog": {
+          "requests": 409,
+          "errors": 0,
+          "p50Ms": 15.098999999987427,
+          "p95Ms": 39.21329999997397
+        },
+        "history": {
+          "requests": 92,
+          "errors": 0,
+          "p50Ms": 28.645499999984168,
+          "p95Ms": 48.97389999998268
+        },
+        "enroll": {
+          "requests": 74,
+          "errors": 0,
+          "p50Ms": 34.78589999998803,
+          "p95Ms": 60.52479999998468
+        },
+        "cancel": {
+          "requests": 16,
+          "errors": 0,
+          "p50Ms": 26.647999999986496,
+          "p95Ms": 66.16849999999977
+        }
+      },
+      "outcomes": {
+        "catalog:200": 409,
+        "enroll:201": 74,
+        "history:200": 92,
+        "cancel:200": 16
+      },
+      "resources": {
+        "userCpuMs": 4765,
+        "systemCpuMs": 1468,
+        "peakRssBytes": 119873536,
+        "acquisitionRetries": 11,
+        "transactionRetries": 0,
+        "eventLoopP95Ms": 33.816575,
+        "eventLoopMaxMs": 53.837823
+      },
+      "invariants": {
+        "overCapacity": [],
+        "duplicateCurrent": [],
+        "foreignKeys": []
+      },
+      "model": {
+        "seed": 20261117,
+        "thinkMs": [
+          500,
+          1500
+        ],
+        "initialStaggerMs": [
+          0,
+          1000
+        ],
+        "mix": "70/15/10/5 catalog/history/enroll/cancel; cancel falls back to enrollment when no tracked attempt",
+        "requestTimeoutMs": 5000,
+        "clientServerSeparateProcesses": true,
+        "sameMachine": true,
+        "loginExcluded": true,
+        "requestedWindowAndDrainReported": true
+      },
+      "environment": {
+        "node": "v24.22.3",
+        "sqlite": "3.52.0",
+        "platform": "win32",
+        "release": "10.0.26200",
+        "cpu": "11th Gen Intel(R) Core(TM) i7-11370H @ 3.30GHz",
+        "logicalCpus": 8,
+        "totalMemoryBytes": 16983347200,
+        "powerMode": "not controlled or independently measured",
+        "journal": "WAL"
+      },
+      "repetition": 3
+    },
+    {
+      "startedAt": "2026-11-17T09:12:20.271Z",
+      "completedAt": "2026-11-17T09:12:36.734Z",
+      "users": 100,
+      "warmupSeconds": 3,
+      "requestedSeconds": 12,
+      "drainedSeconds": 13.378718200000032,
+      "recoverySeconds": 3,
+      "recoveryMs": 18.63650000002235,
+      "fixture": {
+        "students": 10000,
+        "courses": 100,
+        "offerings": 100,
+        "enrollmentAttempts": 50000,
+        "clock": "2026-11-17T08:00:00.000Z",
+        "logicalSha256": "716fd743a980a8ded530755ff4c848154fa2f99c702e9eceb60326a266a01fe0",
+        "hashScope": "ordered domain rows; random password hashes and sessions excluded"
+      },
+      "aggregate": {
+        "requests": 1138,
+        "errors": 0,
+        "p50Ms": 42.3411999999953,
+        "p95Ms": 104.98970000000554,
+        "requestsPerSecond": 85.06046565806261
+      },
+      "operations": {
+        "catalog": {
+          "requests": 788,
+          "errors": 0,
+          "p50Ms": 39.445200000016484,
+          "p95Ms": 104.98970000000554
+        },
+        "history": {
+          "requests": 169,
+          "errors": 0,
+          "p50Ms": 52.37659999995958,
+          "p95Ms": 118.68719999998575
+        },
+        "enroll": {
+          "requests": 146,
+          "errors": 0,
+          "p50Ms": 40.96820000000298,
+          "p95Ms": 77.26589999999851
+        },
+        "cancel": {
+          "requests": 35,
+          "errors": 0,
+          "p50Ms": 38.201600000000326,
+          "p95Ms": 89.13229999999749
+        }
+      },
+      "outcomes": {
+        "catalog:200": 788,
+        "enroll:201": 141,
+        "history:200": 169,
+        "cancel:200": 35,
+        "enroll:200": 5
+      },
+      "resources": {
+        "userCpuMs": 8890,
+        "systemCpuMs": 3219,
+        "peakRssBytes": 120631296,
+        "acquisitionRetries": 55,
+        "transactionRetries": 0,
+        "eventLoopP95Ms": 31.424511,
+        "eventLoopMaxMs": 54.722559
+      },
+      "invariants": {
+        "overCapacity": [],
+        "duplicateCurrent": [],
+        "foreignKeys": []
+      },
+      "model": {
+        "seed": 20261117,
+        "thinkMs": [
+          500,
+          1500
+        ],
+        "initialStaggerMs": [
+          0,
+          1000
+        ],
+        "mix": "70/15/10/5 catalog/history/enroll/cancel; cancel falls back to enrollment when no tracked attempt",
+        "requestTimeoutMs": 5000,
+        "clientServerSeparateProcesses": true,
+        "sameMachine": true,
+        "loginExcluded": true,
+        "requestedWindowAndDrainReported": true
+      },
+      "environment": {
+        "node": "v24.22.3",
+        "sqlite": "3.52.0",
+        "platform": "win32",
+        "release": "10.0.26200",
+        "cpu": "11th Gen Intel(R) Core(TM) i7-11370H @ 3.30GHz",
+        "logicalCpus": 8,
+        "totalMemoryBytes": 16983347200,
+        "powerMode": "not controlled or independently measured",
+        "journal": "WAL"
+      },
+      "repetition": 3
+    }
+  ]
+}

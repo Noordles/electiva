@@ -23,17 +23,21 @@ test('production browser: sign in, enroll, waitlist, cancel, promote and reload 
   await page.goto(running.url + '/courses');
   await expect(page.getByRole('heading', { name: 'Your workspace starts here.' })).toBeVisible();
   await signIn(page, 'student1@example.test');
-  await mkdir('artifacts/m2', { recursive: true });
+  await mkdir('artifacts/m3', { recursive: true });
   for (const width of [1280, 768, 360]) {
     await page.setViewportSize({ width, height: 900 });
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true, `horizontal overflow at ${width}`);
-    await page.screenshot({ path: `artifacts/m2/catalog-${width}.png`, fullPage: true });
+    await page.screenshot({ path: `artifacts/m3/student-catalog-${width}.png`, fullPage: true });
   }
   await page.setViewportSize({ width: 1280, height: 900 });
   const choose = async target => {
     await target.getByRole('textbox', { name: 'Search courses' }).fill('Data Visualization');
     await expect(target.locator('.course-card')).toHaveCount(1);
-    await target.getByRole('button', { name: 'Explore course' }).click();
+    const opener = target.getByRole('button', { name: 'Explore course' });
+    await opener.focus(); await target.keyboard.press('Enter');
+    await expect(target.getByRole('dialog')).toBeVisible();
+    await target.keyboard.press('Escape'); await expect(target.getByRole('dialog')).toHaveCount(0);
+    await expect(opener).toBeFocused(); await target.keyboard.press('Enter');
   };
   await choose(page); await page.getByRole('button', { name: 'Enroll in this course' }).click();
   await expect(page.getByText('You’re enrolled. Your place is saved.')).toBeVisible();

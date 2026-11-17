@@ -85,5 +85,9 @@ test('production admin: course, offering, stale edit, promotion, report, archive
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true, `admin overflow at ${width}`);
     await page.screenshot({ path: `artifacts/m3/admin-${width}.png`, fullPage: true });
   }
+  for (const section of ['Courses', 'Reports', 'Directory']) {
+    await page.getByRole('link', { name: section, exact: true }).click();
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), true, `${section} overflow at 360`);
+  }
   assert.deepEqual(errors, []);
 });

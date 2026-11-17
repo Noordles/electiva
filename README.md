@@ -4,6 +4,8 @@
 
 ## Current milestone
 
+**Paused for Noor's app review,17 November:** the latest M3 implementation and unfinished verification work are saved in [CHECKPOINT.md](docs/CHECKPOINT.md). The local app is running for inspection. Continue development only when the student asks.
+
 **M2 implemented and technically verified:** real sign-in, persisted catalog, enrollment, cancellation, FIFO waitlists and protected administrator APIs. The student enrollment interface was also brought forward from M3. Administration/report/import screens, measured SCL experiments, separate-process recovery and genuine individual teammate reviews remain outstanding. See [M2 evidence](docs/milestones/M2.md).
 
 **Designed by Noor.** The wine/cyan visual system follows his Iraq Economic Observatory direction and supplied Electiva icon. [Design tokens](docs/design-system.md) · [Full implementation plan](docs/IMPLEMENTATION_PLAN.md) · [Granular backlog](docs/TASKS.md).

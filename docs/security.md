@@ -1,0 +1,11 @@
+# Security review and limits
+
+The server derives identity/role from opaque, SHA256-hashed session identifiers in SQLite. Cookies are HttpOnly/SameSite=Lax with an eight-hour absolute expiry; production defaults Secure. Passwords use per-hash salts and scrypt16384/8/1 with timing-safe comparison. Password whitespace remains significant. No public registration, role selection, university login or localStorage bearer token is used.
+
+Every management endpoint requires admin authorization; student enrollment/cancellation requires student identity. Other students' records return404. Mutation Origin validation uses the actual loopback socket port plus explicitly configured Vite origin, rather than trusting a Host header. Session-bound random CSRF tokens are compared safely. The Vite proxy/production SPA use same-origin fetch; broad credentialed CORS is not enabled.
+
+Bodies are bounded16KiB, collection pages100 rows, filters/date/field/sort IDs are validated and values use SQL bindings. A bounded account/IP login limiter expires after five minutes; it is process-local and not a distributed attack defense. Server logs omit credentials, body, query and cookies. Stable errors omit raw SQL/paths/stack traces. Runtime and synthetic credential files stay outside Git.
+
+SQLite FK/CHECK/partial unique/triggers provide integrity beyond service validation. Managed IMMEDIATE transactions and bounded retries cover enrollment/cancellation/capacity changes; no process mutex is relied on. Tests reject raw overselling, duplicate/current identity/history corruption, ownership escalation, student management calls, forged fields, hostile origins, invalid UTC dates and altered migration checksums. A process kill during cancellation verifies durable rollback before restart.
+
+Remaining limits: no third-party penetration test, full assistive-technology audit, sustained internet attack simulation, distributed rate limiter or production TLS deployment. Startup error/signal corners and some malformed encodings remain less exercised than domain logic; all authored backend files remain in coverage. An npm audit0 is a dated advisory check, not a security certification. Teacher acceptance and genuine member review are separate from automated technical verification.

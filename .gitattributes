@@ -3,3 +3,4 @@
 docs/sources/*.md -text whitespace=-blank-at-eol
 artifacts/m1/*.txt whitespace=-blank-at-eol
 artifacts/m2/*.txt whitespace=-blank-at-eol
+artifacts/m3/*.txt whitespace=-blank-at-eol

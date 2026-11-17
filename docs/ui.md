@@ -1,6 +1,6 @@
-# Frontend delivery plan
+# Frontend behavior and verification
 
-Use a restrained university portal: JIN identity, clear navigation, consistent cards/forms/table layout, accessible typography and status labels. Proposed routes are implementation choices, not an imposed page count.
+Implemented: the wine/cyan portal preserves Noor’s design direction and icon. Student catalog details use a native dialog rather than a separate /courses/:id page. Administration uses /admin/courses, /admin/offerings, /admin/reports and /admin/directory. Production browser tests cover student and admin workflows, stale forms, provider failures and three viewport widths. The route table below retains the original responsibility/acceptance plan.
 
 | Route | Main owner | Required content and states |
 |---|---|---|

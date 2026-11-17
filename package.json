@@ -27,13 +27,15 @@
     "db:seed": "node --env-file-if-exists=.env tools/database.mjs --seed",
     "test:concurrency": "node tools/test-concurrency.mjs",
     "test:e2e": "node --test client/tests/*.test.js",
-    "load:baseline": "node tools/load/runner.mjs",
-    "load:saturation": "node tools/pending.mjs load:saturation",
-    "load:compare": "node tools/pending.mjs load:compare",
+    "load:baseline": "node tools/load/capacity.mjs --output artifacts/capacity/baseline.json",
+    "load:saturation": "node tools/load/capacity.mjs --output artifacts/capacity/optimized-saturation.json --users 100,200,400 --think false",
+    "load:compare": "python tools/load/plot-results.py",
     "db:seed:large": "node --env-file-if-exists=.env tools/database.mjs --seed --large",
     "dev:directory": "node --env-file-if-exists=.env tools/directory-simulator.js",
     "load:smoke": "node tools/load/runner.mjs --users 10 --seconds 2 --output artifacts/m2/load-smoke.json",
-    "verify:m2": "node tools/verify-m2.mjs"
+    "verify:m2": "node tools/verify-m2.mjs",
+    "verify:m3": "node tools/verify-m2.mjs --m3",
+    "rehearse": "node tools/rehearse.mjs"
   },
   "overrides": {
     "uuid": "11.1.1",
